@@ -74,6 +74,63 @@
       </tags>
   </entry>
   <entry>
+    <title>Knapsack</title>
+    <url>/2021/04/01/Knapsack/</url>
+    <content><![CDATA[<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。</p>
+</blockquote>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>任何一件物品可以选择放入或者不放入,考虑第$N$件物品：</p>
+<ul>
+<li>放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$</li>
+<li>不放入：问题简化为$N-1$件物品，容量为$V$，得到的价值为$F(N-1，V)$</li>
+</ul>
+<h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>F(N，V)= max{F(N-1，V)，F(N-1，V-C[N])+W[N]}<br>$$</p>
+<h5 id="C-代码实现"><a href="#C-代码实现" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(x,y)</span> </span>&#123;<span class="keyword">return</span> (x&gt;y)? x:y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> s[],<span class="keyword">int</span> v[],<span class="keyword">int</span> C)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 当没有物品可选或者可以存储的质量小于等于0时，显然能存储的物品价值为0</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s[n]&gt;C) <span class="keyword">return</span> <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">// 当第N件物品质量超过所能容纳质量时，可以默认不选</span></span><br><span class="line">    <span class="comment">// 事实上这一步也可以忽略，可以包含在第三种情况中</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C),<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]);</span><br><span class="line">    <span class="comment">// 状态转移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>倘若直接调用递归函数，会出现重复计算的问题</p>
+<p>如果能出现一个数组来存储每次计算的结果时，可以减少重复计算的机会</p>
+<p><strong>动态规划：</strong></p>
+<h5 id="C-代码实现-1"><a href="#C-代码实现-1" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//动态规划解决0-1背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化细节"><a href="#初始化细节" class="headerlink" title="初始化细节"></a>初始化细节</h3><p>如果要求背包刚好装满，则可以设$knapsack(0，a)(a != 0)$时取值无穷小，此时无法取到背包未满的解。</p>
+<h2 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h2><h3 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述:"></a>问题重述:</h5><blockquote>
+<p>有N种物品和一个容量为V 的背包，每种物品都有<strong>无限件可用</strong>。放入第i种 物品的耗费的空间是C[i]，得到的价值是W[i]。求解：将哪些物品装入背包，可使这些物品的耗费的空间总和不超过背包容量，且价值总和最大。</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><h6 id="思路1-1："><a href="#思路1-1：" class="headerlink" title="思路1-1："></a>思路1-1：</h6><p>（转换为0-1背包问题）</p>
+<p>仍然以0-1背包问题进行理解，虽然每件物品有无限件可用，但是为保证物品数量不超过空间限制，至多可选第i件物品的个数为$[ C/C[i] ]$,因此问题变为了$[C/C[i]]$个i件物品的综合。</p>
+<p>但可见当物品数目增多，容量增大时，该算法的复杂度会迅速<strong>膨胀</strong>。</p>
+<h6 id="思路1-2："><a href="#思路1-2：" class="headerlink" title="思路1-2："></a>思路1-2：</h6><p>（更有效的转换为0-1背包问题）</p>
+<p>把第i种物品拆成体积为$C[i]<em>2^k$、价值为$W[i]</em> 2^k$的若干件物品，其中k取遍满足$C[i]* 2^k ≤ V$ 的非负整数。</p>
+<p><u>即采用二进制的思想，当选取两件相同物品时，等价于选取质量和价值均为原来两倍的物品</u>。</p>
+<h6 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h6><p>一个简单的优化：若两件物品比较，其中一件物品价值更低，同时体积更大，那么可以将这一件物品舍去。</p>
+<h6 id="思路3："><a href="#思路3：" class="headerlink" title="思路3："></a>思路3：</h6><p>当且仅当决定不继续选择这件物品时进行状态转移，否则持续当前状态</p>
+<h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><ul>
+<li><p>$$F(N，V)= max{ F(N-1，V - k * C[N]) + k * W[N] |0&lt;=k * C[N]&lt;=V }$$</p>
+</li>
+<li><p>$$F(N，V)= max{ F(N-1，V)，F(N，V-C[N])+W[N] }$$</p>
+</li>
+</ul>
+<h5 id="C-代码实现-2"><a href="#C-代码实现-2" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//动态规划解决完全背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>​         在现实生活中，有一类活动的过程，由于它的特殊性，可将过程分成若干个互相联系的阶段，在它的每一阶段都需要作出决策，从而使整个过程达到最好的活动效果。</p>
+<p>​        各个阶段决策的选取不能任意确定，它依赖于当前面临的状态，又影响以后的发展。当各个阶段决策确定后，就组成一个决策序列，因而也就确定了整个过程的一条活动路线．这种把一个问题看作是一个前后关联具有链状结构的多阶段过程就称为多阶段决策过程，这种问题称为多阶段决策问题。</p>
+<p>​         在多阶段决策问题中，各个阶段采取的决策，一般来说是与时间有关的，决策依赖于当前状态，又随即引起状态的转移，一个决策序列就是在变化的状态中产生出来的，故有“动态”的含义，称这种解决多阶段决策最优化的过程为动态规划方法</p>
+</blockquote>
+<h5 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h5><blockquote>
+<p>​        动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p>
+<p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
+<p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Arithmetic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Knapsack+</title>
     <url>/2021/04/02/Knapsack+/</url>
     <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
@@ -199,280 +256,6 @@
 <li>inplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。</li>
 </ul>
 <h3 id="isnull"><a href="#isnull" class="headerlink" title="- isnull()"></a>- isnull()</h3><h3 id="fillna"><a href="#fillna" class="headerlink" title="- fillna()"></a>- fillna()</h3>]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Numpy_base</title>
-    <url>/2021/08/01/Numpy_base/</url>
-    <content><![CDATA[<h2 id="理解Numpy"><a href="#理解Numpy" class="headerlink" title="理解Numpy"></a>理解Numpy</h2><p><img src="https://www.runoob.com/wp-content/uploads/2018/10/numpy-logo-300.png" alt="img"></p>
-<p>围绕数据类型ndarray 建立起的高级数据操作和数值计算的python库</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-
-<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><ul>
-<li>类似matlab，数组的计算采用逐元素计算</li>
-<li>底层实现基于C，因此计算速度远快于python本体</li>
-</ul>
-<h3 id="Ndarray"><a href="#Ndarray" class="headerlink" title="Ndarray"></a>Ndarray</h3><p><img src="https://www.runoob.com/wp-content/uploads/2018/10/ndarray.png" alt="img"></p>
-<ul>
-<li><p>存放同类型数据的多维数组</p>
-</li>
-<li><p>高级数组，比起数据集合（例如List）更像多维矩阵的结构</p>
-</li>
-<li><p>相对于python本体的动态储存结构，ndarrays一旦生成了，规模就不可改变</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.array(<span class="built_in">object</span>, dtype = <span class="literal">None</span>, copy = <span class="literal">True</span>, order = <span class="literal">None</span>, subok = <span class="literal">False</span>, ndmin = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="left">名称</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">object</td>
-<td align="left">数组或嵌套的数列</td>
-</tr>
-<tr>
-<td align="left">dtype</td>
-<td align="left">数组元素的数据类型，可选</td>
-</tr>
-<tr>
-<td align="left">copy</td>
-<td align="left">对象是否需要复制，可选</td>
-</tr>
-<tr>
-<td align="left">order</td>
-<td align="left">创建数组的样式，C为行方向，F为列方向，A为任意方向（默认）</td>
-</tr>
-<tr>
-<td align="left">subok</td>
-<td align="left">默认返回一个与基类类型一致的数组</td>
-</tr>
-<tr>
-<td align="left">ndmin</td>
-<td align="left">指定生成数组的最小维度</td>
-</tr>
-</tbody></table>
-<h4 id="Ndarray生成函数"><a href="#Ndarray生成函数" class="headerlink" title="Ndarray生成函数"></a>Ndarray生成函数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.array(x,dtype=<span class="built_in">float</span>)  <span class="comment">#将输入数据x转换为指定类型dtype的ndarray</span></span><br><span class="line">np.asarray(array)  <span class="comment">#将输入数据转换为一个新的（copy）的ndarray</span></span><br><span class="line">np.ones(N,dtype) </span><br><span class="line">np.ones_like(ndarray)  <span class="comment">#生成一个形状与参数数组完全相同的全1的ndarray</span></span><br><span class="line">np.zeros(N,dtype)</span><br><span class="line">np.zeros_like(ndarray)</span><br><span class="line">np.empty(N,dtype)  <span class="comment">#生成一个数据为初始化的指定类型为dtype的ndarray</span></span><br><span class="line">np.empty_like(ndarray)</span><br><span class="line">np.eye(N)</span><br><span class="line">np.identity(N)</span><br><span class="line">np.arange(begin,end,step)</span><br><span class="line">np.linspace(start,stop,num)</span><br><span class="line">np.logspace(start,stop,num)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Numpy-数据类型"><a href="#Numpy-数据类型" class="headerlink" title="Numpy 数据类型"></a>Numpy 数据类型</h2><h3 id="常用Numpy基本类型"><a href="#常用Numpy基本类型" class="headerlink" title="常用Numpy基本类型"></a>常用Numpy基本类型</h3><table>
-<thead>
-<tr>
-<th align="left">名称</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">bool_</td>
-<td align="left">布尔型数据类型（True 或者 False）</td>
-</tr>
-<tr>
-<td align="left">int_</td>
-<td align="left">默认的整数类型（类似于 C 语言中的 long，int32 或 int64）</td>
-</tr>
-<tr>
-<td align="left">intc</td>
-<td align="left">与 C 的 int 类型一样，一般是 int32 或 int 64</td>
-</tr>
-<tr>
-<td align="left">intp</td>
-<td align="left">用于索引的整数类型（类似于 C 的 ssize_t，一般情况下仍然是 int32 或 int64）</td>
-</tr>
-<tr>
-<td align="left">int8</td>
-<td align="left">字节（-128 to 127）</td>
-</tr>
-<tr>
-<td align="left">int16</td>
-<td align="left">整数（-32768 to 32767）</td>
-</tr>
-<tr>
-<td align="left">int32</td>
-<td align="left">整数（-2147483648 to 2147483647）</td>
-</tr>
-<tr>
-<td align="left">int64</td>
-<td align="left">整数（-9223372036854775808 to 9223372036854775807）</td>
-</tr>
-<tr>
-<td align="left">uint8</td>
-<td align="left">无符号整数（0 to 255）</td>
-</tr>
-<tr>
-<td align="left">uint16</td>
-<td align="left">无符号整数（0 to 65535）</td>
-</tr>
-<tr>
-<td align="left">uint32</td>
-<td align="left">无符号整数（0 to 4294967295）</td>
-</tr>
-<tr>
-<td align="left">uint64</td>
-<td align="left">无符号整数（0 to 18446744073709551615）</td>
-</tr>
-<tr>
-<td align="left">float_</td>
-<td align="left">float64 类型的简写</td>
-</tr>
-<tr>
-<td align="left">float16</td>
-<td align="left">半精度浮点数，包括：1 个符号位，5 个指数位，10 个尾数位</td>
-</tr>
-<tr>
-<td align="left">float32</td>
-<td align="left">单精度浮点数，包括：1 个符号位，8 个指数位，23 个尾数位</td>
-</tr>
-<tr>
-<td align="left">float64</td>
-<td align="left">双精度浮点数，包括：1 个符号位，11 个指数位，52 个尾数位</td>
-</tr>
-<tr>
-<td align="left">complex_</td>
-<td align="left">complex128 类型的简写，即 128 位复数</td>
-</tr>
-<tr>
-<td align="left">complex64</td>
-<td align="left">复数，表示双 32 位浮点数（实数部分和虚数部分）</td>
-</tr>
-<tr>
-<td align="left">complex128</td>
-<td align="left">复数，表示双 64 位浮点数（实数部分和虚数部分）</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>numpy 的数值类型实际上是 dtype 对象的实例，并对应唯一的字符，包括 np.bool_，np.int32，np.float32，等等。</p>
-</blockquote>
-<h3 id="数据类型对象（dtype）"><a href="#数据类型对象（dtype）" class="headerlink" title="数据类型对象（dtype）"></a>数据类型对象（dtype）</h3><h4 id="构造dtype对象"><a href="#构造dtype对象" class="headerlink" title="构造dtype对象"></a>构造dtype对象</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.dtype(<span class="built_in">object</span>, align, copy)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>object - 要转换为的数据类型对象</li>
-<li>align - 如果为 true，填充字段使其类似 C 的结构体。</li>
-<li>copy - 复制 dtype 对象 ，如果为 false，则是对内置数据类型对象的引用</li>
-</ul>
-<h4 id="结构化数据类型"><a href="#结构化数据类型" class="headerlink" title="结构化数据类型"></a>结构化数据类型</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 首先创建结构化数据类型</span></span><br><span class="line">dt = np.dtype([(<span class="string">&#x27;age&#x27;</span>,np.int8)]) </span><br><span class="line"><span class="comment"># 将数据类型应用于 ndarray 对象</span></span><br><span class="line">a = np.array([(<span class="number">10</span>,),(<span class="number">20</span>,),(<span class="number">30</span>,)], dtype = dt) </span><br><span class="line"><span class="comment"># 类型字段名可以用于存取实际的 age 列</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="string">&#x27;age&#x27;</span>])</span><br><span class="line">&gt;&gt; [<span class="number">10</span> <span class="number">20</span> <span class="number">30</span>]</span><br><span class="line"><span class="comment">#示例</span></span><br><span class="line">student = np.dtype([(<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;S20&#x27;</span>), (<span class="string">&#x27;age&#x27;</span>, <span class="string">&#x27;i1&#x27;</span>), (<span class="string">&#x27;marks&#x27;</span>, <span class="string">&#x27;f4&#x27;</span>)]) </span><br><span class="line">a = np.array([(<span class="string">&#x27;abc&#x27;</span>, <span class="number">21</span>, <span class="number">50</span>),(<span class="string">&#x27;xyz&#x27;</span>, <span class="number">18</span>, <span class="number">75</span>)], dtype = student) </span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">&gt;&gt; [(<span class="string">&#x27;abc&#x27;</span>, <span class="number">21</span>, <span class="number">50.0</span>), (<span class="string">&#x27;xyz&#x27;</span>, <span class="number">18</span>, <span class="number">75.0</span>)]</span><br></pre></td></tr></table></figure>
-
-<p>每个内建类型都有一个唯一定义它的字符代码，如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">字符</th>
-<th align="left">对应类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">b</td>
-<td align="left">布尔型</td>
-</tr>
-<tr>
-<td align="left">i</td>
-<td align="left">(有符号) 整型</td>
-</tr>
-<tr>
-<td align="left">u</td>
-<td align="left">无符号整型 integer</td>
-</tr>
-<tr>
-<td align="left">f</td>
-<td align="left">浮点型</td>
-</tr>
-<tr>
-<td align="left">c</td>
-<td align="left">复数浮点型</td>
-</tr>
-<tr>
-<td align="left">m</td>
-<td align="left">timedelta（时间间隔）</td>
-</tr>
-<tr>
-<td align="left">M</td>
-<td align="left">datetime（日期时间）</td>
-</tr>
-<tr>
-<td align="left">O</td>
-<td align="left">(Python) 对象</td>
-</tr>
-<tr>
-<td align="left">S, a</td>
-<td align="left">(byte-)字符串</td>
-</tr>
-<tr>
-<td align="left">U</td>
-<td align="left">Unicode</td>
-</tr>
-<tr>
-<td align="left">V</td>
-<td align="left">原始数据 (void)</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>ndarray.reshape 通常返回的是非拷贝副本，即改变返回后数组的元素，原数组对应元素的值也会改变。</p>
-</blockquote>
-<h2 id="Numpy-切片和索引"><a href="#Numpy-切片和索引" class="headerlink" title="Numpy 切片和索引"></a>Numpy 切片和索引</h2><p>与python中list的切片和索引操作相似</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.arange(<span class="number">10</span>)</span><br><span class="line">s = <span class="built_in">slice</span>(<span class="number">2</span>,<span class="number">7</span>,<span class="number">2</span>)   <span class="comment"># 从索引 2 开始到索引 7 停止，间隔为2</span></span><br><span class="line"><span class="built_in">print</span> (a[s])</span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">4</span> <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.arange(<span class="number">10</span>)  <span class="comment"># [0 1 2 3 4 5 6 7 8 9]</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">2</span>:<span class="number">5</span>])</span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">&gt;&gt; [[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">1</span>:])</span><br><span class="line">&gt;&gt; [[<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切片还可以包括省略号 <strong>…</strong>，来使选择元组的长度与数组的维度相同。 如果在行位置使用省略号，它将返回包含行中元素的 ndarray。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])  </span><br><span class="line"><span class="built_in">print</span> (a[...,<span class="number">1</span>])   <span class="comment"># 第2列元素</span></span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span> (a[<span class="number">1</span>,...])   <span class="comment"># 第2行元素</span></span><br><span class="line">&gt;&gt; [<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span> (a[...,<span class="number">1</span>:])  <span class="comment"># 第2列及剩下的所有元素</span></span><br><span class="line">&gt;&gt; [[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">5</span> <span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
-
-<h3 id="高级索引"><a href="#高级索引" class="headerlink" title="高级索引"></a>高级索引</h3><h4 id="整数数组索引"><a href="#整数数组索引" class="headerlink" title="整数数组索引"></a>整数数组索引</h4><p>以下实例获取数组中(0,0)，(1,1)和(2,0)位置处的元素。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">x = np.array([[<span class="number">1</span>,  <span class="number">2</span>],  [<span class="number">3</span>,  <span class="number">4</span>],  [<span class="number">5</span>,  <span class="number">6</span>]]) </span><br><span class="line">y = x[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],  [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]]  </span><br><span class="line"><span class="built_in">print</span> (y)</span><br><span class="line">&gt;&gt; [<span class="number">1</span> <span class="number">4</span> <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>整体先用 [ ] 括起来表示索引</li>
-<li>内部依次有ndim个序列，分别表示第i个axis</li>
-<li>内部的每个序列的shape保持一致，最终索引的结果位于对应的位置</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">x = np.array([[  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],[  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>],[  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>],[  <span class="number">9</span>,  <span class="number">10</span>,  <span class="number">11</span>]])  </span><br><span class="line"><span class="built_in">print</span> (x)</span><br><span class="line">&gt;&gt; [[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>]</span><br><span class="line">    [ <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>]</span><br><span class="line">    [ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>]</span><br><span class="line">    [ <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br><span class="line">rows = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">3</span>]]) </span><br><span class="line">cols = np.array([[<span class="number">0</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">2</span>]]) </span><br><span class="line">y = x[rows,cols]  </span><br><span class="line"><span class="built_in">print</span> (y)</span><br><span class="line">&gt;&gt; [[ <span class="number">0</span>  <span class="number">2</span>]</span><br><span class="line">    [ <span class="number">9</span> <span class="number">11</span>]]</span><br></pre></td></tr></table></figure>
-
-<p>返回的结果是包含每个角元素的 ndarray 对象。</p>
-<p>可以借助切片 <strong>:</strong> 或 <strong>…</strong> 与索引数组组合。如下面例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</span><br><span class="line">b = a[<span class="number">1</span>:<span class="number">3</span>, <span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">c = a[<span class="number">1</span>:<span class="number">3</span>,[<span class="number">1</span>,<span class="number">2</span>]]</span><br><span class="line">d = a[...,<span class="number">1</span>:]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">&gt;&gt; [[<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line">&gt;&gt; [[<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line">&gt;&gt; [[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br></pre></td></tr></table></figure>
-
-<h4 id="布尔索引"><a href="#布尔索引" class="headerlink" title="布尔索引"></a>布尔索引</h4><p>我们可以通过一个布尔数组来索引目标数组。</p>
-<p>布尔索引通过布尔运算（如：比较运算符）来获取符合指定条件的元素的数组。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">x = np.array([[  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],[  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>],[  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>],[  <span class="number">9</span>,  <span class="number">10</span>,  <span class="number">11</span>]])  </span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;我们的数组是：&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (x)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 现在我们会打印出大于 5 的元素  </span></span><br><span class="line"><span class="built_in">print</span>  (<span class="string">&#x27;大于 5 的元素是：&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (x[x &gt;  <span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出结果为</span></span><br><span class="line">我们的数组是：</span><br><span class="line">[[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>]</span><br><span class="line"> [ <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>]</span><br><span class="line"> [ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>]</span><br><span class="line"> [ <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">大于 <span class="number">5</span> 的元素是：</span><br><span class="line">[ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]</span><br></pre></td></tr></table></figure>
-
-<p>以下实例使用了 **~**（取补运算符）来过滤 NaN</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([np.nan,  <span class="number">1</span>,<span class="number">2</span>,np.nan,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])  </span><br><span class="line"><span class="built_in">print</span> (a[~np.isnan(a)])</span><br><span class="line">&gt;&gt; [ <span class="number">1.</span>   <span class="number">2.</span>   <span class="number">3.</span>   <span class="number">4.</span>   <span class="number">5.</span>]</span><br></pre></td></tr></table></figure>
-
-<p>以下实例演示如何从数组中过滤掉非复数元素。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([<span class="number">1</span>,  <span class="number">2</span>+<span class="number">6j</span>,  <span class="number">5</span>,  <span class="number">3.5</span>+<span class="number">5j</span>])  </span><br><span class="line"><span class="built_in">print</span> (a[np.iscomplex(a)])</span><br><span class="line">&gt;&gt; [<span class="number">2.0</span>+<span class="number">6.j</span>  <span class="number">3.5</span>+<span class="number">5.j</span>]</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><blockquote>
-<p>关于 np.ix_ 的具体使用：</p>
-<p>如果 np.xi_ 中输入两个列表，则第一个列表存的是待提取元素的行标，第二个列表存的是待提取元素的列标，第一个列表中的每个元素都会遍历第二个列表中的每个值，构成新矩阵的一行元素。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x[np.ix_([<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>])]</span><br><span class="line"><span class="comment">#相当于</span></span><br><span class="line">[[x[<span class="number">1</span>,<span class="number">0</span>] x[<span class="number">1</span>,<span class="number">3</span>] x[<span class="number">1</span>,<span class="number">1</span>] x[<span class="number">1</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">5</span>,<span class="number">0</span>] x[<span class="number">5</span>,<span class="number">3</span>] x[<span class="number">5</span>,<span class="number">1</span>] x[<span class="number">5</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">7</span>,<span class="number">0</span>] x[<span class="number">7</span>,<span class="number">3</span>] x[<span class="number">7</span>,<span class="number">1</span>] x[<span class="number">7</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">2</span>,<span class="number">0</span>] x[<span class="number">2</span>,<span class="number">3</span>] x[<span class="number">2</span>,<span class="number">1</span>] x[<span class="number">2</span>,<span class="number">2</span>]]]</span><br></pre></td></tr></table></figure>
-
-<p>关于普通索引和花式索引</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]],dtype = <span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line">&gt;&gt; <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">0</span>)])</span><br><span class="line">&gt;&gt; <span class="number">1</span></span><br><span class="line"><span class="comment">#上述两种等价，本质上来说上面是下面的一种语法糖</span></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">0</span>),])</span><br><span class="line">&gt;&gt;[[<span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">   [<span class="number">1</span> <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#触发了花式缩影，默认为x[(0,0),:]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)])</span><br><span class="line">&gt;&gt;[<span class="number">1</span> <span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>:<span class="number">2</span>,<span class="number">0</span>:<span class="number">2</span>])</span><br><span class="line">&gt;&gt;[[<span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">   [<span class="number">3</span> <span class="number">4</span>]]</span><br><span class="line"><span class="comment"># “:”不代表当前序列，而是对任意一种情况遍历所有序列，类似np.ix</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Numpy广播（broadcast）"><a href="#Numpy广播（broadcast）" class="headerlink" title="Numpy广播（broadcast）"></a>Numpy广播（broadcast）</h2><p>广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。</p>
-<p>如果两个数组 a 和 b 形状相同，即满足 <strong>a.shape == b.shape</strong>，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]) </span><br><span class="line">b = np.array([<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]) </span><br><span class="line">c = a * b </span><br><span class="line"><span class="built_in">print</span> (c)</span><br><span class="line">&gt;&gt; [ <span class="number">10</span>  <span class="number">40</span>  <span class="number">90</span> <span class="number">160</span>]</span><br></pre></td></tr></table></figure>
-
-<p>当运算中的 2 个数组的形状不同时，numpy 将自动触发广播机制。如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([[ <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">           [<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>],</span><br><span class="line">           [<span class="number">20</span>,<span class="number">20</span>,<span class="number">20</span>],</span><br><span class="line">           [<span class="number">30</span>,<span class="number">30</span>,<span class="number">30</span>]])</span><br><span class="line">b = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(a + b)</span><br><span class="line">&gt;&gt;[[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line">   [<span class="number">11</span> <span class="number">12</span> <span class="number">13</span>]</span><br><span class="line">   [<span class="number">21</span> <span class="number">22</span> <span class="number">23</span>]</span><br><span class="line">   [<span class="number">31</span> <span class="number">32</span> <span class="number">33</span>]]</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://www.runoob.com/wp-content/uploads/2018/10/image0020619.gif" alt="img"></p>
-<p>可以广播的几种情况：</p>
-<ol>
-<li>两个数组各维度大小从后往前比对均一致</li>
-<li>两个数组存在一些维度大小不相等时，有一个数组的该不相等维度大小为1</li>
-</ol>
-]]></content>
       <categories>
         <category>CS</category>
       </categories>
@@ -771,60 +554,277 @@
       </tags>
   </entry>
   <entry>
-    <title>Knapsack</title>
-    <url>/2021/04/01/Knapsack/</url>
-    <content><![CDATA[<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。</p>
-</blockquote>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>任何一件物品可以选择放入或者不放入,考虑第$N$件物品：</p>
+    <title>Numpy_base</title>
+    <url>/2021/08/01/Numpy_base/</url>
+    <content><![CDATA[<h2 id="理解Numpy"><a href="#理解Numpy" class="headerlink" title="理解Numpy"></a>理解Numpy</h2><p><img src="https://www.runoob.com/wp-content/uploads/2018/10/numpy-logo-300.png" alt="img"></p>
+<p>围绕数据类型ndarray 建立起的高级数据操作和数值计算的python库</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><ul>
+<li>类似matlab，数组的计算采用逐元素计算</li>
+<li>底层实现基于C，因此计算速度远快于python本体</li>
+</ul>
+<h3 id="Ndarray"><a href="#Ndarray" class="headerlink" title="Ndarray"></a>Ndarray</h3><p><img src="https://www.runoob.com/wp-content/uploads/2018/10/ndarray.png" alt="img"></p>
 <ul>
-<li>放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$</li>
-<li>不放入：问题简化为$N-1$件物品，容量为$V$，得到的价值为$F(N-1，V)$</li>
-</ul>
-<h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>F(N，V)= max{F(N-1，V)，F(N-1，V-C[N])+W[N]}<br>$$</p>
-<h5 id="C-代码实现"><a href="#C-代码实现" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(x,y)</span> </span>&#123;<span class="keyword">return</span> (x&gt;y)? x:y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> s[],<span class="keyword">int</span> v[],<span class="keyword">int</span> C)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 当没有物品可选或者可以存储的质量小于等于0时，显然能存储的物品价值为0</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s[n]&gt;C) <span class="keyword">return</span> <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">// 当第N件物品质量超过所能容纳质量时，可以默认不选</span></span><br><span class="line">    <span class="comment">// 事实上这一步也可以忽略，可以包含在第三种情况中</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C),<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]);</span><br><span class="line">    <span class="comment">// 状态转移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>倘若直接调用递归函数，会出现重复计算的问题</p>
-<p>如果能出现一个数组来存储每次计算的结果时，可以减少重复计算的机会</p>
-<p><strong>动态规划：</strong></p>
-<h5 id="C-代码实现-1"><a href="#C-代码实现-1" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//动态规划解决0-1背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="初始化细节"><a href="#初始化细节" class="headerlink" title="初始化细节"></a>初始化细节</h3><p>如果要求背包刚好装满，则可以设$knapsack(0，a)(a != 0)$时取值无穷小，此时无法取到背包未满的解。</p>
-<h2 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h2><h3 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述:"></a>问题重述:</h5><blockquote>
-<p>有N种物品和一个容量为V 的背包，每种物品都有<strong>无限件可用</strong>。放入第i种 物品的耗费的空间是C[i]，得到的价值是W[i]。求解：将哪些物品装入背包，可使这些物品的耗费的空间总和不超过背包容量，且价值总和最大。</p>
-</blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><h6 id="思路1-1："><a href="#思路1-1：" class="headerlink" title="思路1-1："></a>思路1-1：</h6><p>（转换为0-1背包问题）</p>
-<p>仍然以0-1背包问题进行理解，虽然每件物品有无限件可用，但是为保证物品数量不超过空间限制，至多可选第i件物品的个数为$[ C/C[i] ]$,因此问题变为了$[C/C[i]]$个i件物品的综合。</p>
-<p>但可见当物品数目增多，容量增大时，该算法的复杂度会迅速<strong>膨胀</strong>。</p>
-<h6 id="思路1-2："><a href="#思路1-2：" class="headerlink" title="思路1-2："></a>思路1-2：</h6><p>（更有效的转换为0-1背包问题）</p>
-<p>把第i种物品拆成体积为$C[i]<em>2^k$、价值为$W[i]</em> 2^k$的若干件物品，其中k取遍满足$C[i]* 2^k ≤ V$ 的非负整数。</p>
-<p><u>即采用二进制的思想，当选取两件相同物品时，等价于选取质量和价值均为原来两倍的物品</u>。</p>
-<h6 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h6><p>一个简单的优化：若两件物品比较，其中一件物品价值更低，同时体积更大，那么可以将这一件物品舍去。</p>
-<h6 id="思路3："><a href="#思路3：" class="headerlink" title="思路3："></a>思路3：</h6><p>当且仅当决定不继续选择这件物品时进行状态转移，否则持续当前状态</p>
-<h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><ul>
-<li><p>$$F(N，V)= max{ F(N-1，V - k * C[N]) + k * W[N] |0&lt;=k * C[N]&lt;=V }$$</p>
+<li><p>存放同类型数据的多维数组</p>
 </li>
-<li><p>$$F(N，V)= max{ F(N-1，V)，F(N，V-C[N])+W[N] }$$</p>
+<li><p>高级数组，比起数据集合（例如List）更像多维矩阵的结构</p>
+</li>
+<li><p>相对于python本体的动态储存结构，ndarrays一旦生成了，规模就不可改变</p>
 </li>
 </ul>
-<h5 id="C-代码实现-2"><a href="#C-代码实现-2" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//动态规划解决完全背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.array(<span class="built_in">object</span>, dtype = <span class="literal">None</span>, copy = <span class="literal">True</span>, order = <span class="literal">None</span>, subok = <span class="literal">False</span>, ndmin = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
-<p>​         在现实生活中，有一类活动的过程，由于它的特殊性，可将过程分成若干个互相联系的阶段，在它的每一阶段都需要作出决策，从而使整个过程达到最好的活动效果。</p>
-<p>​        各个阶段决策的选取不能任意确定，它依赖于当前面临的状态，又影响以后的发展。当各个阶段决策确定后，就组成一个决策序列，因而也就确定了整个过程的一条活动路线．这种把一个问题看作是一个前后关联具有链状结构的多阶段过程就称为多阶段决策过程，这种问题称为多阶段决策问题。</p>
-<p>​         在多阶段决策问题中，各个阶段采取的决策，一般来说是与时间有关的，决策依赖于当前状态，又随即引起状态的转移，一个决策序列就是在变化的状态中产生出来的，故有“动态”的含义，称这种解决多阶段决策最优化的过程为动态规划方法</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">object</td>
+<td align="left">数组或嵌套的数列</td>
+</tr>
+<tr>
+<td align="left">dtype</td>
+<td align="left">数组元素的数据类型，可选</td>
+</tr>
+<tr>
+<td align="left">copy</td>
+<td align="left">对象是否需要复制，可选</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">创建数组的样式，C为行方向，F为列方向，A为任意方向（默认）</td>
+</tr>
+<tr>
+<td align="left">subok</td>
+<td align="left">默认返回一个与基类类型一致的数组</td>
+</tr>
+<tr>
+<td align="left">ndmin</td>
+<td align="left">指定生成数组的最小维度</td>
+</tr>
+</tbody></table>
+<h4 id="Ndarray生成函数"><a href="#Ndarray生成函数" class="headerlink" title="Ndarray生成函数"></a>Ndarray生成函数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.array(x,dtype=<span class="built_in">float</span>)  <span class="comment">#将输入数据x转换为指定类型dtype的ndarray</span></span><br><span class="line">np.asarray(array)  <span class="comment">#将输入数据转换为一个新的（copy）的ndarray</span></span><br><span class="line">np.ones(N,dtype) </span><br><span class="line">np.ones_like(ndarray)  <span class="comment">#生成一个形状与参数数组完全相同的全1的ndarray</span></span><br><span class="line">np.zeros(N,dtype)</span><br><span class="line">np.zeros_like(ndarray)</span><br><span class="line">np.empty(N,dtype)  <span class="comment">#生成一个数据为初始化的指定类型为dtype的ndarray</span></span><br><span class="line">np.empty_like(ndarray)</span><br><span class="line">np.eye(N)</span><br><span class="line">np.identity(N)</span><br><span class="line">np.arange(begin,end,step)</span><br><span class="line">np.linspace(start,stop,num)</span><br><span class="line">np.logspace(start,stop,num)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Numpy-数据类型"><a href="#Numpy-数据类型" class="headerlink" title="Numpy 数据类型"></a>Numpy 数据类型</h2><h3 id="常用Numpy基本类型"><a href="#常用Numpy基本类型" class="headerlink" title="常用Numpy基本类型"></a>常用Numpy基本类型</h3><table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bool_</td>
+<td align="left">布尔型数据类型（True 或者 False）</td>
+</tr>
+<tr>
+<td align="left">int_</td>
+<td align="left">默认的整数类型（类似于 C 语言中的 long，int32 或 int64）</td>
+</tr>
+<tr>
+<td align="left">intc</td>
+<td align="left">与 C 的 int 类型一样，一般是 int32 或 int 64</td>
+</tr>
+<tr>
+<td align="left">intp</td>
+<td align="left">用于索引的整数类型（类似于 C 的 ssize_t，一般情况下仍然是 int32 或 int64）</td>
+</tr>
+<tr>
+<td align="left">int8</td>
+<td align="left">字节（-128 to 127）</td>
+</tr>
+<tr>
+<td align="left">int16</td>
+<td align="left">整数（-32768 to 32767）</td>
+</tr>
+<tr>
+<td align="left">int32</td>
+<td align="left">整数（-2147483648 to 2147483647）</td>
+</tr>
+<tr>
+<td align="left">int64</td>
+<td align="left">整数（-9223372036854775808 to 9223372036854775807）</td>
+</tr>
+<tr>
+<td align="left">uint8</td>
+<td align="left">无符号整数（0 to 255）</td>
+</tr>
+<tr>
+<td align="left">uint16</td>
+<td align="left">无符号整数（0 to 65535）</td>
+</tr>
+<tr>
+<td align="left">uint32</td>
+<td align="left">无符号整数（0 to 4294967295）</td>
+</tr>
+<tr>
+<td align="left">uint64</td>
+<td align="left">无符号整数（0 to 18446744073709551615）</td>
+</tr>
+<tr>
+<td align="left">float_</td>
+<td align="left">float64 类型的简写</td>
+</tr>
+<tr>
+<td align="left">float16</td>
+<td align="left">半精度浮点数，包括：1 个符号位，5 个指数位，10 个尾数位</td>
+</tr>
+<tr>
+<td align="left">float32</td>
+<td align="left">单精度浮点数，包括：1 个符号位，8 个指数位，23 个尾数位</td>
+</tr>
+<tr>
+<td align="left">float64</td>
+<td align="left">双精度浮点数，包括：1 个符号位，11 个指数位，52 个尾数位</td>
+</tr>
+<tr>
+<td align="left">complex_</td>
+<td align="left">complex128 类型的简写，即 128 位复数</td>
+</tr>
+<tr>
+<td align="left">complex64</td>
+<td align="left">复数，表示双 32 位浮点数（实数部分和虚数部分）</td>
+</tr>
+<tr>
+<td align="left">complex128</td>
+<td align="left">复数，表示双 64 位浮点数（实数部分和虚数部分）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>numpy 的数值类型实际上是 dtype 对象的实例，并对应唯一的字符，包括 np.bool_，np.int32，np.float32，等等。</p>
 </blockquote>
-<h5 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h5><blockquote>
-<p>​        动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p>
-<p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
-<p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
+<h3 id="数据类型对象（dtype）"><a href="#数据类型对象（dtype）" class="headerlink" title="数据类型对象（dtype）"></a>数据类型对象（dtype）</h3><h4 id="构造dtype对象"><a href="#构造dtype对象" class="headerlink" title="构造dtype对象"></a>构造dtype对象</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.dtype(<span class="built_in">object</span>, align, copy)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>object - 要转换为的数据类型对象</li>
+<li>align - 如果为 true，填充字段使其类似 C 的结构体。</li>
+<li>copy - 复制 dtype 对象 ，如果为 false，则是对内置数据类型对象的引用</li>
+</ul>
+<h4 id="结构化数据类型"><a href="#结构化数据类型" class="headerlink" title="结构化数据类型"></a>结构化数据类型</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 首先创建结构化数据类型</span></span><br><span class="line">dt = np.dtype([(<span class="string">&#x27;age&#x27;</span>,np.int8)]) </span><br><span class="line"><span class="comment"># 将数据类型应用于 ndarray 对象</span></span><br><span class="line">a = np.array([(<span class="number">10</span>,),(<span class="number">20</span>,),(<span class="number">30</span>,)], dtype = dt) </span><br><span class="line"><span class="comment"># 类型字段名可以用于存取实际的 age 列</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="string">&#x27;age&#x27;</span>])</span><br><span class="line">&gt;&gt; [<span class="number">10</span> <span class="number">20</span> <span class="number">30</span>]</span><br><span class="line"><span class="comment">#示例</span></span><br><span class="line">student = np.dtype([(<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;S20&#x27;</span>), (<span class="string">&#x27;age&#x27;</span>, <span class="string">&#x27;i1&#x27;</span>), (<span class="string">&#x27;marks&#x27;</span>, <span class="string">&#x27;f4&#x27;</span>)]) </span><br><span class="line">a = np.array([(<span class="string">&#x27;abc&#x27;</span>, <span class="number">21</span>, <span class="number">50</span>),(<span class="string">&#x27;xyz&#x27;</span>, <span class="number">18</span>, <span class="number">75</span>)], dtype = student) </span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">&gt;&gt; [(<span class="string">&#x27;abc&#x27;</span>, <span class="number">21</span>, <span class="number">50.0</span>), (<span class="string">&#x27;xyz&#x27;</span>, <span class="number">18</span>, <span class="number">75.0</span>)]</span><br></pre></td></tr></table></figure>
+
+<p>每个内建类型都有一个唯一定义它的字符代码，如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">对应类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">b</td>
+<td align="left">布尔型</td>
+</tr>
+<tr>
+<td align="left">i</td>
+<td align="left">(有符号) 整型</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">无符号整型 integer</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">浮点型</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td align="left">复数浮点型</td>
+</tr>
+<tr>
+<td align="left">m</td>
+<td align="left">timedelta（时间间隔）</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td align="left">datetime（日期时间）</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">(Python) 对象</td>
+</tr>
+<tr>
+<td align="left">S, a</td>
+<td align="left">(byte-)字符串</td>
+</tr>
+<tr>
+<td align="left">U</td>
+<td align="left">Unicode</td>
+</tr>
+<tr>
+<td align="left">V</td>
+<td align="left">原始数据 (void)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>ndarray.reshape 通常返回的是非拷贝副本，即改变返回后数组的元素，原数组对应元素的值也会改变。</p>
 </blockquote>
+<h2 id="Numpy-切片和索引"><a href="#Numpy-切片和索引" class="headerlink" title="Numpy 切片和索引"></a>Numpy 切片和索引</h2><p>与python中list的切片和索引操作相似</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.arange(<span class="number">10</span>)</span><br><span class="line">s = <span class="built_in">slice</span>(<span class="number">2</span>,<span class="number">7</span>,<span class="number">2</span>)   <span class="comment"># 从索引 2 开始到索引 7 停止，间隔为2</span></span><br><span class="line"><span class="built_in">print</span> (a[s])</span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">4</span> <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.arange(<span class="number">10</span>)  <span class="comment"># [0 1 2 3 4 5 6 7 8 9]</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">2</span>:<span class="number">5</span>])</span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">&gt;&gt; [[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">1</span>:])</span><br><span class="line">&gt;&gt; [[<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>切片还可以包括省略号 <strong>…</strong>，来使选择元组的长度与数组的维度相同。 如果在行位置使用省略号，它将返回包含行中元素的 ndarray。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])  </span><br><span class="line"><span class="built_in">print</span> (a[...,<span class="number">1</span>])   <span class="comment"># 第2列元素</span></span><br><span class="line">&gt;&gt; [<span class="number">2</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span> (a[<span class="number">1</span>,...])   <span class="comment"># 第2行元素</span></span><br><span class="line">&gt;&gt; [<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span> (a[...,<span class="number">1</span>:])  <span class="comment"># 第2列及剩下的所有元素</span></span><br><span class="line">&gt;&gt; [[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">4</span> <span class="number">5</span>]</span><br><span class="line">    [<span class="number">5</span> <span class="number">6</span>]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="高级索引"><a href="#高级索引" class="headerlink" title="高级索引"></a>高级索引</h3><h4 id="整数数组索引"><a href="#整数数组索引" class="headerlink" title="整数数组索引"></a>整数数组索引</h4><p>以下实例获取数组中(0,0)，(1,1)和(2,0)位置处的元素。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">x = np.array([[<span class="number">1</span>,  <span class="number">2</span>],  [<span class="number">3</span>,  <span class="number">4</span>],  [<span class="number">5</span>,  <span class="number">6</span>]]) </span><br><span class="line">y = x[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],  [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]]  </span><br><span class="line"><span class="built_in">print</span> (y)</span><br><span class="line">&gt;&gt; [<span class="number">1</span> <span class="number">4</span> <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>整体先用 [ ] 括起来表示索引</li>
+<li>内部依次有ndim个序列，分别表示第i个axis</li>
+<li>内部的每个序列的shape保持一致，最终索引的结果位于对应的位置</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">x = np.array([[  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],[  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>],[  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>],[  <span class="number">9</span>,  <span class="number">10</span>,  <span class="number">11</span>]])  </span><br><span class="line"><span class="built_in">print</span> (x)</span><br><span class="line">&gt;&gt; [[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>]</span><br><span class="line">    [ <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>]</span><br><span class="line">    [ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>]</span><br><span class="line">    [ <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br><span class="line">rows = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">3</span>]]) </span><br><span class="line">cols = np.array([[<span class="number">0</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">2</span>]]) </span><br><span class="line">y = x[rows,cols]  </span><br><span class="line"><span class="built_in">print</span> (y)</span><br><span class="line">&gt;&gt; [[ <span class="number">0</span>  <span class="number">2</span>]</span><br><span class="line">    [ <span class="number">9</span> <span class="number">11</span>]]</span><br></pre></td></tr></table></figure>
+
+<p>返回的结果是包含每个角元素的 ndarray 对象。</p>
+<p>可以借助切片 <strong>:</strong> 或 <strong>…</strong> 与索引数组组合。如下面例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</span><br><span class="line">b = a[<span class="number">1</span>:<span class="number">3</span>, <span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">c = a[<span class="number">1</span>:<span class="number">3</span>,[<span class="number">1</span>,<span class="number">2</span>]]</span><br><span class="line">d = a[...,<span class="number">1</span>:]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">&gt;&gt; [[<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line">&gt;&gt; [[<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line">&gt;&gt; [[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    [<span class="number">5</span> <span class="number">6</span>]</span><br><span class="line">    [<span class="number">8</span> <span class="number">9</span>]]</span><br></pre></td></tr></table></figure>
+
+<h4 id="布尔索引"><a href="#布尔索引" class="headerlink" title="布尔索引"></a>布尔索引</h4><p>我们可以通过一个布尔数组来索引目标数组。</p>
+<p>布尔索引通过布尔运算（如：比较运算符）来获取符合指定条件的元素的数组。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">x = np.array([[  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],[  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>],[  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>],[  <span class="number">9</span>,  <span class="number">10</span>,  <span class="number">11</span>]])  </span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;我们的数组是：&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (x)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 现在我们会打印出大于 5 的元素  </span></span><br><span class="line"><span class="built_in">print</span>  (<span class="string">&#x27;大于 5 的元素是：&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (x[x &gt;  <span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出结果为</span></span><br><span class="line">我们的数组是：</span><br><span class="line">[[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>]</span><br><span class="line"> [ <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>]</span><br><span class="line"> [ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>]</span><br><span class="line"> [ <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">大于 <span class="number">5</span> 的元素是：</span><br><span class="line">[ <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]</span><br></pre></td></tr></table></figure>
+
+<p>以下实例使用了 **~**（取补运算符）来过滤 NaN</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([np.nan,  <span class="number">1</span>,<span class="number">2</span>,np.nan,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])  </span><br><span class="line"><span class="built_in">print</span> (a[~np.isnan(a)])</span><br><span class="line">&gt;&gt; [ <span class="number">1.</span>   <span class="number">2.</span>   <span class="number">3.</span>   <span class="number">4.</span>   <span class="number">5.</span>]</span><br></pre></td></tr></table></figure>
+
+<p>以下实例演示如何从数组中过滤掉非复数元素。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([<span class="number">1</span>,  <span class="number">2</span>+<span class="number">6j</span>,  <span class="number">5</span>,  <span class="number">3.5</span>+<span class="number">5j</span>])  </span><br><span class="line"><span class="built_in">print</span> (a[np.iscomplex(a)])</span><br><span class="line">&gt;&gt; [<span class="number">2.0</span>+<span class="number">6.j</span>  <span class="number">3.5</span>+<span class="number">5.j</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><blockquote>
+<p>关于 np.ix_ 的具体使用：</p>
+<p>如果 np.xi_ 中输入两个列表，则第一个列表存的是待提取元素的行标，第二个列表存的是待提取元素的列标，第一个列表中的每个元素都会遍历第二个列表中的每个值，构成新矩阵的一行元素。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x[np.ix_([<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>])]</span><br><span class="line"><span class="comment">#相当于</span></span><br><span class="line">[[x[<span class="number">1</span>,<span class="number">0</span>] x[<span class="number">1</span>,<span class="number">3</span>] x[<span class="number">1</span>,<span class="number">1</span>] x[<span class="number">1</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">5</span>,<span class="number">0</span>] x[<span class="number">5</span>,<span class="number">3</span>] x[<span class="number">5</span>,<span class="number">1</span>] x[<span class="number">5</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">7</span>,<span class="number">0</span>] x[<span class="number">7</span>,<span class="number">3</span>] x[<span class="number">7</span>,<span class="number">1</span>] x[<span class="number">7</span>,<span class="number">2</span>]],</span><br><span class="line"> [x[<span class="number">2</span>,<span class="number">0</span>] x[<span class="number">2</span>,<span class="number">3</span>] x[<span class="number">2</span>,<span class="number">1</span>] x[<span class="number">2</span>,<span class="number">2</span>]]]</span><br></pre></td></tr></table></figure>
+
+<p>关于普通索引和花式索引</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]],dtype = <span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line">&gt;&gt; <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">0</span>)])</span><br><span class="line">&gt;&gt; <span class="number">1</span></span><br><span class="line"><span class="comment">#上述两种等价，本质上来说上面是下面的一种语法糖</span></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">0</span>),])</span><br><span class="line">&gt;&gt;[[<span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">   [<span class="number">1</span> <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#触发了花式缩影，默认为x[(0,0),:]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x[(<span class="number">0</span>,<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)])</span><br><span class="line">&gt;&gt;[<span class="number">1</span> <span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>:<span class="number">2</span>,<span class="number">0</span>:<span class="number">2</span>])</span><br><span class="line">&gt;&gt;[[<span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">   [<span class="number">3</span> <span class="number">4</span>]]</span><br><span class="line"><span class="comment"># “:”不代表当前序列，而是对任意一种情况遍历所有序列，类似np.ix</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Numpy广播（broadcast）"><a href="#Numpy广播（broadcast）" class="headerlink" title="Numpy广播（broadcast）"></a>Numpy广播（broadcast）</h2><p>广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。</p>
+<p>如果两个数组 a 和 b 形状相同，即满足 <strong>a.shape == b.shape</strong>，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]) </span><br><span class="line">b = np.array([<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]) </span><br><span class="line">c = a * b </span><br><span class="line"><span class="built_in">print</span> (c)</span><br><span class="line">&gt;&gt; [ <span class="number">10</span>  <span class="number">40</span>  <span class="number">90</span> <span class="number">160</span>]</span><br></pre></td></tr></table></figure>
+
+<p>当运算中的 2 个数组的形状不同时，numpy 将自动触发广播机制。如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"> </span><br><span class="line">a = np.array([[ <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">           [<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>],</span><br><span class="line">           [<span class="number">20</span>,<span class="number">20</span>,<span class="number">20</span>],</span><br><span class="line">           [<span class="number">30</span>,<span class="number">30</span>,<span class="number">30</span>]])</span><br><span class="line">b = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(a + b)</span><br><span class="line">&gt;&gt;[[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line">   [<span class="number">11</span> <span class="number">12</span> <span class="number">13</span>]</span><br><span class="line">   [<span class="number">21</span> <span class="number">22</span> <span class="number">23</span>]</span><br><span class="line">   [<span class="number">31</span> <span class="number">32</span> <span class="number">33</span>]]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2018/10/image0020619.gif" alt="img"></p>
+<p>可以广播的几种情况：</p>
+<ol>
+<li>两个数组各维度大小从后往前比对均一致</li>
+<li>两个数组存在一些维度大小不相等时，有一个数组的该不相等维度大小为1</li>
+</ol>
 ]]></content>
       <categories>
         <category>CS</category>
       </categories>
       <tags>
-        <tag>Arithmetic</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
