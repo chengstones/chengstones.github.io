@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>AutumnStorage</title>
+  
+  <subtitle>QiuShi Self_Blog</subtitle>
+  <link href="https://chengstones.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://chengstones.github.io/"/>
+  <updated>2021-10-30T08:54:13.700Z</updated>
+  <id>https://chengstones.github.io/</id>
+  
+  <author>
+    <name>Qiushi</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hello,world</title>
+    <link href="https://chengstones.github.io/2021/10/30/hello-world/"/>
+    <id>https://chengstones.github.io/2021/10/30/hello-world/</id>
+    <published>2021-10-30T08:54:13.000Z</published>
+    <updated>2021-10-30T08:54:13.700Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+</feed>
