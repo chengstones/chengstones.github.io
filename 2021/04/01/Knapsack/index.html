@@ -28,7 +28,7 @@
 <meta property="og:description" content="背包问题0-1 背包问题问题求解问题重述： 有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。  问题思路：任何一件物品可以选择放入或者不放入,考虑第$N$件物品：  放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$ 不放入：问题简化为$N">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-30T11:21:55.871Z">
+<meta property="article:modified_time" content="2021-10-30T11:42:13.911Z">
 <meta property="article:author" content="Qiushi">
 <meta property="article:tag" content="Arithmetic">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-30 19:21:55" itemprop="dateModified" datetime="2021-10-30T19:21:55+08:00">2021-10-30</time>
+                <time title="修改时间：2021-10-30 19:42:13" itemprop="dateModified" datetime="2021-10-30T19:42:13+08:00">2021-10-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -494,6 +494,59 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
