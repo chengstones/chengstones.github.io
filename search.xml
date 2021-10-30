@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Knapsack+</title>
+    <url>/2021/04/02/Knapsack+/</url>
+    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
+<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
+F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
+<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
+<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
+<p>这样可以将$N$种情况减少到$log N$种情况</p>
+<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
+<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
+<p>可使用伪代码表示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
+<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
+<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
+<p>因此分别调用相关的算法去解决就行</p>
+<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
+<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Arithmetic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Brain_Computer_Interface</title>
     <url>/2021/04/08/Brain_Computer_Interface/</url>
     <content><![CDATA[<p>参考书籍：<a href="https://book.douban.com/subject/27004902/">脑机接口导论</a></p>
@@ -71,6 +101,331 @@
       </categories>
       <tags>
         <tag>Bioinformatic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML</title>
+    <url>/2021/10/30/HTML/</url>
+    <content><![CDATA[<p>URL：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
+<p>摘要：<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTML">HTML</a> (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的<strong>标记语言</strong>。HTML 可复杂、可简单，一切取决于开发者。它由一系列的<strong>元素（<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Element">elements</a>）</strong>组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Tag">tags</a>）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 </p>
+<span id="more"></span>
+<hr>
+<p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
+<p>几种前端语言</p>
+<ul>
+<li>HTML 网页含义和结构</li>
+<li>CSS 描述网页的表现与展示</li>
+<li>JavaScript 功能和行为</li>
+</ul>
+<h2 id="Chapter-1-HTML-基础"><a href="#Chapter-1-HTML-基础" class="headerlink" title="Chapter 1 HTML 基础"></a>Chapter 1 HTML 基础</h2><h3 id="Section-1-HTML-介绍"><a href="#Section-1-HTML-介绍" class="headerlink" title="Section 1 HTML 介绍"></a>Section 1 HTML 介绍</h3><ol>
+<li><p>标签（不区分大小写）</p>
+</li>
+<li><p>嵌套</p>
+</li>
+<li><p>块级元素和内联元素</p>
+<ul>
+<li>块级元素 <ul>
+<li>独立成行</li>
+<li>不能被嵌入内联元素</li>
+</ul>
+</li>
+<li>内联元素<ul>
+<li>不会导致文本换行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>属性</p>
+</li>
+<li><p>标签 &lt; a &gt;</p>
+<ul>
+<li>href : 声明超链网页的网址</li>
+<li>title：为超链接声明额外信息</li>
+<li>target：指定链接呈现方法</li>
+</ul>
+</li>
+<li><p>HTML 文档结构</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的测试站点<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是我的页面<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注释</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是注释 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Section-2-标签-lt-head-gt"><a href="#Section-2-标签-lt-head-gt" class="headerlink" title="Section 2 标签&lt; head &gt;"></a>Section 2 标签&lt; head &gt;</h3><ol>
+<li><p>&lt; head &gt; … &lt; /head &gt;</p>
+</li>
+<li><p>元数据：&lt; meta &gt; 元素</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span> = <span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;author&quot;</span> <span class="attr">content</span> = <span class="string">&quot;QiuShi&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;description&quot;</span> <span class="attr">content</span> = <span class="string">&quot;ABAB&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">ref</span> = <span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span> = <span class="string">&quot;&quot;</span> <span class="attr">type</span> = <span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用 CSS 和 JavaScript</p>
+<ul>
+<li>&lt; link > 元素经常位于文档的头部<ul>
+<li>rel=”stylesheet”表明这是文档的样式表</li>
+<li>href 包含了样式表文件的路径</li>
+</ul>
+</li>
+<li>&lt; script &gt; 一般放在文档的尾部<ul>
+<li>src 属性包含 JS 文件的路径</li>
+<li>含有结束标记</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-3-文字处理基础"><a href="#Section-3-文字处理基础" class="headerlink" title="Section 3 文字处理基础"></a>Section 3 文字处理基础</h3><ol>
+<li><p>标题和段落</p>
+<ul>
+<li>标题 &lt; h1 &gt;&lt; h2 &gt;&lt; h3 &gt;&lt; h4 &gt;&lt; h5 &gt;&lt; h6 &gt;</li>
+<li>段落 &lt; p &gt;</li>
+</ul>
+</li>
+<li><p>结构层次</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>三国演义<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>罗贯中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>话说天下大势，分久必合，合久必分。周末七国分争，并入于秦。及秦灭之后，楚、汉分争，又并入于汉……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二回 张翼德怒鞭督邮 何国舅谋诛宦竖<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>且说董卓字仲颖，陇西临洮人也，官拜河东太守，自来骄傲。当日怠慢了玄德，张飞性发，便欲杀之……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>却说张飞<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>却说张飞饮了数杯闷酒，乘马从馆驿前过，见五六十个老人，皆在门前痛哭。飞问其故，众老人答曰：“督邮逼勒县吏，欲害刘公；我等皆来苦告，不得放入，反遭把门人赶打！”……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>语义</p>
+<ul>
+<li>&lt; h1 &gt; &lt; /h1 &gt; 类型是语义元素，含有 “一级标题” 的含义</li>
+<li>&lt; span style=”font-size: 32px; margin: 21px 0;” &gt;这是顶级标题吗？&lt; /span &gt; 类型是非语义元素，虽然显示相同</li>
+</ul>
+</li>
+<li><p>列表</p>
+<ul>
+<li><p>无序 (Unordered Lists)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有序 (Ordered Lists)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>嵌套</p>
+</li>
+</ul>
+</li>
+<li><p>重点强调</p>
+<ul>
+<li>&lt; em &gt;&lt; /em &gt; 标记斜体</li>
+<li>&lt; strong &gt; &lt; /strong> 标记粗体</li>
+<li>上述均为意义明确的语义元素，&lt; b &gt;&lt; i &gt;&lt; u &gt; 为表象元素</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-4-建立超链接"><a href="#Section-4-建立超链接" class="headerlink" title="Section 4 建立超链接"></a>Section 4 建立超链接</h3><ol>
+<li>链接的解析<ul>
+<li>属性 href：指向希望链接的网址</li>
+<li>内容 string：绑定的文本</li>
+<li>当内容缺省时，不显示链接</li>
+</ul>
+</li>
+<li>title 属性 添加支持信息<ul>
+<li>效果：当鼠标悬停时，将作为提示信息出现</li>
+</ul>
+</li>
+<li>块级链接<ul>
+<li>将整块元素作为 &lt; a &gt; 的 string 属性，可将整块元素都作为标签</li>
+<li>常用的比如图像</li>
+</ul>
+</li>
+<li><p>下载链接 download 属性</p>
+<ul>
+<li>缺省时默认为预览状态</li>
+<li>否则强制下载链接，并命名为属性的值</li>
+</ul>
+</li>
+<li><p>电子邮件链接</p>
+<ul>
+<li>&lt; a &gt; 和 mailto 方案</li>
+<li>使用形式为 mailto: link 格式 ， link 是缺省的</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-5-高阶文字排版"><a href="#Section-5-高阶文字排版" class="headerlink" title="Section 5 高阶文字排版"></a>Section 5 高阶文字排版</h3><ol>
+<li><p>描述列表：标记一组项目及其相关描述</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>内心独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色对自己的内心活动或感受进行念白表演，这些台词只面向观众，而其他角色不会听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>语言独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色把自己的想法直接进行念白表演，观众和其他角色都可以听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>旁白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，为渲染幽默或戏剧性效果而进行的场景之外的补充注释念白，只面向观众，内容一般都是角色的感受、想法、以及一些背景信息等。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用</p>
+</li>
+<li><p>缩略语</p>
+<ul>
+<li>&lt; abbr title = ‘ ‘ &gt;string&lt; /abbr &gt;，当鼠标放在 string 上时，会弹出 title属性值表示对其解释</li>
+<li>引用词下方有虚下划线</li>
+</ul>
+</li>
+<li><p>标记联系方式</p>
+</li>
+<li>上下标：&lt; sup &gt; &lt; sub &gt;</li>
+<li>标记时间日期<ul>
+<li>&lt; time datetime = ‘  ‘ &gt;string&lt; /time &gt;</li>
+<li>datatime 表示 日期的格式化</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-6-文档与网站架构"><a href="#Section-6-文档与网站架构" class="headerlink" title="Section 6 文档与网站架构"></a>Section 6 文档与网站架构</h3><ol>
+<li>文档的基本组成部分<ul>
+<li>页眉 &lt; header &gt;</li>
+<li>导航栏 &lt; nav &gt;</li>
+<li>主内容 &lt; main &gt;</li>
+<li>侧边栏 &lt; aside &gt;</li>
+<li>页脚 &lt; footer &gt;</li>
+</ul>
+</li>
+<li>HTML 布局元素细节<ul>
+<li>&lt; main &gt; 只能用一次，且位于 &lt; body &gt; 中</li>
+<li>&lt; article &gt; 仅包围一篇文章</li>
+<li>&lt; section &gt; 组织结构使其按功能划分</li>
+<li>&lt; aside &gt; 包含简介信息</li>
+<li>&lt; nav &gt; 包含页面主导航，不能包含二级链接等内容</li>
+</ul>
+</li>
+<li>无语义元素<ul>
+<li>&lt; span &gt; 是内联无语义元素</li>
+<li>&lt; div &gt; 是块级无语义元素</li>
+</ul>
+</li>
+<li>换行符和水平分割线<ul>
+<li>&lt; br &gt;</li>
+<li>&lt; hr &gt;</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-7-HTML-调试"><a href="#Section-7-HTML-调试" class="headerlink" title="Section 7 HTML 调试"></a>Section 7 HTML 调试</h3><ol>
+<li>浏览器解析 HTML 代码条件宽松，允许可控的逻辑和语法错误</li>
+<li>HTML 验证 <a href="https://validator.w3.org/">Markup Validation Service</a></li>
+</ol>
+<hr>
+<h2 id="Chapter-2-元数据"><a href="#Chapter-2-元数据" class="headerlink" title="Chapter 2 元数据"></a>Chapter 2 元数据</h2>]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>编程语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas</title>
+    <url>/2021/08/02/Pandas/</url>
+    <content><![CDATA[<h1 id="理解Pandas"><a href="#理解Pandas" class="headerlink" title="理解Pandas"></a>理解Pandas</h1><p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="img"></p>
+<p><strong>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</strong></p>
+<p>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</p>
+<p>Pandas 名字衍生自术语 “panel data”（面板数据）和 “Python data analysis”（Python 数据分析）。</p>
+<p>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。</p>
+<p>Pandas 可以从各种文件格式比如 CSV、JSON、SQL、Microsoft Excel 导入数据。</p>
+<p>Pandas 可以对各种数据进行运算操作，比如归并、再成形、选择，还有数据清洗和数据加工特征。</p>
+<p>Pandas 广泛应用在学术、金融、统计学等各个数据分析领域。</p>
+<h1 id="Pandas-数据结构"><a href="#Pandas-数据结构" class="headerlink" title="Pandas 数据结构"></a>Pandas 数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="$Series$"></a>$Series$</h2><p>$Series$ 构造函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.Series( data, index, dtype, name, copy)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><strong>data</strong>：一组数据(ndarray 类型)。</li>
+<li><strong>index</strong>：数据索引标签，如果不指定，默认从 0 开始。</li>
+<li><strong>dtype</strong>：数据类型，默认会自己判断。</li>
+<li><strong>name</strong>：设置名称。</li>
+<li><strong>copy</strong>：拷贝数据，默认为 False。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">myvar = pd.Series(a)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">0</span>    <span class="number">1</span></span><br><span class="line"><span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
+<p>在不指定索引值的时候默认为$0、1、2\cdots$​​序列，可以替换索引值</p>
+<p>替换索引值后仍可以按照$0、1、2\cdots$序列来索引</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Runoob&quot;</span>, <span class="string">&quot;Wiki&quot;</span>]</span><br><span class="line">myvar = pd.Series(a, index = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="string">&quot;y&quot;</span>])</span><br><span class="line">&gt;&gt; Runoob</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; Google</span><br></pre></td></tr></table></figure>
+<p>我们也可以使用$ key/value $对象，类似字典来创建 $Series$：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line"><span class="number">3</span>      Wiki</span><br><span class="line">dtype: <span class="built_in">object</span></span><br><span class="line"><span class="comment">#局部创建</span></span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+<p>设置$Series$名称：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>], name=<span class="string">&quot;RUNOOB-Series-TEST&quot;</span> )</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">Name: RUNOOB-Series-TEST, dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="$DataFrame$"></a>$DataFrame$</h2><p>DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas-DataStructure.png" alt="img"></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/df-dp.png" alt="img"></p>
+<p>$DataFrame$构造方式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
+<p>Pandas DataFrame 是一个二维的数组结构，类似二维数组。</p>
+<p>利用二维数组构造$DataFrame$​：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [[<span class="string">&#x27;Google&#x27;</span>,<span class="number">10</span>],[<span class="string">&#x27;Runoob&#x27;</span>,<span class="number">12</span>],[<span class="string">&#x27;Wiki&#x27;</span>,<span class="number">13</span>]]</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">&#x27;Site&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>],dtype=<span class="built_in">float</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;      Site   Age</span><br><span class="line"><span class="number">0</span>  Google  <span class="number">10.0</span></span><br><span class="line"><span class="number">1</span>  Runoob  <span class="number">12.0</span></span><br><span class="line"><span class="number">2</span>    Wiki  <span class="number">13.0</span></span><br></pre></td></tr></table></figure>
+<p>利用字典构造$DataFrame$：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;,&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">20</span>&#125;]</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span> (df)</span><br><span class="line">&gt;&gt;   a   b     c</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   NaN</span><br><span class="line"><span class="number">1</span>  <span class="number">5</span>  <span class="number">10</span>  <span class="number">20.0</span></span><br></pre></td></tr></table></figure>
+<p>没有对应的部分数据为 <strong>NaN</strong>。</p>
+<p>Pandas 可以使用 <strong>loc</strong> 属性返回指定行的数据，如果没有设置索引，第一行索引为 <strong>0</strong>，第二行索引为 <strong>1</strong>，以此类推：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">420</span></span><br><span class="line">duration     <span class="number">50</span></span><br><span class="line">Name: <span class="number">0</span>, dtype: int64</span><br><span class="line"><span class="comment"># 返回第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">1</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: <span class="number">1</span>, dtype: int64</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>返回结果其实就是一个 Pandas Series 数据。</p>
+</blockquote>
+<p>也可以返回多行数据，使用 <strong>[[ … ]]</strong> 格式，<strong>…</strong> 为各行的索引，以逗号隔开：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行和第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[[<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">&gt;&gt;    calories  duration</span><br><span class="line"><span class="number">0</span>       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line"><span class="number">1</span>       <span class="number">380</span>        <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>返回结果其实就是一个 Pandas DataFrame 数据</p>
+</blockquote>
+<p>我们可以指定索引值，如下实例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line">df = pd.DataFrame(data, index = [<span class="string">&quot;day1&quot;</span>, <span class="string">&quot;day2&quot;</span>, <span class="string">&quot;day3&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;       calories  duration</span><br><span class="line">day1       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line">day2       <span class="number">380</span>        <span class="number">40</span></span><br><span class="line">day3       <span class="number">390</span>        <span class="number">45</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="string">&quot;day2&quot;</span>])</span><br><span class="line">calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: day2, dtype: int64</span><br></pre></td></tr></table></figure>
+<h1 id="Pandas-CSV"><a href="#Pandas-CSV" class="headerlink" title="Pandas CSV"></a>Pandas CSV</h1><blockquote>
+<p>CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。</p>
+<p>CSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用。</p>
+</blockquote>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.to_string())</span><br></pre></td></tr></table></figure>
+<p><strong>to_string()</strong> 用于返回 DataFrame 类型的数据，如果不使用该函数，则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 <strong>…</strong> 代替。</p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><h4 id="head"><a href="#head" class="headerlink" title="- head()"></a>- head()</h4><blockquote>
+<p>用于读取前面的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.head())</span><br></pre></td></tr></table></figure>
+<h4 id="tail"><a href="#tail" class="headerlink" title="- tail()"></a>- tail()</h4><blockquote>
+<p>用于读取尾部的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.tail(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="info"><a href="#info" class="headerlink" title="- info()"></a>- info()</h4><blockquote>
+<p>info() 方法返回表格的一些基本信息</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.info())</span><br><span class="line">&gt;&gt;&lt; <span class="class"><span class="keyword">class</span> &#x27;<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">458</span> entries, <span class="number">0</span> to <span class="number">457</span>       </span><br><span class="line">Data columns (total <span class="number">9</span> columns): </span><br></pre></td></tr></table></figure>
+<h3 id="Pandas-JSON"><a href="#Pandas-JSON" class="headerlink" title="Pandas JSON"></a>Pandas JSON</h3><h1 id="Pandas-数据清洗"><a href="#Pandas-数据清洗" class="headerlink" title="Pandas 数据清洗"></a>Pandas 数据清洗</h1><h3 id="dropna"><a href="#dropna" class="headerlink" title="- dropna()"></a>- dropna()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">&#x27;any&#x27;</span>, thresh=<span class="literal">None</span>, subset=<span class="literal">None</span>, inplace=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>axis：默认为 <strong>0</strong>，表示逢空值剔除整行，如果设置参数 <strong>axis＝1</strong> 表示逢空值去掉整列。</li>
+<li>how：默认为 <strong>‘any’</strong> 如果一行（或一列）里任何一个数据有出现 NA 就去掉整行，如果设置 <strong>how=’all’</strong> 一行（或列）都是 NA 才去掉这整行。</li>
+<li>thresh：设置需要多少非空值的数据才可以保留下来的。</li>
+<li>subset：设置想要检查的列。如果是多个列，可以使用列名的 list 作为参数。</li>
+<li>inplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。</li>
+</ul>
+<h3 id="isnull"><a href="#isnull" class="headerlink" title="- isnull()"></a>- isnull()</h3><h3 id="fillna"><a href="#fillna" class="headerlink" title="- fillna()"></a>- fillna()</h3>]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
+<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
+<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
+</li>
+<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
+</li>
+<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
+</li>
+<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
+</li>
+<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
+</li>
+<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
+</li>
+<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
+</li>
+<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
+</li>
+<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
+<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
+</li>
+<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
+<script type="math/tex; mode=display">
+x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
+</ol>
+<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
+<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
+<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
+<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
       </tags>
   </entry>
   <entry>
@@ -340,170 +695,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HTML</title>
-    <url>/2021/10/30/HTML/</url>
-    <content><![CDATA[<p>URL：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
-<p>摘要：<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTML">HTML</a> (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的<strong>标记语言</strong>。HTML 可复杂、可简单，一切取决于开发者。它由一系列的<strong>元素（<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Element">elements</a>）</strong>组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Tag">tags</a>）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 </p>
-<span id="more"></span>
-<h1 id="HTML-超文本标记语言"><a href="#HTML-超文本标记语言" class="headerlink" title="HTML 超文本标记语言"></a>HTML 超文本标记语言</h1><p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
-<p>几种前端语言</p>
-<ul>
-<li>HTML 网页含义和结构</li>
-<li>CSS 描述网页的表现与展示</li>
-<li>JavaScript 功能和行为</li>
-</ul>
-<h2 id="Chapter-1-HTML-基础"><a href="#Chapter-1-HTML-基础" class="headerlink" title="Chapter 1 HTML 基础"></a>Chapter 1 HTML 基础</h2><h3 id="Section-1-HTML-介绍"><a href="#Section-1-HTML-介绍" class="headerlink" title="Section 1 HTML 介绍"></a>Section 1 HTML 介绍</h3><ol>
-<li><p>标签（不区分大小写）</p>
-</li>
-<li><p>嵌套</p>
-</li>
-<li><p>块级元素和内联元素</p>
-<ul>
-<li>块级元素 <ul>
-<li>独立成行</li>
-<li>不能被嵌入内联元素</li>
-</ul>
-</li>
-<li>内联元素<ul>
-<li>不会导致文本换行</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>属性</p>
-</li>
-<li><p>标签 &lt; a &gt;</p>
-<ul>
-<li>href : 声明超链网页的网址</li>
-<li>title：为超链接声明额外信息</li>
-<li>target：指定链接呈现方法</li>
-</ul>
-</li>
-<li><p>HTML 文档结构</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的测试站点<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是我的页面<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注释</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是注释 --&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Section-2-标签-lt-head-gt"><a href="#Section-2-标签-lt-head-gt" class="headerlink" title="Section 2 标签&lt; head &gt;"></a>Section 2 标签&lt; head &gt;</h3><ol>
-<li><p>&lt; head &gt; … &lt; /head &gt;</p>
-</li>
-<li><p>元数据：&lt; meta &gt; 元素</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span> = <span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;author&quot;</span> <span class="attr">content</span> = <span class="string">&quot;QiuShi&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;description&quot;</span> <span class="attr">content</span> = <span class="string">&quot;ABAB&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">ref</span> = <span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span> = <span class="string">&quot;&quot;</span> <span class="attr">type</span> = <span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>应用 CSS 和 JavaScript</p>
-<ul>
-<li>&lt; link > 元素经常位于文档的头部<ul>
-<li>rel=”stylesheet”表明这是文档的样式表</li>
-<li>href 包含了样式表文件的路径</li>
-</ul>
-</li>
-<li>&lt; script &gt; 一般放在文档的尾部<ul>
-<li>src 属性包含 JS 文件的路径</li>
-<li>含有结束标记</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-3-文字处理基础"><a href="#Section-3-文字处理基础" class="headerlink" title="Section 3 文字处理基础"></a>Section 3 文字处理基础</h3><ol>
-<li><p>标题和段落</p>
-<ul>
-<li>标题 &lt; h1 &gt;&lt; h2 &gt;&lt; h3 &gt;&lt; h4 &gt;&lt; h5 &gt;&lt; h6 &gt;</li>
-<li>段落 &lt; p &gt;</li>
-</ul>
-</li>
-<li><p>结构层次</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>三国演义<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>罗贯中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>话说天下大势，分久必合，合久必分。周末七国分争，并入于秦。及秦灭之后，楚、汉分争，又并入于汉……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二回 张翼德怒鞭督邮 何国舅谋诛宦竖<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>且说董卓字仲颖，陇西临洮人也，官拜河东太守，自来骄傲。当日怠慢了玄德，张飞性发，便欲杀之……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>却说张飞<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>却说张飞饮了数杯闷酒，乘马从馆驿前过，见五六十个老人，皆在门前痛哭。飞问其故，众老人答曰：“督邮逼勒县吏，欲害刘公；我等皆来苦告，不得放入，反遭把门人赶打！”……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>语义</p>
-<ul>
-<li>&lt; h1 &gt; &lt; /h1 &gt; 类型是语义元素，含有 “一级标题” 的含义</li>
-<li>&lt; span style=”font-size: 32px; margin: 21px 0;” &gt;这是顶级标题吗？&lt; /span &gt; 类型是非语义元素，虽然显示相同</li>
-</ul>
-</li>
-<li><p>列表</p>
-<ul>
-<li><p>无序 (Unordered Lists)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>有序 (Ordered Lists)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>嵌套</p>
-</li>
-</ul>
-</li>
-<li><p>重点强调</p>
-<ul>
-<li>&lt; em &gt;&lt; /em &gt; 标记斜体</li>
-<li>&lt; strong &gt; &lt; /strong> 标记粗体</li>
-<li>上述均为意义明确的语义元素，&lt; b &gt;&lt; i &gt;&lt; u &gt; 为表象元素</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-4-建立超链接"><a href="#Section-4-建立超链接" class="headerlink" title="Section 4 建立超链接"></a>Section 4 建立超链接</h3><ol>
-<li>链接的解析<ul>
-<li>属性 href：指向希望链接的网址</li>
-<li>内容 string：绑定的文本</li>
-<li>当内容缺省时，不显示链接</li>
-</ul>
-</li>
-<li>title 属性 添加支持信息<ul>
-<li>效果：当鼠标悬停时，将作为提示信息出现</li>
-</ul>
-</li>
-<li>块级链接<ul>
-<li>将整块元素作为 &lt; a &gt; 的 string 属性，可将整块元素都作为标签</li>
-<li>常用的比如图像</li>
-</ul>
-</li>
-<li><p>下载链接 download 属性</p>
-<ul>
-<li>缺省时默认为预览状态</li>
-<li>否则强制下载链接，并命名为属性的值</li>
-</ul>
-</li>
-<li><p>电子邮件链接</p>
-<ul>
-<li>&lt; a &gt; 和 mailto 方案</li>
-<li>使用形式为 mailto: link 格式 ， link 是缺省的</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-5-高阶文字排版"><a href="#Section-5-高阶文字排版" class="headerlink" title="Section 5 高阶文字排版"></a>Section 5 高阶文字排版</h3><ol>
-<li><p>描述列表：标记一组项目及其相关描述</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>内心独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色对自己的内心活动或感受进行念白表演，这些台词只面向观众，而其他角色不会听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>语言独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色把自己的想法直接进行念白表演，观众和其他角色都可以听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>旁白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，为渲染幽默或戏剧性效果而进行的场景之外的补充注释念白，只面向观众，内容一般都是角色的感受、想法、以及一些背景信息等。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>引用</p>
-</li>
-<li><p>缩略语</p>
-<ul>
-<li>&lt; abbr title = ‘ ‘ &gt;string&lt; /abbr &gt;，当鼠标放在 string 上时，会弹出 title属性值表示对其解释</li>
-<li>引用词下方有虚下划线</li>
-</ul>
-</li>
-<li><p>标记联系方式</p>
-</li>
-<li>上下标：&lt; sup &gt; &lt; sub &gt;</li>
-<li>标记时间日期<ul>
-<li>&lt; time datetime = ‘  ‘ &gt;string&lt; /time &gt;</li>
-<li>datatime 表示 日期的格式化</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-6-文档的基本组成部分"><a href="#Section-6-文档的基本组成部分" class="headerlink" title="Section 6 文档的基本组成部分"></a>Section 6 文档的基本组成部分</h3>]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>编程语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Knapsack</title>
     <url>/2021/04/01/Knapsack/</url>
     <content><![CDATA[<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
@@ -556,119 +747,69 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
       </tags>
   </entry>
   <entry>
-    <title>Pandas</title>
-    <url>/2021/08/02/Pandas/</url>
-    <content><![CDATA[<h1 id="理解Pandas"><a href="#理解Pandas" class="headerlink" title="理解Pandas"></a>理解Pandas</h1><p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="img"></p>
-<p><strong>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</strong></p>
-<p>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</p>
-<p>Pandas 名字衍生自术语 “panel data”（面板数据）和 “Python data analysis”（Python 数据分析）。</p>
-<p>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。</p>
-<p>Pandas 可以从各种文件格式比如 CSV、JSON、SQL、Microsoft Excel 导入数据。</p>
-<p>Pandas 可以对各种数据进行运算操作，比如归并、再成形、选择，还有数据清洗和数据加工特征。</p>
-<p>Pandas 广泛应用在学术、金融、统计学等各个数据分析领域。</p>
-<h1 id="Pandas-数据结构"><a href="#Pandas-数据结构" class="headerlink" title="Pandas 数据结构"></a>Pandas 数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="$Series$"></a>$Series$</h2><p>$Series$ 构造函数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.Series( data, index, dtype, name, copy)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<ul>
-<li><strong>data</strong>：一组数据(ndarray 类型)。</li>
-<li><strong>index</strong>：数据索引标签，如果不指定，默认从 0 开始。</li>
-<li><strong>dtype</strong>：数据类型，默认会自己判断。</li>
-<li><strong>name</strong>：设置名称。</li>
-<li><strong>copy</strong>：拷贝数据，默认为 False。</li>
+    <title>拓扑学</title>
+    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>一笔画问题和七桥问题</li>
+<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">myvar = pd.Series(a)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">0</span>    <span class="number">1</span></span><br><span class="line"><span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
-<p>在不指定索引值的时候默认为$0、1、2\cdots$​​序列，可以替换索引值</p>
-<p>替换索引值后仍可以按照$0、1、2\cdots$序列来索引</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Runoob&quot;</span>, <span class="string">&quot;Wiki&quot;</span>]</span><br><span class="line">myvar = pd.Series(a, index = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="string">&quot;y&quot;</span>])</span><br><span class="line">&gt;&gt; Runoob</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; Google</span><br></pre></td></tr></table></figure>
-<p>我们也可以使用$ key/value $对象，类似字典来创建 $Series$：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line"><span class="number">3</span>      Wiki</span><br><span class="line">dtype: <span class="built_in">object</span></span><br><span class="line"><span class="comment">#局部创建</span></span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
-<p>设置$Series$名称：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>], name=<span class="string">&quot;RUNOOB-Series-TEST&quot;</span> )</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">Name: RUNOOB-Series-TEST, dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="$DataFrame$"></a>$DataFrame$</h2><p>DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas-DataStructure.png" alt="img"></p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/df-dp.png" alt="img"></p>
-<p>$DataFrame$构造方式：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
-<p>Pandas DataFrame 是一个二维的数组结构，类似二维数组。</p>
-<p>利用二维数组构造$DataFrame$​：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [[<span class="string">&#x27;Google&#x27;</span>,<span class="number">10</span>],[<span class="string">&#x27;Runoob&#x27;</span>,<span class="number">12</span>],[<span class="string">&#x27;Wiki&#x27;</span>,<span class="number">13</span>]]</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">&#x27;Site&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>],dtype=<span class="built_in">float</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;      Site   Age</span><br><span class="line"><span class="number">0</span>  Google  <span class="number">10.0</span></span><br><span class="line"><span class="number">1</span>  Runoob  <span class="number">12.0</span></span><br><span class="line"><span class="number">2</span>    Wiki  <span class="number">13.0</span></span><br></pre></td></tr></table></figure>
-<p>利用字典构造$DataFrame$：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;,&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">20</span>&#125;]</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span> (df)</span><br><span class="line">&gt;&gt;   a   b     c</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   NaN</span><br><span class="line"><span class="number">1</span>  <span class="number">5</span>  <span class="number">10</span>  <span class="number">20.0</span></span><br></pre></td></tr></table></figure>
-<p>没有对应的部分数据为 <strong>NaN</strong>。</p>
-<p>Pandas 可以使用 <strong>loc</strong> 属性返回指定行的数据，如果没有设置索引，第一行索引为 <strong>0</strong>，第二行索引为 <strong>1</strong>，以此类推：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">420</span></span><br><span class="line">duration     <span class="number">50</span></span><br><span class="line">Name: <span class="number">0</span>, dtype: int64</span><br><span class="line"><span class="comment"># 返回第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">1</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: <span class="number">1</span>, dtype: int64</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>返回结果其实就是一个 Pandas Series 数据。</p>
-</blockquote>
-<p>也可以返回多行数据，使用 <strong>[[ … ]]</strong> 格式，<strong>…</strong> 为各行的索引，以逗号隔开：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行和第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[[<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">&gt;&gt;    calories  duration</span><br><span class="line"><span class="number">0</span>       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line"><span class="number">1</span>       <span class="number">380</span>        <span class="number">40</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>返回结果其实就是一个 Pandas DataFrame 数据</p>
-</blockquote>
-<p>我们可以指定索引值，如下实例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line">df = pd.DataFrame(data, index = [<span class="string">&quot;day1&quot;</span>, <span class="string">&quot;day2&quot;</span>, <span class="string">&quot;day3&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;       calories  duration</span><br><span class="line">day1       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line">day2       <span class="number">380</span>        <span class="number">40</span></span><br><span class="line">day3       <span class="number">390</span>        <span class="number">45</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="string">&quot;day2&quot;</span>])</span><br><span class="line">calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: day2, dtype: int64</span><br></pre></td></tr></table></figure>
-<h1 id="Pandas-CSV"><a href="#Pandas-CSV" class="headerlink" title="Pandas CSV"></a>Pandas CSV</h1><blockquote>
-<p>CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。</p>
-<p>CSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用。</p>
-</blockquote>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.to_string())</span><br></pre></td></tr></table></figure>
-<p><strong>to_string()</strong> 用于返回 DataFrame 类型的数据，如果不使用该函数，则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 <strong>…</strong> 代替。</p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><h4 id="head"><a href="#head" class="headerlink" title="- head()"></a>- head()</h4><blockquote>
-<p>用于读取前面的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.head())</span><br></pre></td></tr></table></figure>
-<h4 id="tail"><a href="#tail" class="headerlink" title="- tail()"></a>- tail()</h4><blockquote>
-<p>用于读取尾部的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.tail(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="info"><a href="#info" class="headerlink" title="- info()"></a>- info()</h4><blockquote>
-<p>info() 方法返回表格的一些基本信息</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.info())</span><br><span class="line">&gt;&gt;&lt; <span class="class"><span class="keyword">class</span> &#x27;<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">458</span> entries, <span class="number">0</span> to <span class="number">457</span>       </span><br><span class="line">Data columns (total <span class="number">9</span> columns): </span><br></pre></td></tr></table></figure>
-<h3 id="Pandas-JSON"><a href="#Pandas-JSON" class="headerlink" title="Pandas JSON"></a>Pandas JSON</h3><h1 id="Pandas-数据清洗"><a href="#Pandas-数据清洗" class="headerlink" title="Pandas 数据清洗"></a>Pandas 数据清洗</h1><h3 id="dropna"><a href="#dropna" class="headerlink" title="- dropna()"></a>- dropna()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">&#x27;any&#x27;</span>, thresh=<span class="literal">None</span>, subset=<span class="literal">None</span>, inplace=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>axis：默认为 <strong>0</strong>，表示逢空值剔除整行，如果设置参数 <strong>axis＝1</strong> 表示逢空值去掉整列。</li>
-<li>how：默认为 <strong>‘any’</strong> 如果一行（或一列）里任何一个数据有出现 NA 就去掉整行，如果设置 <strong>how=’all’</strong> 一行（或列）都是 NA 才去掉这整行。</li>
-<li>thresh：设置需要多少非空值的数据才可以保留下来的。</li>
-<li>subset：设置想要检查的列。如果是多个列，可以使用列名的 list 作为参数。</li>
-<li>inplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。</li>
+<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
+<li>集合论</li>
+<li>映射</li>
+<li>笛卡尔积</li>
+<li>等价关系</li>
 </ul>
-<h3 id="isnull"><a href="#isnull" class="headerlink" title="- isnull()"></a>- isnull()</h3><h3 id="fillna"><a href="#fillna" class="headerlink" title="- fillna()"></a>- fillna()</h3>]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Knapsack+</title>
-    <url>/2021/04/02/Knapsack+/</url>
-    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
-<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
-F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
-<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
-<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
-<p>这样可以将$N$种情况减少到$log N$种情况</p>
-<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
+<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
+<li><p>函数连续性的三种描述方法</p>
+</li>
+<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
+<blockquote>
+<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
 </blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
-<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
-<p>可使用伪代码表示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
-<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
-<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
-<p>因此分别调用相关的算法去解决就行</p>
-<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
-<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
+</li>
+<li><p>离散拓扑和平凡拓扑</p>
+</li>
+<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
+</li>
+</ol>
+<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
+<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
+<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
+<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
+<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
+</ul>
+</li>
+<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
+<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
+<li>该子集族称为由度量 d 决定的度量拓扑</li>
+</ul>
+</li>
+</ol>
+<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
+<li>闭集 -&gt; 开集的余集<ul>
+<li>全集和空集</li>
+<li>任意交</li>
+<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
+</ul>
+</li>
+<li><p>邻域，内点，内部 </p>
+<ul>
+<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
+<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
+<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
+</ul>
+</li>
+<li><p>聚点，闭包</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>CS</category>
+        <category>Mathmetic</category>
       </categories>
       <tags>
-        <tag>Arithmetic</tag>
+        <tag>MA</tag>
       </tags>
   </entry>
   <entry>
@@ -959,113 +1100,6 @@ F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"
       <tags>
         <tag>CS</tag>
         <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拓扑学</title>
-    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
-<li>一笔画问题和七桥问题</li>
-<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
-</ul>
-<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
-<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
-<li>集合论</li>
-<li>映射</li>
-<li>笛卡尔积</li>
-<li>等价关系</li>
-</ul>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
-<li><p>函数连续性的三种描述方法</p>
-</li>
-<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
-<blockquote>
-<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
-</blockquote>
-</li>
-<li><p>离散拓扑和平凡拓扑</p>
-</li>
-<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
-</li>
-</ol>
-<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
-<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
-<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
-<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
-<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
-</ul>
-</li>
-<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
-<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
-<li>该子集族称为由度量 d 决定的度量拓扑</li>
-</ul>
-</li>
-</ol>
-<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
-<li>闭集 -&gt; 开集的余集<ul>
-<li>全集和空集</li>
-<li>任意交</li>
-<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
-</ul>
-</li>
-<li><p>邻域，内点，内部 </p>
-<ul>
-<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
-<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
-<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
-</ul>
-</li>
-<li><p>聚点，闭包</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>复变函数</title>
-    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
-<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
-<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
-</li>
-<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
-</li>
-<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
-</li>
-<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
-</li>
-<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
-</li>
-<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
-</li>
-<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
-</li>
-<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
-</li>
-<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
-<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
-</li>
-<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
-<script type="math/tex; mode=display">
-x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
-</ol>
-<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
-<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
-<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
-<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
       </tags>
   </entry>
 </search>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="URL：https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;HTML 摘要：HTML (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的标记语言。HTML 可复杂、可简单，一切取决于开发者。它由一系列的元素（elements）组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-30T12:18:13.651Z">
-<meta property="article:modified_time" content="2021-10-30T14:31:35.722Z">
+<meta property="article:modified_time" content="2021-10-30T14:56:08.693Z">
 <meta property="article:author" content="Qiushi">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="编程语言">
@@ -226,7 +226,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-30 20:18:13 / 修改时间：22:31:35" itemprop="dateCreated datePublished" datetime="2021-10-30T20:18:13+08:00">2021-10-30</time>
+              <time title="创建时间：2021-10-30 20:18:13 / 修改时间：22:56:08" itemprop="dateCreated datePublished" datetime="2021-10-30T20:18:13+08:00">2021-10-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +252,8 @@
         <p>URL：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
 <p>摘要：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTML">HTML</a> (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的<strong>标记语言</strong>。HTML 可复杂、可简单，一切取决于开发者。它由一系列的<strong>元素（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Element">elements</a>）</strong>组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Tag">tags</a>）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 </p>
 <span id="more"></span>
-<h1 id="HTML-超文本标记语言"><a href="#HTML-超文本标记语言" class="headerlink" title="HTML 超文本标记语言"></a>HTML 超文本标记语言</h1><p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
+<hr>
+<p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
 <p>几种前端语言</p>
 <ul>
 <li>HTML 网页含义和结构</li>
@@ -401,7 +402,40 @@
 </ul>
 </li>
 </ol>
-<h3 id="Section-6-文档的基本组成部分"><a href="#Section-6-文档的基本组成部分" class="headerlink" title="Section 6 文档的基本组成部分"></a>Section 6 文档的基本组成部分</h3>
+<h3 id="Section-6-文档与网站架构"><a href="#Section-6-文档与网站架构" class="headerlink" title="Section 6 文档与网站架构"></a>Section 6 文档与网站架构</h3><ol>
+<li>文档的基本组成部分<ul>
+<li>页眉 &lt; header &gt;</li>
+<li>导航栏 &lt; nav &gt;</li>
+<li>主内容 &lt; main &gt;</li>
+<li>侧边栏 &lt; aside &gt;</li>
+<li>页脚 &lt; footer &gt;</li>
+</ul>
+</li>
+<li>HTML 布局元素细节<ul>
+<li>&lt; main &gt; 只能用一次，且位于 &lt; body &gt; 中</li>
+<li>&lt; article &gt; 仅包围一篇文章</li>
+<li>&lt; section &gt; 组织结构使其按功能划分</li>
+<li>&lt; aside &gt; 包含简介信息</li>
+<li>&lt; nav &gt; 包含页面主导航，不能包含二级链接等内容</li>
+</ul>
+</li>
+<li>无语义元素<ul>
+<li>&lt; span &gt; 是内联无语义元素</li>
+<li>&lt; div &gt; 是块级无语义元素</li>
+</ul>
+</li>
+<li>换行符和水平分割线<ul>
+<li>&lt; br &gt;</li>
+<li>&lt; hr &gt;</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-7-HTML-调试"><a href="#Section-7-HTML-调试" class="headerlink" title="Section 7 HTML 调试"></a>Section 7 HTML 调试</h3><ol>
+<li>浏览器解析 HTML 代码条件宽松，允许可控的逻辑和语法错误</li>
+<li>HTML 验证 <a target="_blank" rel="noopener" href="https://validator.w3.org/">Markup Validation Service</a></li>
+</ol>
+<hr>
+<h2 id="Chapter-2-元数据"><a href="#Chapter-2-元数据" class="headerlink" title="Chapter 2 元数据"></a>Chapter 2 元数据</h2>
     </div>
 
     
@@ -482,7 +516,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML-%E8%B6%85%E6%96%87%E6%9C%AC%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">HTML 超文本标记语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-HTML-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter 1 HTML 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-1-HTML-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.1.</span> <span class="nav-text">Section 1 HTML 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-2-%E6%A0%87%E7%AD%BE-lt-head-gt"><span class="nav-number">1.1.2.</span> <span class="nav-text">Section 2 标签&lt; head &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-3-%E6%96%87%E5%AD%97%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.3.</span> <span class="nav-text">Section 3 文字处理基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-4-%E5%BB%BA%E7%AB%8B%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="nav-number">1.1.4.</span> <span class="nav-text">Section 4 建立超链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-5-%E9%AB%98%E9%98%B6%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88"><span class="nav-number">1.1.5.</span> <span class="nav-text">Section 5 高阶文字排版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-6-%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.1.6.</span> <span class="nav-text">Section 6 文档的基本组成部分</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-HTML-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 HTML 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-1-HTML-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">Section 1 HTML 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-2-%E6%A0%87%E7%AD%BE-lt-head-gt"><span class="nav-number">1.2.</span> <span class="nav-text">Section 2 标签&lt; head &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-3-%E6%96%87%E5%AD%97%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-number">1.3.</span> <span class="nav-text">Section 3 文字处理基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-4-%E5%BB%BA%E7%AB%8B%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="nav-number">1.4.</span> <span class="nav-text">Section 4 建立超链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-5-%E9%AB%98%E9%98%B6%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88"><span class="nav-number">1.5.</span> <span class="nav-text">Section 5 高阶文字排版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-6-%E6%96%87%E6%A1%A3%E4%B8%8E%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">Section 6 文档与网站架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-7-HTML-%E8%B0%83%E8%AF%95"><span class="nav-number">1.7.</span> <span class="nav-text">Section 7 HTML 调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 元数据</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
