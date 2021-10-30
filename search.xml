@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>复变函数</title>
-    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
-<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
-<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
-</li>
-<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
-</li>
-<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
-</li>
-<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
-</li>
-<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
-</li>
-<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
-</li>
-<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
-</li>
-<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
-</li>
-<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
-<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
-</li>
-<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$<br>$$<br>x’ = \frac{z+\overline{z}}{|z|^2+1} \qquad y’ = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u’ = \frac{|z|^2-1}{|z|^2+1}<br>$$</p>
-</li>
-</ol>
-<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol start="11">
-<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
-<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
-<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>信息检索导论</title>
     <url>/2021/10/30/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%AF%BC%E8%AE%BA/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><span id="more"></span>
@@ -328,6 +288,46 @@
       <tags>
         <tag>CS</tag>
         <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
+<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
+<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
+</li>
+<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
+</li>
+<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
+</li>
+<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
+</li>
+<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
+</li>
+<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
+</li>
+<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
+</li>
+<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
+</li>
+<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
+<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
+</li>
+<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$<br>$$<br>x’ = \frac{z+\overline{z}}{|z|^2+1} \qquad y’ = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u’ = \frac{|z|^2-1}{|z|^2+1}<br>$$</p>
+</li>
+</ol>
+<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol start="11">
+<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
+<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
+<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
       </tags>
   </entry>
   <entry>
