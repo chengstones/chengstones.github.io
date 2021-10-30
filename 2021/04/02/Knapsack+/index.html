@@ -256,8 +256,8 @@
       
         <h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
 <h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
-<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><p>$$<br>F(N，V)= max{ F(N-1，V)，F(N，V-C[N])+W[N] }<br>$$</p>
-<h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
+<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
+F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
 <p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
 <p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
 <p>这样可以将$N$种情况减少到$log N$种情况</p>
@@ -268,7 +268,6 @@
 <p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
 <p>可使用伪代码表示</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
-
 <h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
 <p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
 <p>因此分别调用相关的算法去解决就行</p>
