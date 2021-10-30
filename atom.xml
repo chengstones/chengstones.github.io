@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2021-10-30T14:09:26.582Z</updated>
+  <updated>2021-10-30T11:41:51.584Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>HTML</title>
-    <link href="https://chengstones.github.io/2021/10/30/HTML/"/>
-    <id>https://chengstones.github.io/2021/10/30/HTML/</id>
-    <published>2021-10-30T12:18:13.651Z</published>
-    <updated>2021-10-30T14:09:26.582Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;URL：&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/HTML&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/HTML&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;摘要：&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/HTML&quot;&gt;HTML&lt;/a&gt; (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的&lt;strong&gt;标记语言&lt;/strong&gt;。HTML 可复杂、可简单，一切取决于开发者。它由一系列的&lt;strong&gt;元素（&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/Element&quot;&gt;elements&lt;/a&gt;）&lt;/strong&gt;组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ &lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/Tag&quot;&gt;tags&lt;/a&gt;）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="前端" scheme="https://chengstones.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="编程语言" scheme="https://chengstones.github.io/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
   
   <entry>
     <title>拓扑学</title>
