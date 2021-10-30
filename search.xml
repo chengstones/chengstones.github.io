@@ -3,7 +3,8 @@
   <entry>
     <title>信息检索导论</title>
     <url>/2021/10/30/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%AF%BC%E8%AE%BA/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+    <content><![CDATA[<span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li>Chapter 1-8 核心理论</li>
 <li>Chapter 9-21 高级话题</li>
 </ul>
@@ -29,16 +30,12 @@
 </ul>
 </li>
 <li><p>线性扫描（×）</p>
-</li>
-</ol>
-<span id="more"></span>
-
 <ul>
 <li>数据量</li>
 <li>匹配方式灵活</li>
 <li>打分排序</li>
 </ul>
-<ol start="5">
+</li>
 <li><p>词项-文档关联矩阵：布尔值</p>
 </li>
 <li><p>布尔值查询    逻辑连接词 </p>
@@ -296,17 +293,15 @@
   <entry>
     <title>复变函数</title>
     <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
+    <content><![CDATA[<span id="more"></span>
+
+<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
 <li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
 </li>
 <li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
 </li>
 <li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
 </li>
-</ol>
-<span id="more"></span>
-
-<ol start="4">
 <li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
 </li>
 <li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
