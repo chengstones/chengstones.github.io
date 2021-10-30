@@ -75,4 +75,115 @@
     
   </entry>
   
+  <entry>
+    <title>Pandas</title>
+    <link href="https://chengstones.github.io/2021/08/02/Pandas/"/>
+    <id>https://chengstones.github.io/2021/08/02/Pandas/</id>
+    <published>2021-08-01T16:00:00.000Z</published>
+    <updated>2021-10-30T11:23:07.047Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;理解Pandas&quot;&gt;&lt;a href=&quot;#理解Pandas&quot; class=&quot;headerlink&quot; title=&quot;理解Pandas&quot;&gt;&lt;/a&gt;理解Pandas&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.runoob.com/wp-content/up</summary>
+      
+    
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="Python" scheme="https://chengstones.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Numpy_base</title>
+    <link href="https://chengstones.github.io/2021/08/01/Numpy_base/"/>
+    <id>https://chengstones.github.io/2021/08/01/Numpy_base/</id>
+    <published>2021-07-31T16:00:00.000Z</published>
+    <updated>2021-10-30T11:22:44.983Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;理解Numpy&quot;&gt;&lt;a href=&quot;#理解Numpy&quot; class=&quot;headerlink&quot; title=&quot;理解Numpy&quot;&gt;&lt;/a&gt;理解Numpy&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.runoob.com/wp-content/upload</summary>
+      
+    
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="Python" scheme="https://chengstones.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Brain_Computer_Interface</title>
+    <link href="https://chengstones.github.io/2021/04/08/Brain_Computer_Interface/"/>
+    <id>https://chengstones.github.io/2021/04/08/Brain_Computer_Interface/</id>
+    <published>2021-04-07T16:00:00.000Z</published>
+    <updated>2021-10-30T11:24:16.242Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;参考书籍：&lt;a href=&quot;https://book.douban.com/subject/27004902/&quot;&gt;脑机接口导论&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;信号处理&quot;&gt;&lt;a href=&quot;#信号处理&quot; class=&quot;headerlink&quot; title=&quot;信号处理&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="https://chengstones.github.io/categories/AI/"/>
+    
+    
+    <category term="Bioinformatic" scheme="https://chengstones.github.io/tags/Bioinformatic/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Knapsack+</title>
+    <link href="https://chengstones.github.io/2021/04/02/Knapsack+/"/>
+    <id>https://chengstones.github.io/2021/04/02/Knapsack+/</id>
+    <published>2021-04-01T16:00:00.000Z</published>
+    <updated>2021-10-30T11:21:29.547Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;背包问题&quot;&gt;&lt;a href=&quot;#背包问题&quot; class=&quot;headerlink&quot; title=&quot;背包问题&quot;&gt;&lt;/a&gt;背包问题&lt;/h2&gt;&lt;h3 id=&quot;多重背包问题&quot;&gt;&lt;a href=&quot;#多重背包问题&quot; class=&quot;headerlink&quot; title=&quot;多重背包问</summary>
+      
+    
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="Arithmetic" scheme="https://chengstones.github.io/tags/Arithmetic/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Knapsack</title>
+    <link href="https://chengstones.github.io/2021/04/01/Knapsack/"/>
+    <id>https://chengstones.github.io/2021/04/01/Knapsack/</id>
+    <published>2021-03-31T16:00:00.000Z</published>
+    <updated>2021-10-30T11:21:55.871Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;背包问题&quot;&gt;&lt;a href=&quot;#背包问题&quot; class=&quot;headerlink&quot; title=&quot;背包问题&quot;&gt;&lt;/a&gt;背包问题&lt;/h1&gt;&lt;h2 id=&quot;0-1-背包问题&quot;&gt;&lt;a href=&quot;#0-1-背包问题&quot; class=&quot;headerlink&quot; title=&quot;0</summary>
+      
+    
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="Arithmetic" scheme="https://chengstones.github.io/tags/Arithmetic/"/>
+    
+  </entry>
+  
 </feed>

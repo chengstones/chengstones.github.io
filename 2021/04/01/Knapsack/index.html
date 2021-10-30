@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chengstones.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="背包问题0-1 背包问题问题求解问题重述： 有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。  问题思路：任何一件物品可以选择放入或者不放入,考虑第$N$件物品：  放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$ 不放入：问题简化为$N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Knapsack">
+<meta property="og:url" content="https://chengstones.github.io/2021/04/01/Knapsack/index.html">
+<meta property="og:site_name" content="Autumn-Storage">
+<meta property="og:description" content="背包问题0-1 背包问题问题求解问题重述： 有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。  问题思路：任何一件物品可以选择放入或者不放入,考虑第$N$件物品：  放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$ 不放入：问题简化为$N">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-30T11:21:55.871Z">
+<meta property="article:author" content="Qiushi">
+<meta property="article:tag" content="Arithmetic">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chengstones.github.io/2021/04/01/Knapsack/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Knapsack | Autumn-Storage</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Autumn-Storage" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Autumn-Storage</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">MySelf-Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/04/01/Knapsack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qiushi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn-Storage">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Knapsack
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-01T00:00:00+08:00">2021-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-30 19:21:55" itemprop="dateModified" datetime="2021-10-30T19:21:55+08:00">2021-10-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。</p>
+</blockquote>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>任何一件物品可以选择放入或者不放入,考虑第$N$件物品：</p>
+<ul>
+<li>放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$</li>
+<li>不放入：问题简化为$N-1$件物品，容量为$V$，得到的价值为$F(N-1，V)$</li>
+</ul>
+<h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>F(N，V)= max{F(N-1，V)，F(N-1，V-C[N])+W[N]}<br>$$</p>
+<h5 id="C-代码实现"><a href="#C-代码实现" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(x,y)</span> </span>&#123;<span class="keyword">return</span> (x&gt;y)? x:y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> s[],<span class="keyword">int</span> v[],<span class="keyword">int</span> C)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 当没有物品可选或者可以存储的质量小于等于0时，显然能存储的物品价值为0</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s[n]&gt;C) <span class="keyword">return</span> <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">// 当第N件物品质量超过所能容纳质量时，可以默认不选</span></span><br><span class="line">    <span class="comment">// 事实上这一步也可以忽略，可以包含在第三种情况中</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C),<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]);</span><br><span class="line">    <span class="comment">// 状态转移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>倘若直接调用递归函数，会出现重复计算的问题</p>
+<p>如果能出现一个数组来存储每次计算的结果时，可以减少重复计算的机会</p>
+<p><strong>动态规划：</strong></p>
+<h5 id="C-代码实现-1"><a href="#C-代码实现-1" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态规划解决0-1背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化细节"><a href="#初始化细节" class="headerlink" title="初始化细节"></a>初始化细节</h3><p>如果要求背包刚好装满，则可以设$knapsack(0，a)(a != 0)$时取值无穷小，此时无法取到背包未满的解。</p>
+<h2 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h2><h3 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述:"></a>问题重述:</h5><blockquote>
+<p>有N种物品和一个容量为V 的背包，每种物品都有<strong>无限件可用</strong>。放入第i种 物品的耗费的空间是C[i]，得到的价值是W[i]。求解：将哪些物品装入背包，可使这些物品的耗费的空间总和不超过背包容量，且价值总和最大。</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><h6 id="思路1-1："><a href="#思路1-1：" class="headerlink" title="思路1-1："></a>思路1-1：</h6><p>（转换为0-1背包问题）</p>
+<p>仍然以0-1背包问题进行理解，虽然每件物品有无限件可用，但是为保证物品数量不超过空间限制，至多可选第i件物品的个数为$[ C/C[i] ]$,因此问题变为了$[C/C[i]]$个i件物品的综合。</p>
+<p>但可见当物品数目增多，容量增大时，该算法的复杂度会迅速<strong>膨胀</strong>。</p>
+<h6 id="思路1-2："><a href="#思路1-2：" class="headerlink" title="思路1-2："></a>思路1-2：</h6><p>（更有效的转换为0-1背包问题）</p>
+<p>把第i种物品拆成体积为$C[i]<em>2^k$、价值为$W[i]</em> 2^k$的若干件物品，其中k取遍满足$C[i]* 2^k ≤ V$ 的非负整数。</p>
+<p><u>即采用二进制的思想，当选取两件相同物品时，等价于选取质量和价值均为原来两倍的物品</u>。</p>
+<h6 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h6><p>一个简单的优化：若两件物品比较，其中一件物品价值更低，同时体积更大，那么可以将这一件物品舍去。</p>
+<h6 id="思路3："><a href="#思路3：" class="headerlink" title="思路3："></a>思路3：</h6><p>当且仅当决定不继续选择这件物品时进行状态转移，否则持续当前状态</p>
+<h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><ul>
+<li><p>$$F(N，V)= max{ F(N-1，V - k * C[N]) + k * W[N] |0&lt;=k * C[N]&lt;=V }$$</p>
+</li>
+<li><p>$$F(N，V)= max{ F(N-1，V)，F(N，V-C[N])+W[N] }$$</p>
+</li>
+</ul>
+<h5 id="C-代码实现-2"><a href="#C-代码实现-2" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态规划解决完全背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>​         在现实生活中，有一类活动的过程，由于它的特殊性，可将过程分成若干个互相联系的阶段，在它的每一阶段都需要作出决策，从而使整个过程达到最好的活动效果。</p>
+<p>​        各个阶段决策的选取不能任意确定，它依赖于当前面临的状态，又影响以后的发展。当各个阶段决策确定后，就组成一个决策序列，因而也就确定了整个过程的一条活动路线．这种把一个问题看作是一个前后关联具有链状结构的多阶段过程就称为多阶段决策过程，这种问题称为多阶段决策问题。</p>
+<p>​         在多阶段决策问题中，各个阶段采取的决策，一般来说是与时间有关的，决策依赖于当前状态，又随即引起状态的转移，一个决策序列就是在变化的状态中产生出来的，故有“动态”的含义，称这种解决多阶段决策最优化的过程为动态规划方法</p>
+</blockquote>
+<h5 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h5><blockquote>
+<p>​        动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p>
+<p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
+<p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Arithmetic/" rel="tag"># Arithmetic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/02/Knapsack+/" rel="next" title="Knapsack+">
+      Knapsack+ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">0-1 背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">问题求解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E9%87%8D%E8%BF%B0%EF%BC%9A"><span class="nav-number">1.1.1.0.1.</span> <span class="nav-text">问题重述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.0.2.</span> <span class="nav-text">问题思路：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.1.0.3.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.0.4.</span> <span class="nav-text">C++代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.2.</span> <span class="nav-text">算法优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.1.2.0.1.</span> <span class="nav-text">C++代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%86%E8%8A%82"><span class="nav-number">1.1.3.</span> <span class="nav-text">初始化细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">完全背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">问题求解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E9%87%8D%E8%BF%B0"><span class="nav-number">1.2.1.0.1.</span> <span class="nav-text">问题重述:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">1.2.1.0.2.</span> <span class="nav-text">问题思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF1-1%EF%BC%9A"><span class="nav-number">1.2.1.0.2.1.</span> <span class="nav-text">思路1-1：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF1-2%EF%BC%9A"><span class="nav-number">1.2.1.0.2.2.</span> <span class="nav-text">思路1-2：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF2%EF%BC%9A"><span class="nav-number">1.2.1.0.2.3.</span> <span class="nav-text">思路2：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF3%EF%BC%9A"><span class="nav-number">1.2.1.0.2.4.</span> <span class="nav-text">思路3：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-1"><span class="nav-number">1.2.1.0.3.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">1.2.1.0.4.</span> <span class="nav-text">C++代码实现</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%88DP%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">动态规划（DP）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E6%83%B3"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">思想</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiushi"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Qiushi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qiushi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
