@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"chengstones.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Chapter 1 随机事件和概率 随机现象   随机性 偶然性 统计规律性   随机试验  样本空间 $\Omega$  样本点 $\omega$  随机事件的关系和运算 -&gt; 集合  概率公理  三条公理 非负性 规范性 可列可加性   统计意义 频率 -&gt; 稳定值     古典概型 -&gt; 等可能概型  几何概型  条件概率  P(B|A) &#x3D; \frac{P(AB)}{p(">
+  <meta name="description" content="​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、随机变量及其概率分布、数字特征、大数定律与中心极限定理、统计量及其概率分布、参数估计和假设检验、回归分析、方差分析、马尔科夫链等内容。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率论和数理统计">
 <meta property="og:url" content="https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Autumn-Storage">
-<meta property="og:description" content="Chapter 1 随机事件和概率 随机现象   随机性 偶然性 统计规律性   随机试验  样本空间 $\Omega$  样本点 $\omega$  随机事件的关系和运算 -&gt; 集合  概率公理  三条公理 非负性 规范性 可列可加性   统计意义 频率 -&gt; 稳定值     古典概型 -&gt; 等可能概型  几何概型  条件概率  P(B|A) &#x3D; \frac{P(AB)}{p(">
+<meta property="og:description" content="​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、随机变量及其概率分布、数字特征、大数定律与中心极限定理、统计量及其概率分布、参数估计和假设检验、回归分析、方差分析、马尔科夫链等内容。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-31T03:07:19.000Z">
-<meta property="article:modified_time" content="2021-10-31T03:24:14.531Z">
+<meta property="article:modified_time" content="2021-10-31T05:15:14.831Z">
 <meta property="article:author" content="Qiushi">
 <meta property="article:tag" content="MA">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-31 11:07:19 / 修改时间：11:24:14" itemprop="dateCreated datePublished" datetime="2021-10-31T11:07:19+08:00">2021-10-31</time>
+              <time title="创建时间：2021-10-31 11:07:19 / 修改时间：13:15:14" itemprop="dateCreated datePublished" datetime="2021-10-31T11:07:19+08:00">2021-10-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Chapter-1-随机事件和概率"><a href="#Chapter-1-随机事件和概率" class="headerlink" title="Chapter 1 随机事件和概率"></a>Chapter 1 随机事件和概率</h2><ol>
+        <p>​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/随机变量/828980">随机变量</a>及其<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/概率分布/828907">概率分布</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数字特征/3402134">数字特征</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/大数定律/410082">大数定律</a>与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/中心极限定理/829451">中心极限定理</a>、统计量及其概率分布、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/参数估计/2224132">参数估计</a>和假设检验、回归分析、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/方差分析/1502206">方差分析</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/马尔科夫链/4688932">马尔科夫链</a>等内容。</p>
+<span id="more"></span>
+<h2 id="Chapter-1-随机事件和概率"><a href="#Chapter-1-随机事件和概率" class="headerlink" title="Chapter 1 随机事件和概率"></a>Chapter 1 随机事件和概率</h2><ol>
 <li><p>随机现象 </p>
 <ul>
 <li>随机性</li>
@@ -307,7 +309,75 @@ P(B_i|A) = \frac{P(AB_i)}{P(A)} =\frac{P(B_i)P(A|B_i)}{\sum^n_{j=1}P(B_j)P(A|B_j
 </ul>
 </li>
 </ol>
-<h2 id="Chapter-2-随机变量及其分布"><a href="#Chapter-2-随机变量及其分布" class="headerlink" title="Chapter 2 随机变量及其分布"></a>Chapter 2 随机变量及其分布</h2>
+<h2 id="Chapter-2-随机变量及其分布"><a href="#Chapter-2-随机变量及其分布" class="headerlink" title="Chapter 2 随机变量及其分布"></a>Chapter 2 随机变量及其分布</h2><ol>
+<li><p>随机变量 $X(w)$ -&gt; 量化</p>
+</li>
+<li><p>分布函数 $F(x) = P(X\leq x)$</p>
+<ul>
+<li>有界性，边界约束性</li>
+<li>单调性</li>
+<li>右连续性 $F(x+0) = F(x)$</li>
+</ul>
+</li>
+<li><p>离散型随机变量 -&gt; 有限或可列无穷</p>
+<ul>
+<li>分布律</li>
+<li>分布函数阶跃性</li>
+</ul>
+</li>
+<li><p>常见的离散型随机变量</p>
+<ul>
+<li><p>0-1 分布</p>
+<p>| X    | 0    | 1    |<br>| —— | —— | —— |<br>| P    | p    | 1-p  |</p>
+<ul>
+<li>$P(X=k)=p^k(1-p)^k$</li>
+</ul>
+</li>
+<li><p>二项分布（伯努利分布）</p>
+<ul>
+<li>$X \sim B(n,p)$</li>
+<li>$P(X=k)=C^k_np^k(1-p)^{n-k}$</li>
+</ul>
+</li>
+<li><p>负二项分布（帕斯卡分布）</p>
+<ul>
+<li>$X\sim NB(r,p)$</li>
+<li>$p(X=k)=C^{r-1}_{k-1}p^r(1-p)^{k-r}$</li>
+<li>几何分布 $r \rarr 1$<ul>
+<li>$P(X=k)=(1-p)^{k-1}p$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Poisson 分布</p>
+<ul>
+<li><p>泊松定理</p>
+<p>假设 $\lim_{x\rarr+\infty}np_n=\lambda&gt;0$</p>
+<script type="math/tex; mode=display">
+\lim_{x\rarr+\infty}C^k_np^k_n(1-p_n)^{n-k}=e^{-\lambda}\frac{\lambda^k}{k!}</script></li>
+<li><p>当随机事件以固定的平均瞬时速率随机且独立出现时，那么这个事件在一段时间内出现的次数服从泊松分布</p>
+</li>
+<li><p>参数为$(n，p)$的二项分布可以用参数 $\lambda=np$ 的泊松分布逼近</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连续性随机变量及概率密度</p>
+<ul>
+<li>概率密度（非负性、规范性）</li>
+<li>分布函数 $F(x)=\int_{-\infty}^xf(t)dt$</li>
+</ul>
+</li>
+<li><p>常见的连续型随机变量</p>
+<ul>
+<li>均匀分布 $X\sim U(a,b)$</li>
+<li>指数分布 $X \sim E(\lambda)$</li>
+<li>正态分布 $X \sim N(\mu,\sigma)$</li>
+</ul>
+</li>
+</ol>
+
     </div>
 
     
