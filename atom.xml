@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2021-10-30T14:56:08.693Z</updated>
+  <updated>2021-10-31T03:24:14.531Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>概率论和数理统计</title>
+    <link href="https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
+    <id>https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</id>
+    <published>2021-10-31T03:07:19.000Z</published>
+    <updated>2021-10-31T03:24:14.531Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Chapter-1-随机事件和概率&quot;&gt;&lt;a href=&quot;#Chapter-1-随机事件和概率&quot; class=&quot;headerlink&quot; title=&quot;Chapter 1 随机事件和概率&quot;&gt;&lt;/a&gt;Chapter 1 随机事件和概率&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;随</summary>
+      
+    
+    
+    
+    <category term="MA" scheme="https://chengstones.github.io/categories/MA/"/>
+    
+    
+    <category term="MA" scheme="https://chengstones.github.io/tags/MA/"/>
+    
+  </entry>
   
   <entry>
     <title>HTML</title>
