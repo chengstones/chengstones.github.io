@@ -1,71 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>DataStruct-Pseudocode</title>
-    <url>/2021/11/02/DataStruct-Pseudocode/</url>
-    <content><![CDATA[<p>仿cpp伪代码(Pseudocode)复现所有基本数据结构(DataStruct)<br><span id="more"></span></p>
-<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>树的基本运算</p>
-<ul>
-<li>建树 create()</li>
-<li>清空 clear()</li>
-<li>判空 isEmpty()</li>
-<li>找根结点 Root()</li>
-<li>找父节点 parent(x)</li>
-<li>找子节点 child(x,i)</li>
-<li>剪枝 remove(x,i)</li>
-<li>遍历 traverse()<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bTree</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">Root</span><span class="params">(T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">parent</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">lchild</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">rchild</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">delLeft</span><span class="params">(T x)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">delRight</span><span class="params">(T x)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">preOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">midOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">postOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">levelOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3>二叉树的基本运算</li>
-<li>建树 create()</li>
-<li>清空 clear()</li>
-<li>判空 isEmpty()</li>
-<li>找根节点 root()</li>
-<li>找父节点 parent(x)</li>
-<li>找左右孩子 lchild(x), rchild(x)</li>
-<li>删除左右子树 delLeft(x), delRight(x)</li>
-<li>遍历 traverse()</li>
-</ul>
-<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
-<li>私有函数，仿前序遍历</li>
-<li>参数 x-&gt; 寻找值;</li>
-<li>参数 node* t -&gt; 需要开始查找的子树根结点<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">如果查找树为空树， <span class="keyword">return</span> <span class="literal">NULL</span></span><br><span class="line">如果自己就是查找值， <span class="keyword">return</span> 自己</span><br><span class="line">否则</span><br><span class="line">查找左子树，得到tmp，若tmp 非空， <span class="keyword">return</span> tmp</span><br><span class="line">否则，一定返回右子树 <span class="keyword">return</span> t-&gt;right </span><br></pre></td></tr></table></figure>
-<h4 id="清空，析构，剪枝"><a href="#清空，析构，剪枝" class="headerlink" title="清空，析构，剪枝"></a>清空，析构，剪枝</h4></li>
-<li>仿前序遍历：剪枝左子树，剪枝右子树，析构自己<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//私有函数 clear 参数 node* </span></span><br><span class="line"><span class="keyword">if</span> (左子树非空) clear 左子树;</span><br><span class="line"><span class="keyword">if</span> (右子树非空) clear 右子树;</span><br><span class="line"><span class="keyword">delete</span> 自己 -&gt; node;</span><br><span class="line">自己 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口函数 clear， 析构函数</span></span><br><span class="line">clear 根节点</span><br><span class="line"></span><br><span class="line"><span class="comment">// 剪枝</span></span><br><span class="line"><span class="keyword">if</span> (左子树空) <span class="keyword">return</span>; <span class="comment">// if (右子树空) return;</span></span><br><span class="line">clear tmp -&gt; left;   <span class="comment">// clear tmp -&gt; right</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><ul>
-<li>先访问根结点，再访问左右子树</li>
-<li>具体实现 -&gt; 递归 -&gt; 传入参数结点，实现对应功能</li>
-<li>接口函数 包装 参数 void <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口函数 参数 void</span></span><br><span class="line">前序遍历根结点;</span><br><span class="line"><span class="comment">// 私有函数 参数 node*</span></span><br><span class="line"><span class="keyword">if</span>(结点空) <span class="keyword">return</span>;</span><br><span class="line">访问 当前结点;</span><br><span class="line">前序遍历左子树;</span><br><span class="line">前序遍历右子树;</span><br><span class="line"><span class="comment">// 中序后序遍历的实现方法几乎相同</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="层次遍历"><a href="#层次遍历" class="headerlink" title="层次遍历"></a>层次遍历</h4><ul>
-<li>队列</li>
-<li>规则：出列头结点，访问该节点，将左右子节点入队</li>
-<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(队列非空)&#123;</span><br><span class="line">    tmp = que.<span class="built_in">dequeue</span>();</span><br><span class="line">    访问节点 tmp;</span><br><span class="line">    <span class="keyword">if</span>(tmp 有左节点) 左节点入队;</span><br><span class="line">    <span class="keyword">if</span>(tmp 有右节点) 右节点入队;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h4><ul>
-<li>面向控制台，队列</li>
-<li>参数 截止参数 flag</li>
-<li>规则：出列头结点，向控制台申请左右子节点，若非截止结点，则生成节点并入队</li>
-<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">生成根节点，根节点入队</span><br><span class="line"><span class="keyword">while</span>(队列非空)&#123;</span><br><span class="line">    tmp = que.<span class="built_in">dequeue</span>();</span><br><span class="line">    控制台获得两个子树的输入;</span><br><span class="line">    <span class="keyword">if</span>(左输入非截止) 生成父节点链接的新节点，节点入队;</span><br><span class="line">    <span class="keyword">if</span>(右输入非截止) 生成父节点链接的新节点，节点入队;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="非递归前序"><a href="#非递归前序" class="headerlink" title="非递归前序"></a>非递归前序</h4><ul>
-<li>栈；参数 void</li>
-<li>规则：出栈顶，访问该节点，入栈右左节点</li>
-<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">根节点入栈</span><br><span class="line"><span class="keyword">while</span>(栈非空)&#123;</span><br><span class="line">    current = s.<span class="built_in">pop</span>();</span><br><span class="line">    访问该节点;</span><br><span class="line">    <span class="keyword">if</span>(该节点的右节点非空) 右节点入栈;</span><br><span class="line">    <span class="keyword">if</span>(该节点的左节点非空) 左节点入栈;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="非递归中序"><a href="#非递归中序" class="headerlink" title="非递归中序"></a>非递归中序</h4>]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>CS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Brain_Computer_Interface</title>
     <url>/2021/04/08/Brain_Computer_Interface/</url>
     <content><![CDATA[<p>参考书籍：<a href="https://book.douban.com/subject/27004902/">脑机接口导论</a></p>
@@ -136,6 +71,71 @@
       </categories>
       <tags>
         <tag>Bioinformatic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DataStruct-Pseudocode</title>
+    <url>/2021/11/02/DataStruct-Pseudocode/</url>
+    <content><![CDATA[<p>仿cpp伪代码(Pseudocode)复现所有基本数据结构(DataStruct)<br><span id="more"></span></p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>树的基本运算</p>
+<ul>
+<li>建树 create()</li>
+<li>清空 clear()</li>
+<li>判空 isEmpty()</li>
+<li>找根结点 Root()</li>
+<li>找父节点 parent(x)</li>
+<li>找子节点 child(x,i)</li>
+<li>剪枝 remove(x,i)</li>
+<li>遍历 traverse()<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bTree</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">Root</span><span class="params">(T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">parent</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">lchild</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> T <span class="title">rchild</span><span class="params">(T x, T flag)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">delLeft</span><span class="params">(T x)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">delRight</span><span class="params">(T x)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">preOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">midOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">postOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">levelOrder</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3>二叉树的基本运算</li>
+<li>建树 create()</li>
+<li>清空 clear()</li>
+<li>判空 isEmpty()</li>
+<li>找根节点 root()</li>
+<li>找父节点 parent(x)</li>
+<li>找左右孩子 lchild(x), rchild(x)</li>
+<li>删除左右子树 delLeft(x), delRight(x)</li>
+<li>遍历 traverse()</li>
+</ul>
+<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
+<li>私有函数，仿前序遍历</li>
+<li>参数 x-&gt; 寻找值;</li>
+<li>参数 node* t -&gt; 需要开始查找的子树根结点<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">如果查找树为空树， <span class="keyword">return</span> <span class="literal">NULL</span></span><br><span class="line">如果自己就是查找值， <span class="keyword">return</span> 自己</span><br><span class="line">否则</span><br><span class="line">查找左子树，得到tmp，若tmp 非空， <span class="keyword">return</span> tmp</span><br><span class="line">否则，一定返回右子树 <span class="keyword">return</span> t-&gt;right </span><br></pre></td></tr></table></figure>
+<h4 id="清空，析构，剪枝"><a href="#清空，析构，剪枝" class="headerlink" title="清空，析构，剪枝"></a>清空，析构，剪枝</h4></li>
+<li>仿前序遍历：剪枝左子树，剪枝右子树，析构自己<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//私有函数 clear 参数 node* </span></span><br><span class="line"><span class="keyword">if</span> (左子树非空) clear 左子树;</span><br><span class="line"><span class="keyword">if</span> (右子树非空) clear 右子树;</span><br><span class="line"><span class="keyword">delete</span> 自己 -&gt; node;</span><br><span class="line">自己 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口函数 clear， 析构函数</span></span><br><span class="line">clear 根节点</span><br><span class="line"></span><br><span class="line"><span class="comment">// 剪枝</span></span><br><span class="line"><span class="keyword">if</span> (左子树空) <span class="keyword">return</span>; <span class="comment">// if (右子树空) return;</span></span><br><span class="line">clear tmp -&gt; left;   <span class="comment">// clear tmp -&gt; right</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><ul>
+<li>先访问根结点，再访问左右子树</li>
+<li>具体实现 -&gt; 递归 -&gt; 传入参数结点，实现对应功能</li>
+<li>接口函数 包装 参数 void <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口函数 参数 void</span></span><br><span class="line">前序遍历根结点;</span><br><span class="line"><span class="comment">// 私有函数 参数 node*</span></span><br><span class="line"><span class="keyword">if</span>(结点空) <span class="keyword">return</span>;</span><br><span class="line">访问 当前结点;</span><br><span class="line">前序遍历左子树;</span><br><span class="line">前序遍历右子树;</span><br><span class="line"><span class="comment">// 中序后序遍历的实现方法几乎相同</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="层次遍历"><a href="#层次遍历" class="headerlink" title="层次遍历"></a>层次遍历</h4><ul>
+<li>队列</li>
+<li>规则：出列头结点，访问该节点，将左右子节点入队</li>
+<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(队列非空)&#123;</span><br><span class="line">    tmp = que.<span class="built_in">dequeue</span>();</span><br><span class="line">    访问节点 tmp;</span><br><span class="line">    <span class="keyword">if</span>(tmp 有左节点) 左节点入队;</span><br><span class="line">    <span class="keyword">if</span>(tmp 有右节点) 右节点入队;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h4><ul>
+<li>面向控制台，队列</li>
+<li>参数 截止参数 flag</li>
+<li>规则：出列头结点，向控制台申请左右子节点，若非截止结点，则生成节点并入队</li>
+<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">生成根节点，根节点入队</span><br><span class="line"><span class="keyword">while</span>(队列非空)&#123;</span><br><span class="line">    tmp = que.<span class="built_in">dequeue</span>();</span><br><span class="line">    控制台获得两个子树的输入;</span><br><span class="line">    <span class="keyword">if</span>(左输入非截止) 生成父节点链接的新节点，节点入队;</span><br><span class="line">    <span class="keyword">if</span>(右输入非截止) 生成父节点链接的新节点，节点入队;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="非递归前序"><a href="#非递归前序" class="headerlink" title="非递归前序"></a>非递归前序</h4><ul>
+<li>栈；参数 void</li>
+<li>规则：出栈顶，访问该节点，入栈右左节点</li>
+<li>起始条件：入队根结点；终止条件：队列空<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">根节点入栈</span><br><span class="line"><span class="keyword">while</span>(栈非空)&#123;</span><br><span class="line">    current = s.<span class="built_in">pop</span>();</span><br><span class="line">    访问该节点;</span><br><span class="line">    <span class="keyword">if</span>(该节点的右节点非空) 右节点入栈;</span><br><span class="line">    <span class="keyword">if</span>(该节点的左节点非空) 左节点入栈;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="非递归中序"><a href="#非递归中序" class="headerlink" title="非递归中序"></a>非递归中序</h4>]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>CS</tag>
       </tags>
   </entry>
   <entry>
@@ -403,36 +403,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Knapsack+</title>
-    <url>/2021/04/02/Knapsack+/</url>
-    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
-<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
-F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
-<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
-<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
-<p>这样可以将$N$种情况减少到$log N$种情况</p>
-<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
-</blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
-<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
-<p>可使用伪代码表示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
-<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
-<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
-<p>因此分别调用相关的算法去解决就行</p>
-<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
-<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
-]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Arithmetic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Knapsack</title>
     <url>/2021/04/01/Knapsack/</url>
     <content><![CDATA[<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
@@ -476,6 +446,36 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
 <p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
 <p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Arithmetic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Knapsack+</title>
+    <url>/2021/04/02/Knapsack+/</url>
+    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
+<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
+F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
+<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
+<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
+<p>这样可以将$N$种情况减少到$log N$种情况</p>
+<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
+<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
+<p>可使用伪代码表示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
+<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
+<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
+<p>因此分别调用相关的算法去解决就行</p>
+<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
+<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
 ]]></content>
       <categories>
         <category>CS</category>
@@ -743,92 +743,6 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
 <li>两个数组存在一些维度大小不相等时，有一个数组的该不相等维度大小为1</li>
 </ol>
 ]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas</title>
-    <url>/2021/08/02/Pandas/</url>
-    <content><![CDATA[<h1 id="理解Pandas"><a href="#理解Pandas" class="headerlink" title="理解Pandas"></a>理解Pandas</h1><p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="img"></p>
-<p><strong>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</strong></p>
-<p>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</p>
-<p>Pandas 名字衍生自术语 “panel data”（面板数据）和 “Python data analysis”（Python 数据分析）。</p>
-<p>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。</p>
-<p>Pandas 可以从各种文件格式比如 CSV、JSON、SQL、Microsoft Excel 导入数据。</p>
-<p>Pandas 可以对各种数据进行运算操作，比如归并、再成形、选择，还有数据清洗和数据加工特征。</p>
-<p>Pandas 广泛应用在学术、金融、统计学等各个数据分析领域。</p>
-<h1 id="Pandas-数据结构"><a href="#Pandas-数据结构" class="headerlink" title="Pandas 数据结构"></a>Pandas 数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="$Series$"></a>$Series$</h2><p>$Series$ 构造函数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.Series( data, index, dtype, name, copy)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<ul>
-<li><strong>data</strong>：一组数据(ndarray 类型)。</li>
-<li><strong>index</strong>：数据索引标签，如果不指定，默认从 0 开始。</li>
-<li><strong>dtype</strong>：数据类型，默认会自己判断。</li>
-<li><strong>name</strong>：设置名称。</li>
-<li><strong>copy</strong>：拷贝数据，默认为 False。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">myvar = pd.Series(a)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">0</span>    <span class="number">1</span></span><br><span class="line"><span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
-<p>在不指定索引值的时候默认为$0、1、2\cdots$​​序列，可以替换索引值</p>
-<p>替换索引值后仍可以按照$0、1、2\cdots$序列来索引</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Runoob&quot;</span>, <span class="string">&quot;Wiki&quot;</span>]</span><br><span class="line">myvar = pd.Series(a, index = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="string">&quot;y&quot;</span>])</span><br><span class="line">&gt;&gt; Runoob</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; Google</span><br></pre></td></tr></table></figure>
-<p>我们也可以使用$ key/value $对象，类似字典来创建 $Series$：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line"><span class="number">3</span>      Wiki</span><br><span class="line">dtype: <span class="built_in">object</span></span><br><span class="line"><span class="comment">#局部创建</span></span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
-<p>设置$Series$名称：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>], name=<span class="string">&quot;RUNOOB-Series-TEST&quot;</span> )</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">Name: RUNOOB-Series-TEST, dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="$DataFrame$"></a>$DataFrame$</h2><p>DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas-DataStructure.png" alt="img"></p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/df-dp.png" alt="img"></p>
-<p>$DataFrame$构造方式：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
-<p>Pandas DataFrame 是一个二维的数组结构，类似二维数组。</p>
-<p>利用二维数组构造$DataFrame$​：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [[<span class="string">&#x27;Google&#x27;</span>,<span class="number">10</span>],[<span class="string">&#x27;Runoob&#x27;</span>,<span class="number">12</span>],[<span class="string">&#x27;Wiki&#x27;</span>,<span class="number">13</span>]]</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">&#x27;Site&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>],dtype=<span class="built_in">float</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;      Site   Age</span><br><span class="line"><span class="number">0</span>  Google  <span class="number">10.0</span></span><br><span class="line"><span class="number">1</span>  Runoob  <span class="number">12.0</span></span><br><span class="line"><span class="number">2</span>    Wiki  <span class="number">13.0</span></span><br></pre></td></tr></table></figure>
-<p>利用字典构造$DataFrame$：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;,&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">20</span>&#125;]</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span> (df)</span><br><span class="line">&gt;&gt;   a   b     c</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   NaN</span><br><span class="line"><span class="number">1</span>  <span class="number">5</span>  <span class="number">10</span>  <span class="number">20.0</span></span><br></pre></td></tr></table></figure>
-<p>没有对应的部分数据为 <strong>NaN</strong>。</p>
-<p>Pandas 可以使用 <strong>loc</strong> 属性返回指定行的数据，如果没有设置索引，第一行索引为 <strong>0</strong>，第二行索引为 <strong>1</strong>，以此类推：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">420</span></span><br><span class="line">duration     <span class="number">50</span></span><br><span class="line">Name: <span class="number">0</span>, dtype: int64</span><br><span class="line"><span class="comment"># 返回第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">1</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: <span class="number">1</span>, dtype: int64</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>返回结果其实就是一个 Pandas Series 数据。</p>
-</blockquote>
-<p>也可以返回多行数据，使用 <strong>[[ … ]]</strong> 格式，<strong>…</strong> 为各行的索引，以逗号隔开：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行和第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[[<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">&gt;&gt;    calories  duration</span><br><span class="line"><span class="number">0</span>       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line"><span class="number">1</span>       <span class="number">380</span>        <span class="number">40</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>返回结果其实就是一个 Pandas DataFrame 数据</p>
-</blockquote>
-<p>我们可以指定索引值，如下实例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line">df = pd.DataFrame(data, index = [<span class="string">&quot;day1&quot;</span>, <span class="string">&quot;day2&quot;</span>, <span class="string">&quot;day3&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;       calories  duration</span><br><span class="line">day1       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line">day2       <span class="number">380</span>        <span class="number">40</span></span><br><span class="line">day3       <span class="number">390</span>        <span class="number">45</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="string">&quot;day2&quot;</span>])</span><br><span class="line">calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: day2, dtype: int64</span><br></pre></td></tr></table></figure>
-<h1 id="Pandas-CSV"><a href="#Pandas-CSV" class="headerlink" title="Pandas CSV"></a>Pandas CSV</h1><blockquote>
-<p>CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。</p>
-<p>CSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用。</p>
-</blockquote>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.to_string())</span><br></pre></td></tr></table></figure>
-<p><strong>to_string()</strong> 用于返回 DataFrame 类型的数据，如果不使用该函数，则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 <strong>…</strong> 代替。</p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><h4 id="head"><a href="#head" class="headerlink" title="- head()"></a>- head()</h4><blockquote>
-<p>用于读取前面的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.head())</span><br></pre></td></tr></table></figure>
-<h4 id="tail"><a href="#tail" class="headerlink" title="- tail()"></a>- tail()</h4><blockquote>
-<p>用于读取尾部的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.tail(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="info"><a href="#info" class="headerlink" title="- info()"></a>- info()</h4><blockquote>
-<p>info() 方法返回表格的一些基本信息</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.info())</span><br><span class="line">&gt;&gt;&lt; <span class="class"><span class="keyword">class</span> &#x27;<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">458</span> entries, <span class="number">0</span> to <span class="number">457</span>       </span><br><span class="line">Data columns (total <span class="number">9</span> columns): </span><br></pre></td></tr></table></figure>
-<h3 id="Pandas-JSON"><a href="#Pandas-JSON" class="headerlink" title="Pandas JSON"></a>Pandas JSON</h3><h1 id="Pandas-数据清洗"><a href="#Pandas-数据清洗" class="headerlink" title="Pandas 数据清洗"></a>Pandas 数据清洗</h1><h3 id="dropna"><a href="#dropna" class="headerlink" title="- dropna()"></a>- dropna()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">&#x27;any&#x27;</span>, thresh=<span class="literal">None</span>, subset=<span class="literal">None</span>, inplace=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>axis：默认为 <strong>0</strong>，表示逢空值剔除整行，如果设置参数 <strong>axis＝1</strong> 表示逢空值去掉整列。</li>
-<li>how：默认为 <strong>‘any’</strong> 如果一行（或一列）里任何一个数据有出现 NA 就去掉整行，如果设置 <strong>how=’all’</strong> 一行（或列）都是 NA 才去掉这整行。</li>
-<li>thresh：设置需要多少非空值的数据才可以保留下来的。</li>
-<li>subset：设置想要检查的列。如果是多个列，可以使用列名的 list 作为参数。</li>
-<li>inplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。</li>
-</ul>
-<h3 id="isnull"><a href="#isnull" class="headerlink" title="- isnull()"></a>- isnull()</h3><h3 id="fillna"><a href="#fillna" class="headerlink" title="- fillna()"></a>- fillna()</h3>]]></content>
       <categories>
         <category>CS</category>
       </categories>
@@ -1128,6 +1042,199 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
       </tags>
   </entry>
   <entry>
+    <title>Pandas</title>
+    <url>/2021/08/02/Pandas/</url>
+    <content><![CDATA[<h1 id="理解Pandas"><a href="#理解Pandas" class="headerlink" title="理解Pandas"></a>理解Pandas</h1><p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="img"></p>
+<p><strong>Pandas 是 Python 语言的一个扩展程序库，用于数据分析。</strong></p>
+<p>Pandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。</p>
+<p>Pandas 名字衍生自术语 “panel data”（面板数据）和 “Python data analysis”（Python 数据分析）。</p>
+<p>Pandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。</p>
+<p>Pandas 可以从各种文件格式比如 CSV、JSON、SQL、Microsoft Excel 导入数据。</p>
+<p>Pandas 可以对各种数据进行运算操作，比如归并、再成形、选择，还有数据清洗和数据加工特征。</p>
+<p>Pandas 广泛应用在学术、金融、统计学等各个数据分析领域。</p>
+<h1 id="Pandas-数据结构"><a href="#Pandas-数据结构" class="headerlink" title="Pandas 数据结构"></a>Pandas 数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="$Series$"></a>$Series$</h2><p>$Series$ 构造函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.Series( data, index, dtype, name, copy)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><strong>data</strong>：一组数据(ndarray 类型)。</li>
+<li><strong>index</strong>：数据索引标签，如果不指定，默认从 0 开始。</li>
+<li><strong>dtype</strong>：数据类型，默认会自己判断。</li>
+<li><strong>name</strong>：设置名称。</li>
+<li><strong>copy</strong>：拷贝数据，默认为 False。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">myvar = pd.Series(a)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">0</span>    <span class="number">1</span></span><br><span class="line"><span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
+<p>在不指定索引值的时候默认为$0、1、2\cdots$​​序列，可以替换索引值</p>
+<p>替换索引值后仍可以按照$0、1、2\cdots$序列来索引</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Runoob&quot;</span>, <span class="string">&quot;Wiki&quot;</span>]</span><br><span class="line">myvar = pd.Series(a, index = [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="string">&quot;y&quot;</span>])</span><br><span class="line">&gt;&gt; Runoob</span><br><span class="line"><span class="built_in">print</span>(myvar[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; Google</span><br></pre></td></tr></table></figure>
+<p>我们也可以使用$ key/value $对象，类似字典来创建 $Series$：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites)</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line"><span class="number">3</span>      Wiki</span><br><span class="line">dtype: <span class="built_in">object</span></span><br><span class="line"><span class="comment">#局部创建</span></span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+<p>设置$Series$名称：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">sites = &#123;<span class="number">1</span>: <span class="string">&quot;Google&quot;</span>, <span class="number">2</span>: <span class="string">&quot;Runoob&quot;</span>, <span class="number">3</span>: <span class="string">&quot;Wiki&quot;</span>&#125;</span><br><span class="line">myvar = pd.Series(sites, index = [<span class="number">1</span>, <span class="number">2</span>], name=<span class="string">&quot;RUNOOB-Series-TEST&quot;</span> )</span><br><span class="line"><span class="built_in">print</span>(myvar)</span><br><span class="line">&gt;&gt; <span class="number">1</span>    Google</span><br><span class="line"><span class="number">2</span>    Runoob</span><br><span class="line">Name: RUNOOB-Series-TEST, dtype: <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="$DataFrame$"></a>$DataFrame$</h2><p>DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas-DataStructure.png" alt="img"></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2021/04/df-dp.png" alt="img"></p>
+<p>$DataFrame$构造方式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pandas.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
+<p>Pandas DataFrame 是一个二维的数组结构，类似二维数组。</p>
+<p>利用二维数组构造$DataFrame$​：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [[<span class="string">&#x27;Google&#x27;</span>,<span class="number">10</span>],[<span class="string">&#x27;Runoob&#x27;</span>,<span class="number">12</span>],[<span class="string">&#x27;Wiki&#x27;</span>,<span class="number">13</span>]]</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">&#x27;Site&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>],dtype=<span class="built_in">float</span>)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;      Site   Age</span><br><span class="line"><span class="number">0</span>  Google  <span class="number">10.0</span></span><br><span class="line"><span class="number">1</span>  Runoob  <span class="number">12.0</span></span><br><span class="line"><span class="number">2</span>    Wiki  <span class="number">13.0</span></span><br></pre></td></tr></table></figure>
+<p>利用字典构造$DataFrame$：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = [&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;,&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">20</span>&#125;]</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="built_in">print</span> (df)</span><br><span class="line">&gt;&gt;   a   b     c</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   NaN</span><br><span class="line"><span class="number">1</span>  <span class="number">5</span>  <span class="number">10</span>  <span class="number">20.0</span></span><br></pre></td></tr></table></figure>
+<p>没有对应的部分数据为 <strong>NaN</strong>。</p>
+<p>Pandas 可以使用 <strong>loc</strong> 属性返回指定行的数据，如果没有设置索引，第一行索引为 <strong>0</strong>，第二行索引为 <strong>1</strong>，以此类推：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">0</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">420</span></span><br><span class="line">duration     <span class="number">50</span></span><br><span class="line">Name: <span class="number">0</span>, dtype: int64</span><br><span class="line"><span class="comment"># 返回第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="number">1</span>])</span><br><span class="line">&gt;&gt; calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: <span class="number">1</span>, dtype: int64</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>返回结果其实就是一个 Pandas Series 数据。</p>
+</blockquote>
+<p>也可以返回多行数据，使用 <strong>[[ … ]]</strong> 格式，<strong>…</strong> 为各行的索引，以逗号隔开：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 数据载入到 DataFrame 对象</span></span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line"><span class="comment"># 返回第一行和第二行</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[[<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">&gt;&gt;    calories  duration</span><br><span class="line"><span class="number">0</span>       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line"><span class="number">1</span>       <span class="number">380</span>        <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>返回结果其实就是一个 Pandas DataFrame 数据</p>
+</blockquote>
+<p>我们可以指定索引值，如下实例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&quot;calories&quot;</span>: [<span class="number">420</span>, <span class="number">380</span>, <span class="number">390</span>],</span><br><span class="line">  <span class="string">&quot;duration&quot;</span>: [<span class="number">50</span>, <span class="number">40</span>, <span class="number">45</span>]</span><br><span class="line">&#125;</span><br><span class="line">df = pd.DataFrame(data, index = [<span class="string">&quot;day1&quot;</span>, <span class="string">&quot;day2&quot;</span>, <span class="string">&quot;day3&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line">&gt;&gt;       calories  duration</span><br><span class="line">day1       <span class="number">420</span>        <span class="number">50</span></span><br><span class="line">day2       <span class="number">380</span>        <span class="number">40</span></span><br><span class="line">day3       <span class="number">390</span>        <span class="number">45</span></span><br><span class="line"><span class="built_in">print</span>(df.loc[<span class="string">&quot;day2&quot;</span>])</span><br><span class="line">calories    <span class="number">380</span></span><br><span class="line">duration     <span class="number">40</span></span><br><span class="line">Name: day2, dtype: int64</span><br></pre></td></tr></table></figure>
+<h1 id="Pandas-CSV"><a href="#Pandas-CSV" class="headerlink" title="Pandas CSV"></a>Pandas CSV</h1><blockquote>
+<p>CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。</p>
+<p>CSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用。</p>
+</blockquote>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.to_string())</span><br></pre></td></tr></table></figure>
+<p><strong>to_string()</strong> 用于返回 DataFrame 类型的数据，如果不使用该函数，则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 <strong>…</strong> 代替。</p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><h4 id="head"><a href="#head" class="headerlink" title="- head()"></a>- head()</h4><blockquote>
+<p>用于读取前面的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.head())</span><br></pre></td></tr></table></figure>
+<h4 id="tail"><a href="#tail" class="headerlink" title="- tail()"></a>- tail()</h4><blockquote>
+<p>用于读取尾部的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 <strong>NaN</strong>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.tail(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="info"><a href="#info" class="headerlink" title="- info()"></a>- info()</h4><blockquote>
+<p>info() 方法返回表格的一些基本信息</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;nba.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df.info())</span><br><span class="line">&gt;&gt;&lt; <span class="class"><span class="keyword">class</span> &#x27;<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>&#x27;&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">458</span> entries, <span class="number">0</span> to <span class="number">457</span>       </span><br><span class="line">Data columns (total <span class="number">9</span> columns): </span><br></pre></td></tr></table></figure>
+<h3 id="Pandas-JSON"><a href="#Pandas-JSON" class="headerlink" title="Pandas JSON"></a>Pandas JSON</h3><h1 id="Pandas-数据清洗"><a href="#Pandas-数据清洗" class="headerlink" title="Pandas 数据清洗"></a>Pandas 数据清洗</h1><h3 id="dropna"><a href="#dropna" class="headerlink" title="- dropna()"></a>- dropna()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">&#x27;any&#x27;</span>, thresh=<span class="literal">None</span>, subset=<span class="literal">None</span>, inplace=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>axis：默认为 <strong>0</strong>，表示逢空值剔除整行，如果设置参数 <strong>axis＝1</strong> 表示逢空值去掉整列。</li>
+<li>how：默认为 <strong>‘any’</strong> 如果一行（或一列）里任何一个数据有出现 NA 就去掉整行，如果设置 <strong>how=’all’</strong> 一行（或列）都是 NA 才去掉这整行。</li>
+<li>thresh：设置需要多少非空值的数据才可以保留下来的。</li>
+<li>subset：设置想要检查的列。如果是多个列，可以使用列名的 list 作为参数。</li>
+<li>inplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。</li>
+</ul>
+<h3 id="isnull"><a href="#isnull" class="headerlink" title="- isnull()"></a>- isnull()</h3><h3 id="fillna"><a href="#fillna" class="headerlink" title="- fillna()"></a>- fillna()</h3>]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拓扑学</title>
+    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>一笔画问题和七桥问题</li>
+<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
+</ul>
+<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
+<li>集合论</li>
+<li>映射</li>
+<li>笛卡尔积</li>
+<li>等价关系</li>
+</ul>
+<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
+<li><p>函数连续性的三种描述方法</p>
+</li>
+<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
+<blockquote>
+<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
+</blockquote>
+</li>
+<li><p>离散拓扑和平凡拓扑</p>
+</li>
+<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
+</li>
+</ol>
+<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
+<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
+<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
+<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
+<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
+</ul>
+</li>
+<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
+<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
+<li>该子集族称为由度量 d 决定的度量拓扑</li>
+</ul>
+</li>
+</ol>
+<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
+<li>闭集 -&gt; 开集的余集<ul>
+<li>全集和空集</li>
+<li>任意交</li>
+<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
+</ul>
+</li>
+<li><p>邻域，内点，内部 </p>
+<ul>
+<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
+<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
+<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
+</ul>
+</li>
+<li><p>聚点，闭包</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
+<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
+<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
+</li>
+<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
+</li>
+<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
+</li>
+<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
+</li>
+<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
+</li>
+<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
+</li>
+<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
+</li>
+<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
+</li>
+<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
+<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
+</li>
+<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
+<script type="math/tex; mode=display">
+x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
+</ol>
+<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
+<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
+<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
+<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>概率论和数理统计</title>
     <url>/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
     <content><![CDATA[<p>​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、<a href="https://baike.baidu.com/item/随机变量/828980">随机变量</a>及其<a href="https://baike.baidu.com/item/概率分布/828907">概率分布</a>、<a href="https://baike.baidu.com/item/数字特征/3402134">数字特征</a>、<a href="https://baike.baidu.com/item/大数定律/410082">大数定律</a>与<a href="https://baike.baidu.com/item/中心极限定理/829451">中心极限定理</a>、统计量及其概率分布、<a href="https://baike.baidu.com/item/参数估计/2224132">参数估计</a>和假设检验、回归分析、<a href="https://baike.baidu.com/item/方差分析/1502206">方差分析</a>、<a href="https://baike.baidu.com/item/马尔科夫链/4688932">马尔科夫链</a>等内容。</p>
@@ -1262,113 +1369,6 @@ P(B_i|A) = \frac{P(AB_i)}{P(A)} =\frac{P(B_i)P(A|B_i)}{\sum^n_{j=1}P(B_j)P(A|B_j
 ]]></content>
       <categories>
         <category>MA</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>复变函数</title>
-    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
-<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
-<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
-</li>
-<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
-</li>
-<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
-</li>
-<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
-</li>
-<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
-</li>
-<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
-</li>
-<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
-</li>
-<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
-</li>
-<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
-<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
-</li>
-<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
-<script type="math/tex; mode=display">
-x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
-</ol>
-<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
-<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
-<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
-<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拓扑学</title>
-    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
-<li>一笔画问题和七桥问题</li>
-<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
-</ul>
-<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
-<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
-<li>集合论</li>
-<li>映射</li>
-<li>笛卡尔积</li>
-<li>等价关系</li>
-</ul>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
-<li><p>函数连续性的三种描述方法</p>
-</li>
-<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
-<blockquote>
-<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
-</blockquote>
-</li>
-<li><p>离散拓扑和平凡拓扑</p>
-</li>
-<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
-</li>
-</ol>
-<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
-<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
-<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
-<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
-<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
-</ul>
-</li>
-<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
-<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
-<li>该子集族称为由度量 d 决定的度量拓扑</li>
-</ul>
-</li>
-</ol>
-<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
-<li>闭集 -&gt; 开集的余集<ul>
-<li>全集和空集</li>
-<li>任意交</li>
-<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
-</ul>
-</li>
-<li><p>邻域，内点，内部 </p>
-<ul>
-<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
-<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
-<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
-</ul>
-</li>
-<li><p>聚点，闭包</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
       </categories>
       <tags>
         <tag>MA</tag>
