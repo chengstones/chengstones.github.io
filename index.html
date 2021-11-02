@@ -196,6 +196,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qiushi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn-Storage">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/02/DataStruct-Pseudocode/" class="post-title-link" itemprop="url">DataStruct-Pseudocode</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-02 09:03:39 / 修改时间：09:08:15" itemprop="dateCreated datePublished" datetime="2021-11-02T09:03:39+08:00">2021-11-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre class="pseudocode">
+% This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
+\begin{algorithm}
+\caption{Quicksort}
+\begin{algorithmic}
+\PROCEDURE{Quicksort}{$A, p, r$}
+    \IF{$p < r$} 
+        \STATE $q = $ \CALL{Partition}{$A, p, r$}
+        \STATE \CALL{Quicksort}{$A, p, q - 1$}
+        \STATE \CALL{Quicksort}{$A, q + 1, r$}
+    \ENDIF
+\ENDPROCEDURE
+\PROCEDURE{Partition}{$A, p, r$}
+    \STATE $x = A[r]$
+    \STATE $i = p - 1$
+    \FOR{$j = p$ \TO $r - 1$}
+        \IF{$A[j] < x$}
+            \STATE $i = i + 1$
+            \STATE exchange
+            $A[i]$ with $A[j]$
+        \ENDIF
+        \STATE exchange $A[i]$ with $A[r]$
+    \ENDFOR
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+</pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -294,10 +378,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-30 20:18:13 / 修改时间：22:56:08" itemprop="dateCreated datePublished" datetime="2021-10-30T20:18:13+08:00">2021-10-30</time>
+              <time title="创建时间：2021-10-30 20:18:13" itemprop="dateCreated datePublished" datetime="2021-10-30T20:18:13+08:00">2021-10-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-31 22:50:22" itemprop="dateModified" datetime="2021-10-31T22:50:22+08:00">2021-10-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -528,7 +618,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-30 20:22:41" itemprop="dateModified" datetime="2021-10-30T20:22:41+08:00">2021-10-30</time>
+                <time title="修改时间：2021-10-31 22:26:16" itemprop="dateModified" datetime="2021-10-31T22:26:16+08:00">2021-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1277,122 +1367,11 @@ F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/04/01/Knapsack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Qiushi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Autumn-Storage">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/01/Knapsack/" class="post-title-link" itemprop="url">Knapsack</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-01T00:00:00+08:00">2021-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-30 19:42:13" itemprop="dateModified" datetime="2021-10-30T19:42:13+08:00">2021-10-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>有N件物品和一个容量为$V$的背包。放入第i件物品耗费的空间是$C[i]$，得到的价值是$W[i]$。求解将哪些物品装入背包可使价值总和最大。</p>
-</blockquote>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>任何一件物品可以选择放入或者不放入,考虑第$N$件物品：</p>
-<ul>
-<li>放入：问题简化为 $N-1$ 件物品，容量为$V-C[N]$， 得到的价值为$F(N-1，V-C[N])+W[N]$</li>
-<li>不放入：问题简化为$N-1$件物品，容量为$V$，得到的价值为$F(N-1，V)$</li>
-</ul>
-<h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><script type="math/tex; mode=display">
-F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实现"><a href="#C-代码实现" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(x,y)</span> </span>&#123;<span class="keyword">return</span> (x&gt;y)? x:y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> s[],<span class="keyword">int</span> v[],<span class="keyword">int</span> C)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 当没有物品可选或者可以存储的质量小于等于0时，显然能存储的物品价值为0</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s[n]&gt;C) <span class="keyword">return</span> <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">// 当第N件物品质量超过所能容纳质量时，可以默认不选</span></span><br><span class="line">    <span class="comment">// 事实上这一步也可以忽略，可以包含在第三种情况中</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C),<span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]);</span><br><span class="line">    <span class="comment">// 状态转移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>倘若直接调用递归函数，会出现重复计算的问题</p>
-<p>如果能出现一个数组来存储每次计算的结果时，可以减少重复计算的机会</p>
-<p><strong>动态规划：</strong></p>
-<h5 id="C-代码实现-1"><a href="#C-代码实现-1" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态规划解决0-1背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="初始化细节"><a href="#初始化细节" class="headerlink" title="初始化细节"></a>初始化细节</h3><p>如果要求背包刚好装满，则可以设$knapsack(0，a)(a != 0)$时取值无穷小，此时无法取到背包未满的解。</p>
-<h2 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h2><h3 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h3><h5 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述:"></a>问题重述:</h5><blockquote>
-<p>有N种物品和一个容量为V 的背包，每种物品都有<strong>无限件可用</strong>。放入第i种 物品的耗费的空间是C[i]，得到的价值是W[i]。求解：将哪些物品装入背包，可使这些物品的耗费的空间总和不超过背包容量，且价值总和最大。</p>
-</blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><h6 id="思路1-1："><a href="#思路1-1：" class="headerlink" title="思路1-1："></a>思路1-1：</h6><p>（转换为0-1背包问题）</p>
-<p>仍然以0-1背包问题进行理解，虽然每件物品有无限件可用，但是为保证物品数量不超过空间限制，至多可选第i件物品的个数为$[ C/C[i] ]$,因此问题变为了$[C/C[i]]$个i件物品的综合。</p>
-<p>但可见当物品数目增多，容量增大时，该算法的复杂度会迅速<strong>膨胀</strong>。</p>
-<h6 id="思路1-2："><a href="#思路1-2：" class="headerlink" title="思路1-2："></a>思路1-2：</h6><p>（更有效的转换为0-1背包问题）</p>
-<p>把第i种物品拆成体积为$C[i]<em>2^k$、价值为$W[i]</em> 2^k$的若干件物品，其中k取遍满足$C[i]* 2^k ≤ V$ 的非负整数。</p>
-<p><u>即采用二进制的思想，当选取两件相同物品时，等价于选取质量和价值均为原来两倍的物品</u>。</p>
-<h6 id="思路2："><a href="#思路2：" class="headerlink" title="思路2："></a>思路2：</h6><p>一个简单的优化：若两件物品比较，其中一件物品价值更低，同时体积更大，那么可以将这一件物品舍去。</p>
-<h6 id="思路3："><a href="#思路3：" class="headerlink" title="思路3："></a>思路3：</h6><p>当且仅当决定不继续选择这件物品时进行状态转移，否则持续当前状态</p>
-<h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><ul>
-<li><script type="math/tex; mode=display">F(N，V)= max\{ F(N-1，V - k * C[N]) + k * W[N] |0<=k * C[N]<=V \}</script></li>
-<li><script type="math/tex; mode=display">F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script></li>
-</ul>
-<h5 id="C-代码实现-2"><a href="#C-代码实现-2" class="headerlink" title="C++代码实现"></a>C++代码实现</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态规划解决完全背包问题</span></span><br><span class="line"><span class="keyword">int</span> packarray[<span class="number">1000</span>][<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">// packarray[n][C] 用于储存前n件物品，容量为C的背包最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> v[], <span class="keyword">int</span> C)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (packarray[n][C]) <span class="keyword">return</span> packarray[n][C]; <span class="comment">//若已经计算过，则直接引用，避免重复计算</span></span><br><span class="line">    <span class="keyword">if</span> (n&lt;=<span class="number">0</span>||C&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (s[n]&gt;C) &#123;packarray[n][C] = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="keyword">return</span> packarray[n][C];&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> tem1 = <span class="built_in">knapsack</span>(n<span class="number">-1</span>,s,v,C); <span class="comment">//不取第n件的情况</span></span><br><span class="line">        <span class="keyword">int</span> tem2 = <span class="built_in">knapsack</span>(n,s,v,C-s[n])+v[n]; <span class="comment">//取第n件的情况</span></span><br><span class="line">        <span class="keyword">if</span> (tem1&gt;tem2) packarray[n][C] = tem1;</span><br><span class="line">        <span class="keyword">else</span> packarray[n][C] = tem2;</span><br><span class="line">        <span class="keyword">return</span> packarray[n][C];  <span class="comment">//比较并赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
-<p>​         在现实生活中，有一类活动的过程，由于它的特殊性，可将过程分成若干个互相联系的阶段，在它的每一阶段都需要作出决策，从而使整个过程达到最好的活动效果。</p>
-<p>​        各个阶段决策的选取不能任意确定，它依赖于当前面临的状态，又影响以后的发展。当各个阶段决策确定后，就组成一个决策序列，因而也就确定了整个过程的一条活动路线．这种把一个问题看作是一个前后关联具有链状结构的多阶段过程就称为多阶段决策过程，这种问题称为多阶段决策问题。</p>
-<p>​         在多阶段决策问题中，各个阶段采取的决策，一般来说是与时间有关的，决策依赖于当前状态，又随即引起状态的转移，一个决策序列就是在变化的状态中产生出来的，故有“动态”的含义，称这种解决多阶段决策最优化的过程为动态规划方法</p>
-</blockquote>
-<h5 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h5><blockquote>
-<p>​        动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有最优值的解。</p>
-<p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
-<p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1459,7 +1438,7 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
