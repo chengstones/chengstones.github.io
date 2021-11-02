@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2021-11-02T01:08:15.820Z</updated>
+  <updated>2021-11-02T01:35:32.150Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -21,19 +21,17 @@
     <link href="https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/"/>
     <id>https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/</id>
     <published>2021-11-02T01:03:39.000Z</published>
-    <updated>2021-11-02T01:08:15.820Z</updated>
+    <updated>2021-11-02T01:35:32.150Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;pre class=&quot;pseudocode&quot;&gt;
-% This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
-\begin{algorithm}
-</summary>
-      
+    <summary type="html">&lt;p&gt;通过伪代码(Pseudocode)来重现所有基本数据结构(DataStruct)&lt;br&gt;</summary>
     
     
     
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/tags/CS/"/>
     
   </entry>
   
