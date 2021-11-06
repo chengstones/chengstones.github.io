@@ -74,6 +74,17 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS</title>
+    <url>/2021/11/05/CSS/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DataStruct-Pseudocode</title>
     <url>/2021/11/02/DataStruct-Pseudocode/</url>
     <content><![CDATA[<p>仿cpp伪代码(Pseudocode)复现基本数据结构(DataStruct)<br><span id="more"></span></p>
@@ -265,6 +276,41 @@
 <li>循环：访问 p 节点；如果 p 节点有真左子树，设置 p 为其左子树。否则如果 p 节点有右子树，设置 p 为其真右子树。否则循环取 p 的后继线索，查看其是否存在右子树，如果有，则取p等于该右子树</li>
 <li>终止条件：右子树是NULL</li>
 </ul>
+<h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><h3 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h3><ul>
+<li>队列，数组，完全二叉树</li>
+<li>顺序结构实现，根节点位于 1 处；k 节点的子节点为 2k，2k+1；k 节点的父节点为 k/2</li>
+<li>入队，放在数组末尾；循环{与父节点比较，若父节点小，则依次向上取代}，停止条件{hole == 1；x &lt; array[hole/2]}，将 hole 处赋值新加入节点</li>
+<li>出队，保存根节点值；将根节点值用数组末尾的值取代，再向下调节根节点处，保证堆的有序性</li>
+</ul>
+<h4 id="普通构造，析构，判空，返回首节点"><a href="#普通构造，析构，判空，返回首节点" class="headerlink" title="普通构造，析构，判空，返回首节点"></a>普通构造，析构，判空，返回首节点</h4><ul>
+<li>普通构造函数申请新 array，初始化最大容量 maxSize，当前数量 currentSize</li>
+<li>析构函数，析构 array 数组</li>
+<li>返回 当前数量为0</li>
+<li>返回 数组的第一个元素</li>
+</ul>
+<h4 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h4><ul>
+<li>当堆满时（currentsize == maxSize - 1），翻倍容量</li>
+<li>声明洞的位置，循环与父节点比较；停止条件{hole == 1；x &gt;= array[hole/2]}</li>
+<li>将入队元素放置在洞的位置</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(currentSize == maxSize - <span class="number">1</span>) <span class="built_in">doubleSpace</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> hole = ++ currentSize;</span><br><span class="line"><span class="keyword">for</span>(;hole &gt; <span class="number">1</span>&amp;&amp; x &lt; array[hole/<span class="number">2</span>];hole/=<span class="number">2</span>)&#123;</span><br><span class="line">    array[hole] = array[hole/<span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line">array[hole] = x;</span><br></pre></td></tr></table></figure>
+<h4 id="出队和辅助函数-percolateDown"><a href="#出队和辅助函数-percolateDown" class="headerlink" title="出队和辅助函数 percolateDown"></a>出队和辅助函数 percolateDown</h4><h5 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h5><ul>
+<li>percolate - 渗下</li>
+<li>功能：当前节点的子树都保证有序性时，保证当前节点的有序性</li>
+<li>取洞处的值，循环{找到最大的子树；比较洞与最大子树，若洞更大，交换子树与洞}；停止条件{没有子树；子树比洞更大}</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Type tmp = array[hole];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(;hole*<span class="number">2</span>&lt;= currentSize;hole = child)&#123;</span><br><span class="line">    child = hole * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(右子树比左子树更小) ++child;</span><br><span class="line">    <span class="keyword">if</span>(更小的子树 &lt; tmp) array[hole] = array[child];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">array[hole] = tmp;</span><br></pre></td></tr></table></figure>
+<h5 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">保存头节点;</span><br><span class="line">头节点用数组末尾节点替代;</span><br><span class="line"><span class="built_in">percolateDown</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">return</span> 保存值;</span><br></pre></td></tr></table></figure>
+<h4 id="新构造和辅助函数-buildHeap"><a href="#新构造和辅助函数-buildHeap" class="headerlink" title="新构造和辅助函数 buildHeap"></a>新构造和辅助函数 buildHeap</h4><h5 id="辅助函数-1"><a href="#辅助函数-1" class="headerlink" title="辅助函数"></a>辅助函数</h5><ul>
+<li>buildHeap 构建堆</li>
+<li>从下至上遍历所有有子树的节点，调用 percolateDown 函数</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> <span class="built_in">i</span>(currentSize/<span class="number">2</span>;i&gt;<span class="number">0</span>;--i))&#123;</span><br><span class="line">    <span class="built_in">percolateDown</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="新构造"><a href="#新构造" class="headerlink" title="新构造"></a>新构造</h5><ul>
+<li>初始化列表：最大容量(size + 10)，当前数量(size)</li>
+<li>先构造一棵完全二叉树，再构建堆</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">array = <span class="keyword">new</span> Type[maxSize];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> <span class="built_in">i</span>(<span class="number">0</span>);i&lt;size;++i)&#123;</span><br><span class="line">    array[i+<span class="number">1</span>] = items[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">buildHeap</span>();</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>CS</category>
