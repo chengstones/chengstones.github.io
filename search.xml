@@ -85,300 +85,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HTML</title>
-    <url>/2021/10/30/HTML/</url>
-    <content><![CDATA[<p>URL：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
-<p>摘要：<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTML">HTML</a> (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的<strong>标记语言</strong>。HTML 可复杂、可简单，一切取决于开发者。它由一系列的<strong>元素（<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Element">elements</a>）</strong>组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Tag">tags</a>）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 </p>
-<span id="more"></span>
-<hr>
-<p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
-<p>几种前端语言</p>
-<ul>
-<li>HTML 网页含义和结构</li>
-<li>CSS 描述网页的表现与展示</li>
-<li>JavaScript 功能和行为</li>
-</ul>
-<h2 id="Chapter-1-HTML-基础"><a href="#Chapter-1-HTML-基础" class="headerlink" title="Chapter 1 HTML 基础"></a>Chapter 1 HTML 基础</h2><h3 id="Section-1-HTML-介绍"><a href="#Section-1-HTML-介绍" class="headerlink" title="Section 1 HTML 介绍"></a>Section 1 HTML 介绍</h3><ol>
-<li><p>标签（不区分大小写）</p>
-</li>
-<li><p>嵌套</p>
-</li>
-<li><p>块级元素和内联元素</p>
-<ul>
-<li>块级元素 <ul>
-<li>独立成行</li>
-<li>不能被嵌入内联元素</li>
-</ul>
-</li>
-<li>内联元素<ul>
-<li>不会导致文本换行</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>属性</p>
-</li>
-<li><p>标签 &lt; a &gt;</p>
-<ul>
-<li>href : 声明超链网页的网址</li>
-<li>title：为超链接声明额外信息</li>
-<li>target：指定链接呈现方法</li>
-</ul>
-</li>
-<li><p>HTML 文档结构</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的测试站点<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是我的页面<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注释</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是注释 --&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Section-2-标签-lt-head-gt"><a href="#Section-2-标签-lt-head-gt" class="headerlink" title="Section 2 标签&lt; head &gt;"></a>Section 2 标签&lt; head &gt;</h3><ol>
-<li><p>&lt; head &gt; … &lt; /head &gt;</p>
-</li>
-<li><p>元数据：&lt; meta &gt; 元素</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span> = <span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;author&quot;</span> <span class="attr">content</span> = <span class="string">&quot;QiuShi&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;description&quot;</span> <span class="attr">content</span> = <span class="string">&quot;ABAB&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">ref</span> = <span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span> = <span class="string">&quot;&quot;</span> <span class="attr">type</span> = <span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>应用 CSS 和 JavaScript</p>
-<ul>
-<li>&lt; link > 元素经常位于文档的头部<ul>
-<li>rel=”stylesheet”表明这是文档的样式表</li>
-<li>href 包含了样式表文件的路径</li>
-</ul>
-</li>
-<li>&lt; script &gt; 一般放在文档的尾部<ul>
-<li>src 属性包含 JS 文件的路径</li>
-<li>含有结束标记</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-3-文字处理基础"><a href="#Section-3-文字处理基础" class="headerlink" title="Section 3 文字处理基础"></a>Section 3 文字处理基础</h3><ol>
-<li><p>标题和段落</p>
-<ul>
-<li>标题 &lt; h1 &gt;&lt; h2 &gt;&lt; h3 &gt;&lt; h4 &gt;&lt; h5 &gt;&lt; h6 &gt;</li>
-<li>段落 &lt; p &gt;</li>
-</ul>
-</li>
-<li><p>结构层次</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>三国演义<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>罗贯中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>话说天下大势，分久必合，合久必分。周末七国分争，并入于秦。及秦灭之后，楚、汉分争，又并入于汉……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二回 张翼德怒鞭督邮 何国舅谋诛宦竖<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>且说董卓字仲颖，陇西临洮人也，官拜河东太守，自来骄傲。当日怠慢了玄德，张飞性发，便欲杀之……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>却说张飞<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>却说张飞饮了数杯闷酒，乘马从馆驿前过，见五六十个老人，皆在门前痛哭。飞问其故，众老人答曰：“督邮逼勒县吏，欲害刘公；我等皆来苦告，不得放入，反遭把门人赶打！”……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>语义</p>
-<ul>
-<li>&lt; h1 &gt; &lt; /h1 &gt; 类型是语义元素，含有 “一级标题” 的含义</li>
-<li>&lt; span style=”font-size: 32px; margin: 21px 0;” &gt;这是顶级标题吗？&lt; /span &gt; 类型是非语义元素，虽然显示相同</li>
-</ul>
-</li>
-<li><p>列表</p>
-<ul>
-<li><p>无序 (Unordered Lists)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>有序 (Ordered Lists)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>嵌套</p>
-</li>
-</ul>
-</li>
-<li><p>重点强调</p>
-<ul>
-<li>&lt; em &gt;&lt; /em &gt; 标记斜体</li>
-<li>&lt; strong &gt; &lt; /strong> 标记粗体</li>
-<li>上述均为意义明确的语义元素，&lt; b &gt;&lt; i &gt;&lt; u &gt; 为表象元素</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-4-建立超链接"><a href="#Section-4-建立超链接" class="headerlink" title="Section 4 建立超链接"></a>Section 4 建立超链接</h3><ol>
-<li>链接的解析<ul>
-<li>属性 href：指向希望链接的网址</li>
-<li>内容 string：绑定的文本</li>
-<li>当内容缺省时，不显示链接</li>
-</ul>
-</li>
-<li>title 属性 添加支持信息<ul>
-<li>效果：当鼠标悬停时，将作为提示信息出现</li>
-</ul>
-</li>
-<li>块级链接<ul>
-<li>将整块元素作为 &lt; a &gt; 的 string 属性，可将整块元素都作为标签</li>
-<li>常用的比如图像</li>
-</ul>
-</li>
-<li><p>下载链接 download 属性</p>
-<ul>
-<li>缺省时默认为预览状态</li>
-<li>否则强制下载链接，并命名为属性的值</li>
-</ul>
-</li>
-<li><p>电子邮件链接</p>
-<ul>
-<li>&lt; a &gt; 和 mailto 方案</li>
-<li>使用形式为 mailto: link 格式 ， link 是缺省的</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-5-高阶文字排版"><a href="#Section-5-高阶文字排版" class="headerlink" title="Section 5 高阶文字排版"></a>Section 5 高阶文字排版</h3><ol>
-<li><p>描述列表：标记一组项目及其相关描述</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>内心独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色对自己的内心活动或感受进行念白表演，这些台词只面向观众，而其他角色不会听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>语言独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色把自己的想法直接进行念白表演，观众和其他角色都可以听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>旁白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，为渲染幽默或戏剧性效果而进行的场景之外的补充注释念白，只面向观众，内容一般都是角色的感受、想法、以及一些背景信息等。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>引用</p>
-</li>
-<li><p>缩略语</p>
-<ul>
-<li>&lt; abbr title = ‘ ‘ &gt;string&lt; /abbr &gt;，当鼠标放在 string 上时，会弹出 title属性值表示对其解释</li>
-<li>引用词下方有虚下划线</li>
-</ul>
-</li>
-<li><p>标记联系方式</p>
-</li>
-<li>上下标：&lt; sup &gt; &lt; sub &gt;</li>
-<li>标记时间日期<ul>
-<li>&lt; time datetime = ‘  ‘ &gt;string&lt; /time &gt;</li>
-<li>datatime 表示 日期的格式化</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-6-文档与网站架构"><a href="#Section-6-文档与网站架构" class="headerlink" title="Section 6 文档与网站架构"></a>Section 6 文档与网站架构</h3><ol>
-<li>文档的基本组成部分<ul>
-<li>页眉 &lt; header &gt;</li>
-<li>导航栏 &lt; nav &gt;</li>
-<li>主内容 &lt; main &gt;</li>
-<li>侧边栏 &lt; aside &gt;</li>
-<li>页脚 &lt; footer &gt;</li>
-</ul>
-</li>
-<li>HTML 布局元素细节<ul>
-<li>&lt; main &gt; 只能用一次，且位于 &lt; body &gt; 中</li>
-<li>&lt; article &gt; 仅包围一篇文章</li>
-<li>&lt; section &gt; 组织结构使其按功能划分</li>
-<li>&lt; aside &gt; 包含简介信息</li>
-<li>&lt; nav &gt; 包含页面主导航，不能包含二级链接等内容</li>
-</ul>
-</li>
-<li>无语义元素<ul>
-<li>&lt; span &gt; 是内联无语义元素</li>
-<li>&lt; div &gt; 是块级无语义元素</li>
-</ul>
-</li>
-<li>换行符和水平分割线<ul>
-<li>&lt; br &gt;</li>
-<li>&lt; hr &gt;</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-7-HTML-调试"><a href="#Section-7-HTML-调试" class="headerlink" title="Section 7 HTML 调试"></a>Section 7 HTML 调试</h3><ol>
-<li>浏览器解析 HTML 代码条件宽松，允许可控的逻辑和语法错误</li>
-<li>HTML 验证 <a href="https://validator.w3.org/">Markup Validation Service</a></li>
-</ol>
-<hr>
-<h2 id="Chapter-2-多媒体与嵌入"><a href="#Chapter-2-多媒体与嵌入" class="headerlink" title="Chapter 2 多媒体与嵌入"></a>Chapter 2 多媒体与嵌入</h2><h3 id="Section-1-HTML-中的图片"><a href="#Section-1-HTML-中的图片" class="headerlink" title="Section 1 HTML 中的图片"></a>Section 1 HTML 中的图片</h3><ol>
-<li><p>&lt; img &gt; 元素（替换元素）</p>
-<ul>
-<li>src 属性指向引入图片的路径</li>
-<li>alt 属性表示对图片的文字描述<ul>
-<li>存在于图片无法显示或不能被看到的情况</li>
-</ul>
-</li>
-<li>width 和 height 属性<ul>
-<li>建议使用 CSS 改变图片的尺寸</li>
-</ul>
-</li>
-<li>title 属性提供进一步的支持信息<ul>
-<li>悬停显示</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>搭配说明文字来解说图片</p>
-<ul>
-<li><p>无语义类型</p>
-<ul>
-<li>&lt; div &gt; &lt; img &gt; &lt; p &gt; &lt; /div &gt; 类型</li>
-</ul>
-</li>
-<li><p>语义类型</p>
-<ul>
-<li><p>&lt; figure &gt; 和 &lt; figcaption &gt; 元素</p>
-</li>
-<li><p>~~~html<br><figure><br>  &lt;img src=”<a href="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg">https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg</a>“</p>
-<pre><code> alt=&quot;一只恐龙头部和躯干的骨架，它有一个巨大的头，长着锋利的牙齿。&quot;
- width=&quot;400&quot;
- height=&quot;341&quot;&gt;
-</code></pre><p>  <figcaption>曼彻斯特大学博物馆展出的一只霸王龙的化石</figcaption><br>&lt;/figure&gt;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">3. CSS 背景图片</span><br><span class="line"></span><br><span class="line">   ~~~css</span><br><span class="line">   p &#123;</span><br><span class="line">     background-image: url(&quot;images/dinosaur.jpg&quot;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="Section-2-视频和音频内容"><a href="#Section-2-视频和音频内容" class="headerlink" title="Section 2 视频和音频内容"></a>Section 2 视频和音频内容</h3><ol>
-<li><p>嵌入视频 &lt; video &gt;</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;rabbit320.webm&quot;</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>你的浏览器不支持 HTML5 视频。可点击<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;rabbit320.mp4&quot;</span>&gt;</span>此链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span>观看<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>src 属性<ul>
-<li>指向想要嵌入页面的视频资源</li>
-</ul>
-</li>
-<li>controls 属性<ul>
-<li>包含浏览器提供的控件功能</li>
-<li>也可以自行创造页面</li>
-</ul>
-</li>
-<li>&lt; video &gt; 标签内的内容<ul>
-<li>当浏览器不支持 video 的时候，将会回退这部分内容</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>多个播放源提供兼容性</p>
-<ul>
-<li>容器格式</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>编程语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Knapsack+</title>
-    <url>/2021/04/02/Knapsack+/</url>
-    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
-<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
-F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
-<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
-<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
-<p>这样可以将$N$种情况减少到$log N$种情况</p>
-<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
-</blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
-<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
-<p>可使用伪代码表示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
-<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
-<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
-<p>因此分别调用相关的算法去解决就行</p>
-<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
-<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
-]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Arithmetic</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DataStruct-Pseudocode</title>
     <url>/2021/11/02/DataStruct-Pseudocode/</url>
     <content><![CDATA[<p>仿cpp伪代码(Pseudocode)复现基本数据结构(DataStruct)<br><span id="more"></span></p>
@@ -639,12 +345,381 @@ F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"
 <li>递归终止条件：其中一个堆为空</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">node * <span class="title">merge</span><span class="params">(node* root1, node* root2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root1 == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> root2;</span><br><span class="line">    <span class="keyword">if</span>(root2 == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> root1;</span><br><span class="line">    node *l, *r;</span><br><span class="line">    root-&gt;val &lt; root2 -&gt; val ? (l = root1, r = root2) : (l = root2, r = root1);</span><br><span class="line">    </span><br><span class="line">    l -&gt; right = <span class="built_in">merge</span>(l-&gt;right,r);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(l -&gt; left == <span class="literal">NULL</span> || l-&gt;right -&gt; npl &gt; l-&gt;left-&gt;npl)</span><br><span class="line">        <span class="built_in">swap</span>(l-&gt;right,l-&gt;left);</span><br><span class="line">    l-&gt;npl = l-&gt;left -&gt; npl + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="集合与静态查找"><a href="#集合与静态查找" class="headerlink" title="集合与静态查找"></a>集合与静态查找</h2><h3 id="数据类型-set"><a href="#数据类型-set" class="headerlink" title="数据类型 - set"></a>数据类型 - set</h3><ul>
+<li>每个数据元素有个区别与其他元素的唯一标识符，称为关键字</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">KEY</span>, <span class="keyword">class</span> <span class="title">OTHER</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SET</span>&#123;</span></span><br><span class="line">	KEY key;</span><br><span class="line">    OTHER other;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><ul>
+<li>允许任何容器存储集合</li>
+<li>常用的比如线性表和树</li>
+<li>唯一仅适用于集合的存储的数据结构为散列表</li>
+</ul>
+<h3 id="查找-1"><a href="#查找-1" class="headerlink" title="查找"></a>查找</h3><ul>
+<li>用于查找的集合为查找表</li>
+<li>分类<ul>
+<li>静态查找表：数据相对稳定，鲜有变化（顺序存储）</li>
+<li>动态查找表：有频繁的插入、删除操作（链式存储）</li>
+<li>内部查找：一次性放入内存</li>
+<li>外部查找：分批</li>
+</ul>
+</li>
+</ul>
+<h3 id="无序表的查找"><a href="#无序表的查找" class="headerlink" title="无序表的查找"></a>无序表的查找</h3><ul>
+<li>线性的顺序查找</li>
+<li>利用哨兵来减少比较</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">seqSearch</span><span class="params">(SET data[], <span class="keyword">int</span> size, <span class="keyword">const</span> KEY &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 设置哨兵</span></span><br><span class="line">    data[<span class="number">0</span>].key = x;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> <span class="built_in">i</span>(size);x!=data[i].key;--i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有序表的查找"><a href="#有序表的查找" class="headerlink" title="有序表的查找"></a>有序表的查找</h3><h4 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h4><ul>
+<li>与无序表的顺序查找类似</li>
+<li>不需要查找到表头</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从小到大有序排列的有序表</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">seqSearch</span><span class="params">(SET data[], <span class="keyword">int</span> size, <span class="keyword">const</span> KEY &amp;x)</span></span>&#123;</span><br><span class="line">	<span class="comment">// 设置哨兵</span></span><br><span class="line">    data[<span class="number">0</span>].key = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> <span class="built_in">i</span>(size);x&lt;data[i].key;--i);</span><br><span class="line">    <span class="keyword">if</span>(x == data[i].key) <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><ul>
+<li>双 flag：low，high</li>
+<li>mid 由 low , high 二分生成，比较，根据大小改变 low, high</li>
+<li>终止条件：x == data[mid].key or low &gt; high</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(SET data[], <span class="keyword">int</span> size, <span class="keyword">const</span> KEY &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">low</span><span class="params">(<span class="number">1</span>)</span>,<span class="title">high</span><span class="params">(size)</span>,mid</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">        mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(x == data[mid].key) <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;data[mid].key) high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h4><ul>
+<li>线性插值</li>
+<li>应用于分布均匀的情况</li>
+</ul>
+<h4 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a>分块查找</h4><ul>
+<li>将数据集成打包成块</li>
+<li>块间必须是有序的</li>
+</ul>
+<h2 id="动态查找"><a href="#动态查找" class="headerlink" title="动态查找"></a>动态查找</h2>]]></content>
       <categories>
         <category>CS</category>
       </categories>
       <tags>
         <tag>CS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML</title>
+    <url>/2021/10/30/HTML/</url>
+    <content><![CDATA[<p>URL：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
+<p>摘要：<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/HTML">HTML</a> (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的<strong>标记语言</strong>。HTML 可复杂、可简单，一切取决于开发者。它由一系列的<strong>元素（<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Element">elements</a>）</strong>组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Tag">tags</a>）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 </p>
+<span id="more"></span>
+<hr>
+<p>学习小tip：用记事本编辑 HTML 语言，用 chrome 打开，可以实时查看运行结果。</p>
+<p>几种前端语言</p>
+<ul>
+<li>HTML 网页含义和结构</li>
+<li>CSS 描述网页的表现与展示</li>
+<li>JavaScript 功能和行为</li>
+</ul>
+<h2 id="Chapter-1-HTML-基础"><a href="#Chapter-1-HTML-基础" class="headerlink" title="Chapter 1 HTML 基础"></a>Chapter 1 HTML 基础</h2><h3 id="Section-1-HTML-介绍"><a href="#Section-1-HTML-介绍" class="headerlink" title="Section 1 HTML 介绍"></a>Section 1 HTML 介绍</h3><ol>
+<li><p>标签（不区分大小写）</p>
+</li>
+<li><p>嵌套</p>
+</li>
+<li><p>块级元素和内联元素</p>
+<ul>
+<li>块级元素 <ul>
+<li>独立成行</li>
+<li>不能被嵌入内联元素</li>
+</ul>
+</li>
+<li>内联元素<ul>
+<li>不会导致文本换行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>属性</p>
+</li>
+<li><p>标签 &lt; a &gt;</p>
+<ul>
+<li>href : 声明超链网页的网址</li>
+<li>title：为超链接声明额外信息</li>
+<li>target：指定链接呈现方法</li>
+</ul>
+</li>
+<li><p>HTML 文档结构</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的测试站点<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是我的页面<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注释</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是注释 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Section-2-标签-lt-head-gt"><a href="#Section-2-标签-lt-head-gt" class="headerlink" title="Section 2 标签&lt; head &gt;"></a>Section 2 标签&lt; head &gt;</h3><ol>
+<li><p>&lt; head &gt; … &lt; /head &gt;</p>
+</li>
+<li><p>元数据：&lt; meta &gt; 元素</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span> = <span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;author&quot;</span> <span class="attr">content</span> = <span class="string">&quot;QiuShi&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">&quot;description&quot;</span> <span class="attr">content</span> = <span class="string">&quot;ABAB&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">ref</span> = <span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span> = <span class="string">&quot;&quot;</span> <span class="attr">type</span> = <span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用 CSS 和 JavaScript</p>
+<ul>
+<li>&lt; link > 元素经常位于文档的头部<ul>
+<li>rel=”stylesheet”表明这是文档的样式表</li>
+<li>href 包含了样式表文件的路径</li>
+</ul>
+</li>
+<li>&lt; script &gt; 一般放在文档的尾部<ul>
+<li>src 属性包含 JS 文件的路径</li>
+<li>含有结束标记</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-3-文字处理基础"><a href="#Section-3-文字处理基础" class="headerlink" title="Section 3 文字处理基础"></a>Section 3 文字处理基础</h3><ol>
+<li><p>标题和段落</p>
+<ul>
+<li>标题 &lt; h1 &gt;&lt; h2 &gt;&lt; h3 &gt;&lt; h4 &gt;&lt; h5 &gt;&lt; h6 &gt;</li>
+<li>段落 &lt; p &gt;</li>
+</ul>
+</li>
+<li><p>结构层次</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>三国演义<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>罗贯中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>话说天下大势，分久必合，合久必分。周末七国分争，并入于秦。及秦灭之后，楚、汉分争，又并入于汉……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二回 张翼德怒鞭督邮 何国舅谋诛宦竖<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>且说董卓字仲颖，陇西临洮人也，官拜河东太守，自来骄傲。当日怠慢了玄德，张飞性发，便欲杀之……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>却说张飞<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>却说张飞饮了数杯闷酒，乘马从馆驿前过，见五六十个老人，皆在门前痛哭。飞问其故，众老人答曰：“督邮逼勒县吏，欲害刘公；我等皆来苦告，不得放入，反遭把门人赶打！”……<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>语义</p>
+<ul>
+<li>&lt; h1 &gt; &lt; /h1 &gt; 类型是语义元素，含有 “一级标题” 的含义</li>
+<li>&lt; span style=”font-size: 32px; margin: 21px 0;” &gt;这是顶级标题吗？&lt; /span &gt; 类型是非语义元素，虽然显示相同</li>
+</ul>
+</li>
+<li><p>列表</p>
+<ul>
+<li><p>无序 (Unordered Lists)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆浆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>油条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>豆汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>焦圈<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有序 (Ordered Lists)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>沿着条路走到头<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>右转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>直行穿过第一个十字路口<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>在第三个十字路口处左转<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>继续走 300 米，学校就在你的右手边<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>嵌套</p>
+</li>
+</ul>
+</li>
+<li><p>重点强调</p>
+<ul>
+<li>&lt; em &gt;&lt; /em &gt; 标记斜体</li>
+<li>&lt; strong &gt; &lt; /strong> 标记粗体</li>
+<li>上述均为意义明确的语义元素，&lt; b &gt;&lt; i &gt;&lt; u &gt; 为表象元素</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-4-建立超链接"><a href="#Section-4-建立超链接" class="headerlink" title="Section 4 建立超链接"></a>Section 4 建立超链接</h3><ol>
+<li>链接的解析<ul>
+<li>属性 href：指向希望链接的网址</li>
+<li>内容 string：绑定的文本</li>
+<li>当内容缺省时，不显示链接</li>
+</ul>
+</li>
+<li>title 属性 添加支持信息<ul>
+<li>效果：当鼠标悬停时，将作为提示信息出现</li>
+</ul>
+</li>
+<li>块级链接<ul>
+<li>将整块元素作为 &lt; a &gt; 的 string 属性，可将整块元素都作为标签</li>
+<li>常用的比如图像</li>
+</ul>
+</li>
+<li><p>下载链接 download 属性</p>
+<ul>
+<li>缺省时默认为预览状态</li>
+<li>否则强制下载链接，并命名为属性的值</li>
+</ul>
+</li>
+<li><p>电子邮件链接</p>
+<ul>
+<li>&lt; a &gt; 和 mailto 方案</li>
+<li>使用形式为 mailto: link 格式 ， link 是缺省的</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-5-高阶文字排版"><a href="#Section-5-高阶文字排版" class="headerlink" title="Section 5 高阶文字排版"></a>Section 5 高阶文字排版</h3><ol>
+<li><p>描述列表：标记一组项目及其相关描述</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>内心独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色对自己的内心活动或感受进行念白表演，这些台词只面向观众，而其他角色不会听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>语言独白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，某个角色把自己的想法直接进行念白表演，观众和其他角色都可以听到。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>旁白<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>戏剧中，为渲染幽默或戏剧性效果而进行的场景之外的补充注释念白，只面向观众，内容一般都是角色的感受、想法、以及一些背景信息等。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用</p>
+</li>
+<li><p>缩略语</p>
+<ul>
+<li>&lt; abbr title = ‘ ‘ &gt;string&lt; /abbr &gt;，当鼠标放在 string 上时，会弹出 title属性值表示对其解释</li>
+<li>引用词下方有虚下划线</li>
+</ul>
+</li>
+<li><p>标记联系方式</p>
+</li>
+<li>上下标：&lt; sup &gt; &lt; sub &gt;</li>
+<li>标记时间日期<ul>
+<li>&lt; time datetime = ‘  ‘ &gt;string&lt; /time &gt;</li>
+<li>datatime 表示 日期的格式化</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-6-文档与网站架构"><a href="#Section-6-文档与网站架构" class="headerlink" title="Section 6 文档与网站架构"></a>Section 6 文档与网站架构</h3><ol>
+<li>文档的基本组成部分<ul>
+<li>页眉 &lt; header &gt;</li>
+<li>导航栏 &lt; nav &gt;</li>
+<li>主内容 &lt; main &gt;</li>
+<li>侧边栏 &lt; aside &gt;</li>
+<li>页脚 &lt; footer &gt;</li>
+</ul>
+</li>
+<li>HTML 布局元素细节<ul>
+<li>&lt; main &gt; 只能用一次，且位于 &lt; body &gt; 中</li>
+<li>&lt; article &gt; 仅包围一篇文章</li>
+<li>&lt; section &gt; 组织结构使其按功能划分</li>
+<li>&lt; aside &gt; 包含简介信息</li>
+<li>&lt; nav &gt; 包含页面主导航，不能包含二级链接等内容</li>
+</ul>
+</li>
+<li>无语义元素<ul>
+<li>&lt; span &gt; 是内联无语义元素</li>
+<li>&lt; div &gt; 是块级无语义元素</li>
+</ul>
+</li>
+<li>换行符和水平分割线<ul>
+<li>&lt; br &gt;</li>
+<li>&lt; hr &gt;</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-7-HTML-调试"><a href="#Section-7-HTML-调试" class="headerlink" title="Section 7 HTML 调试"></a>Section 7 HTML 调试</h3><ol>
+<li>浏览器解析 HTML 代码条件宽松，允许可控的逻辑和语法错误</li>
+<li>HTML 验证 <a href="https://validator.w3.org/">Markup Validation Service</a></li>
+</ol>
+<hr>
+<h2 id="Chapter-2-多媒体与嵌入"><a href="#Chapter-2-多媒体与嵌入" class="headerlink" title="Chapter 2 多媒体与嵌入"></a>Chapter 2 多媒体与嵌入</h2><h3 id="Section-1-HTML-中的图片"><a href="#Section-1-HTML-中的图片" class="headerlink" title="Section 1 HTML 中的图片"></a>Section 1 HTML 中的图片</h3><ol>
+<li><p>&lt; img &gt; 元素（替换元素）</p>
+<ul>
+<li>src 属性指向引入图片的路径</li>
+<li>alt 属性表示对图片的文字描述<ul>
+<li>存在于图片无法显示或不能被看到的情况</li>
+</ul>
+</li>
+<li>width 和 height 属性<ul>
+<li>建议使用 CSS 改变图片的尺寸</li>
+</ul>
+</li>
+<li>title 属性提供进一步的支持信息<ul>
+<li>悬停显示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>搭配说明文字来解说图片</p>
+<ul>
+<li><p>无语义类型</p>
+<ul>
+<li>&lt; div &gt; &lt; img &gt; &lt; p &gt; &lt; /div &gt; 类型</li>
+</ul>
+</li>
+<li><p>语义类型</p>
+<ul>
+<li><p>&lt; figure &gt; 和 &lt; figcaption &gt; 元素</p>
+</li>
+<li><p>~~~html<br><figure><br>  &lt;img src=”<a href="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg">https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg</a>“</p>
+<pre><code> alt=&quot;一只恐龙头部和躯干的骨架，它有一个巨大的头，长着锋利的牙齿。&quot;
+ width=&quot;400&quot;
+ height=&quot;341&quot;&gt;
+</code></pre><p>  <figcaption>曼彻斯特大学博物馆展出的一只霸王龙的化石</figcaption><br>&lt;/figure&gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">3. CSS 背景图片</span><br><span class="line"></span><br><span class="line">   ~~~css</span><br><span class="line">   p &#123;</span><br><span class="line">     background-image: url(&quot;images/dinosaur.jpg&quot;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-2-视频和音频内容"><a href="#Section-2-视频和音频内容" class="headerlink" title="Section 2 视频和音频内容"></a>Section 2 视频和音频内容</h3><ol>
+<li><p>嵌入视频 &lt; video &gt;</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;rabbit320.webm&quot;</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>你的浏览器不支持 HTML5 视频。可点击<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;rabbit320.mp4&quot;</span>&gt;</span>此链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span>观看<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>src 属性<ul>
+<li>指向想要嵌入页面的视频资源</li>
+</ul>
+</li>
+<li>controls 属性<ul>
+<li>包含浏览器提供的控件功能</li>
+<li>也可以自行创造页面</li>
+</ul>
+</li>
+<li>&lt; video &gt; 标签内的内容<ul>
+<li>当浏览器不支持 video 的时候，将会回退这部分内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>多个播放源提供兼容性</p>
+<ul>
+<li>容器格式</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-3-从-lt-object-gt-到-lt-iframe-gt-其他嵌入技术"><a href="#Section-3-从-lt-object-gt-到-lt-iframe-gt-其他嵌入技术" class="headerlink" title="Section 3 从 &lt; object &gt; 到 &lt; iframe &gt; - 其他嵌入技术"></a>Section 3 从 &lt; object &gt; 到 &lt; iframe &gt; - 其他嵌入技术</h3><h3 id="Section-4-页面中添加矢量图形"><a href="#Section-4-页面中添加矢量图形" class="headerlink" title="Section 4 页面中添加矢量图形"></a>Section 4 页面中添加矢量图形</h3><ol>
+<li><p>图形类型</p>
+<ul>
+<li>位图：使用像素网格来定义，包含每个像素的位置和色彩信息<ul>
+<li>bmp，png，jpg，gif</li>
+</ul>
+</li>
+<li>矢量图：包含了图形和路径的定义，电脑根据定义在屏幕上进行渲染<ul>
+<li>SVG</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>SVG 矢量图</p>
+<ul>
+<li>用于描述矢量图像的 XML 语言</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">baseProfile</span>=<span class="string">&quot;full&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;150&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;100&quot;</span> <span class="attr">r</span>=<span class="string">&quot;90&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;blue&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>将 SVG 嵌入页面</p>
+<ul>
+<li>&lt; img &gt; 在 src 属性中引用</li>
+</ul>
+</li>
+</ol>
+<h3 id="Section-5-响应式图片"><a href="#Section-5-响应式图片" class="headerlink" title="Section 5 响应式图片"></a>Section 5 响应式图片</h3><ol>
+<li>自适应的图片</li>
+</ol>
+<hr>
+<h2 id="Chapter-3-HTML-表格"><a href="#Chapter-3-HTML-表格" class="headerlink" title="Chapter 3 HTML 表格"></a>Chapter 3 HTML 表格</h2><hr>
+<h2 id="Chapter-4-HTML-表单"><a href="#Chapter-4-HTML-表单" class="headerlink" title="Chapter 4 HTML 表单"></a>Chapter 4 HTML 表单</h2>]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>编程语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Knapsack+</title>
+    <url>/2021/04/02/Knapsack+/</url>
+    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
+<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
+F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
+<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
+<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
+<p>这样可以将$N$种情况减少到$log N$种情况</p>
+<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
+<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
+<p>可使用伪代码表示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
+<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
+<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
+<p>因此分别调用相关的算法去解决就行</p>
+<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
+<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Arithmetic</tag>
       </tags>
   </entry>
   <entry>
@@ -966,47 +1041,6 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
       </tags>
   </entry>
   <entry>
-    <title>复变函数</title>
-    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
-<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
-<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
-</li>
-<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
-</li>
-<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
-</li>
-<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
-</li>
-<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
-</li>
-<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
-</li>
-<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
-</li>
-<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
-</li>
-<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
-<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
-</li>
-<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
-<script type="math/tex; mode=display">
-x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
-</ol>
-<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
-<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
-<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
-<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pandas</title>
     <url>/2021/08/02/Pandas/</url>
     <content><![CDATA[<h1 id="理解Pandas"><a href="#理解Pandas" class="headerlink" title="理解Pandas"></a>理解Pandas</h1><p><img src="https://www.runoob.com/wp-content/uploads/2021/04/pandas.png" alt="img"></p>
@@ -1090,6 +1124,59 @@ x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Rank_Queue</title>
+    <url>/2021/11/17/Rank-Queue/</url>
+    <content><![CDATA[<h1 id="排队系统模拟"><a href="#排队系统模拟" class="headerlink" title="排队系统模拟"></a>排队系统模拟</h1><p>排队系统主要有两类事件：顾客到达和服务完毕后顾客离开</p>
+<p>因此这种系统又被称作<strong>离散事件模拟系统</strong></p>
+<h2 id="驱动模式"><a href="#驱动模式" class="headerlink" title="驱动模式"></a>驱动模式</h2><p>离散的时间驱动模拟：沿时间轴，模拟每一个单位时间内发生了什么事件并进行处理</p>
+<p>*事件驱动模拟：按照事件发生的事件排队，当一个事件处理结束后，直接跳跃到下一事件的发生事件，处理该事件</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="单服务台的排队系统"><a href="#单服务台的排队系统" class="headerlink" title="单服务台的排队系统"></a>单服务台的排队系统</h3><ul>
+<li>由单个队列完成</li>
+<li>模拟规则：<ul>
+<li>生成所有顾客的到达时间，按照到达时间排成队列</li>
+<li>当服务员处于空闲状态时，队头顾客出队；统计该顾客等待时间；</li>
+<li>所有顾客都服务完毕后，求和总等待时间，除以人数得到平均等待时间</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 只需要采用普通队列</span></span><br><span class="line">totalWaitTime = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">设置顾客开始到达的时间 currentTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>;i&lt;customNum;++i)&#123;</span><br><span class="line">    生成下一顾客到达的间隔时间;</span><br><span class="line">    下一顾客的到达时间 currentTime += 下一顾客到达的间隔时间;</span><br><span class="line">    将下一顾客的到达时间入队;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">从时刻 <span class="number">0</span> 开始模拟;</span><br><span class="line"><span class="keyword">while</span>(顾客队列非空)&#123;</span><br><span class="line">    取队头顾客;</span><br><span class="line">    <span class="keyword">if</span>(到达时间 &gt; 当前时间) 直接将时钟拨到事件发生的时间;</span><br><span class="line">    <span class="keyword">else</span> 收集该顾客的等待时间;</span><br><span class="line">    生成服务时间;</span><br><span class="line">    将时钟拨到服务完成的时刻;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回等待时间 / 顾客数;</span><br></pre></td></tr></table></figure>
+<h3 id="多服务台的排队系统"><a href="#多服务台的排队系统" class="headerlink" title="多服务台的排队系统"></a>多服务台的排队系统</h3><ul>
+<li>相对于单服务台的排队系统，多服务台具有如下特点：<ul>
+<li>先到达的顾客先接受服务，和单服务台相同；</li>
+<li>而不一定先离开，后到达的若服务时间短，可以先离开;</li>
+<li>顾客接受服务的任务不一定紧跟在前一个顾客离开</li>
+</ul>
+</li>
+<li>事件分为到达事件和离开事件：<ul>
+<li>到达事件：<ul>
+<li>若有剩余服务台，顾客接受服务，剩余服务台 -1；生成服务时间，当前时间加上服务时间为离开时间，将离开事件加入任务队列；</li>
+<li>若无剩余服务台，将该到达事件加入等待队列；</li>
+</ul>
+</li>
+<li>离开事件：<ul>
+<li>若等待队列非空，则将等待队列队头事件出队（统计等待时间 currentTime - currentEvent.time）；生成服务事件，当前时间加上服务事件为离开时间，将离开事件加入任务队列；</li>
+<li>若等待队列为空，则剩余服务台 +1；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码"></a>伪代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 事件队列为优先级队列</span></span><br><span class="line"><span class="comment">// 等待队列为普通队列</span></span><br><span class="line">产生 customNum 个顾客的到达事件，依次存入事件队列;</span><br><span class="line">初始化;</span><br><span class="line"><span class="keyword">while</span>(事件队列非空)&#123;</span><br><span class="line">    队头元素出队;</span><br><span class="line">    设置当前时间为事件发生的事件;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(事件类型)&#123;</span><br><span class="line">        <span class="keyword">case</span> 到达:<span class="keyword">if</span>(柜台有空)&#123;</span><br><span class="line">            柜台数--;</span><br><span class="line">            生成所需的服务时间;</span><br><span class="line">            生成新的离开事件加入事件队列;</span><br><span class="line">        	&#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                将该事件存入等待队列;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> 离开:<span class="keyword">if</span>(等待队列非空)&#123;</span><br><span class="line">            队头元素出队;</span><br><span class="line">            统计该顾客的等待时间;<span class="comment">// currentTime - currentEvent.time</span></span><br><span class="line">            生成所需的服务时间;</span><br><span class="line">            生成新的离开事件加入事件队列;</span><br><span class="line">        	&#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                空闲柜台数 ++;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">计算平均等待时间;</span><br><span class="line">返回;</span><br></pre></td></tr></table></figure>
+<h3 id="其他排队系统"><a href="#其他排队系统" class="headerlink" title="其他排队系统"></a>其他排队系统</h3><h4 id="考虑离开队伍的情况"><a href="#考虑离开队伍的情况" class="headerlink" title="考虑离开队伍的情况"></a>考虑离开队伍的情况</h4><ul>
+<li>假设存在一种情况，若顾客发现等待人数过多，则有一定可能性离开</li>
+<li>步骤与上述多服务台相同，但是 到达事件，需要讨论 length(waitQueue) &gt; num 的情况，此时该顾客有一定可能性离开</li>
+</ul>
+<h4 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h4><p>为什么这种情况采用的是多服务台模型，即便使用的是单服务台？</p>
+<p>但服务台不需要考虑离开事件，因为下一顾客接受服务事件一定在离开事件之后；而多服务台模型由于需要错开到达和离开事件，使用了等待队列：对于无法立即处理的到达事件 加入等待队列（作为缓冲区），这样就可以做到即使还在服务饱和阶段，还能处理新到达的顾客。因此考虑离开队伍的情况，使用多服务台模型更好.</p>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>CS</tag>
       </tags>
   </entry>
   <entry>
@@ -1384,6 +1471,113 @@ x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)
       </tags>
   </entry>
   <entry>
+    <title>复变函数</title>
+    <url>/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="Chapter-1-复数和复平面"><a href="#Chapter-1-复数和复平面" class="headerlink" title="Chapter 1 复数和复平面"></a>Chapter 1 复数和复平面</h2><span id="more"></span>
+<h3 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h3><ol>
+<li><p>复数域：实（虚）部 | 复数的代数结构 -&gt; 复数域 $\mathbb{C}$</p>
+</li>
+<li><p>$\mathbb{R}^2$ 复平面引入拓扑结构 -&gt; 欧式距离 | 构建双射 $\mathbb{C} \rightarrow \mathbb{R}^2$， 此时称为平面 $\mathbb{C}$</p>
+</li>
+<li><p>等价类：一向量经过平行移动关系得到的所有向量与原向量构成等价类</p>
+</li>
+<li><p>辅角 $Arg\ z = \theta + 2k\pi \ (k \in \mathbb{Z})$，辅角主值 $arg\ z = \theta \ (-\pi &lt; \theta &lt; \pi)$  </p>
+</li>
+<li><p>三角表达式： $z = |z|\ (\cos {Arg \ z}+i\sin{Arg\ z})$ | 共轭</p>
+</li>
+<li><p>三角不等式： $|z_1 + z_2| \leq |z_1|+|z_2| \qquad |z_1 - z_2| \geq ||z_1|-|z_2||$</p>
+</li>
+<li><p>重要不等式：$|Re\ z| \leq |z| \qquad |Im\ z| \leq |z|$ </p>
+</li>
+<li><p>重要等式：$|z| = \sqrt{z\overline{z}} \qquad x = \frac{z+\overline{z}}{2} \qquad y = \frac{z-\overline{z}}{i2}$</p>
+</li>
+<li><p>棣莫弗公式：$(\cos{\theta}+i\sin{\theta})^m = \cos{m\theta} + i\sin{m\theta}$</p>
+<p>推导：$z^{\frac{1}{n}} = +\sqrt[n]{|z|}[\cos{\frac{1}{n}Arg\ z} + i\sin{\frac{1}{n}Arg \ z}]$</p>
+</li>
+<li><p>复球面和无穷大：$z \rightarrow (x’,y’,u’)$</p>
+<script type="math/tex; mode=display">
+x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)} \qquad u' = \frac{|z|^2-1}{|z|^2+1}</script></li>
+</ol>
+<h3 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h3><ol>
+<li>复平面的拓扑结构：距离 -&gt; 邻域 -&gt; 聚点、边界点 -&gt; 开集、闭集 -&gt; 紧集 </li>
+<li>区域 &lt;- 连通性 若尔当曲线 &lt;- 简单闭合曲线</li>
+<li>若尔当定理：若尔当闭合曲线可以将平面分成两个没有公共点的区域</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拓扑学</title>
+    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>一笔画问题和七桥问题</li>
+<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
+</ul>
+<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
+<li>集合论</li>
+<li>映射</li>
+<li>笛卡尔积</li>
+<li>等价关系</li>
+</ul>
+<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
+<li><p>函数连续性的三种描述方法</p>
+</li>
+<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
+<blockquote>
+<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
+</blockquote>
+</li>
+<li><p>离散拓扑和平凡拓扑</p>
+</li>
+<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
+</li>
+</ol>
+<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
+<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
+<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
+<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
+<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
+</ul>
+</li>
+<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
+<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
+<li>该子集族称为由度量 d 决定的度量拓扑</li>
+</ul>
+</li>
+</ol>
+<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
+<li>闭集 -&gt; 开集的余集<ul>
+<li>全集和空集</li>
+<li>任意交</li>
+<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
+</ul>
+</li>
+<li><p>邻域，内点，内部 </p>
+<ul>
+<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
+<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
+<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
+</ul>
+</li>
+<li><p>聚点，闭包</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>概率论和数理统计</title>
     <url>/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
     <content><![CDATA[<p>​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、<a href="https://baike.baidu.com/item/随机变量/828980">随机变量</a>及其<a href="https://baike.baidu.com/item/概率分布/828907">概率分布</a>、<a href="https://baike.baidu.com/item/数字特征/3402134">数字特征</a>、<a href="https://baike.baidu.com/item/大数定律/410082">大数定律</a>与<a href="https://baike.baidu.com/item/中心极限定理/829451">中心极限定理</a>、统计量及其概率分布、<a href="https://baike.baidu.com/item/参数估计/2224132">参数估计</a>和假设检验、回归分析、<a href="https://baike.baidu.com/item/方差分析/1502206">方差分析</a>、<a href="https://baike.baidu.com/item/马尔科夫链/4688932">马尔科夫链</a>等内容。</p>
@@ -1513,72 +1707,6 @@ P(B_i|A) = \frac{P(AB_i)}{P(A)} =\frac{P(B_i)P(A|B_i)}{\sum^n_{j=1}P(B_j)P(A|B_j
 <li>指数分布 $X \sim E(\lambda)$</li>
 <li>正态分布 $X \sim N(\mu,\sigma)$</li>
 </ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>MA</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拓扑学</title>
-    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
-<li>一笔画问题和七桥问题</li>
-<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
-</ul>
-<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
-<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
-<li>集合论</li>
-<li>映射</li>
-<li>笛卡尔积</li>
-<li>等价关系</li>
-</ul>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
-<li><p>函数连续性的三种描述方法</p>
-</li>
-<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
-<blockquote>
-<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
-</blockquote>
-</li>
-<li><p>离散拓扑和平凡拓扑</p>
-</li>
-<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
-</li>
-</ol>
-<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
-<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
-<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
-<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
-<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
-</ul>
-</li>
-<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
-<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
-<li>该子集族称为由度量 d 决定的度量拓扑</li>
-</ul>
-</li>
-</ol>
-<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
-<li>闭集 -&gt; 开集的余集<ul>
-<li>全集和空集</li>
-<li>任意交</li>
-<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
-</ul>
-</li>
-<li><p>邻域，内点，内部 </p>
-<ul>
-<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
-<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
-<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
-</ul>
-</li>
-<li><p>聚点，闭包</p>
 </li>
 </ol>
 ]]></content>

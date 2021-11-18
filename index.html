@@ -196,6 +196,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/11/17/Rank-Queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qiushi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn-Storage">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/17/Rank-Queue/" class="post-title-link" itemprop="url">Rank_Queue</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-17 20:57:48" itemprop="dateCreated datePublished" datetime="2021-11-17T20:57:48+08:00">2021-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-18 21:42:52" itemprop="dateModified" datetime="2021-11-18T21:42:52+08:00">2021-11-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="排队系统模拟"><a href="#排队系统模拟" class="headerlink" title="排队系统模拟"></a>排队系统模拟</h1><p>排队系统主要有两类事件：顾客到达和服务完毕后顾客离开</p>
+<p>因此这种系统又被称作<strong>离散事件模拟系统</strong></p>
+<h2 id="驱动模式"><a href="#驱动模式" class="headerlink" title="驱动模式"></a>驱动模式</h2><p>离散的时间驱动模拟：沿时间轴，模拟每一个单位时间内发生了什么事件并进行处理</p>
+<p>*事件驱动模拟：按照事件发生的事件排队，当一个事件处理结束后，直接跳跃到下一事件的发生事件，处理该事件</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="单服务台的排队系统"><a href="#单服务台的排队系统" class="headerlink" title="单服务台的排队系统"></a>单服务台的排队系统</h3><ul>
+<li>由单个队列完成</li>
+<li>模拟规则：<ul>
+<li>生成所有顾客的到达时间，按照到达时间排成队列</li>
+<li>当服务员处于空闲状态时，队头顾客出队；统计该顾客等待时间；</li>
+<li>所有顾客都服务完毕后，求和总等待时间，除以人数得到平均等待时间</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只需要采用普通队列</span></span><br><span class="line">totalWaitTime = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">设置顾客开始到达的时间 currentTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>;i&lt;customNum;++i)&#123;</span><br><span class="line">    生成下一顾客到达的间隔时间;</span><br><span class="line">    下一顾客的到达时间 currentTime += 下一顾客到达的间隔时间;</span><br><span class="line">    将下一顾客的到达时间入队;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">从时刻 <span class="number">0</span> 开始模拟;</span><br><span class="line"><span class="keyword">while</span>(顾客队列非空)&#123;</span><br><span class="line">    取队头顾客;</span><br><span class="line">    <span class="keyword">if</span>(到达时间 &gt; 当前时间) 直接将时钟拨到事件发生的时间;</span><br><span class="line">    <span class="keyword">else</span> 收集该顾客的等待时间;</span><br><span class="line">    生成服务时间;</span><br><span class="line">    将时钟拨到服务完成的时刻;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回等待时间 / 顾客数;</span><br></pre></td></tr></table></figure>
+<h3 id="多服务台的排队系统"><a href="#多服务台的排队系统" class="headerlink" title="多服务台的排队系统"></a>多服务台的排队系统</h3><ul>
+<li>相对于单服务台的排队系统，多服务台具有如下特点：<ul>
+<li>先到达的顾客先接受服务，和单服务台相同；</li>
+<li>而不一定先离开，后到达的若服务时间短，可以先离开;</li>
+<li>顾客接受服务的任务不一定紧跟在前一个顾客离开</li>
+</ul>
+</li>
+<li>事件分为到达事件和离开事件：<ul>
+<li>到达事件：<ul>
+<li>若有剩余服务台，顾客接受服务，剩余服务台 -1；生成服务时间，当前时间加上服务时间为离开时间，将离开事件加入任务队列；</li>
+<li>若无剩余服务台，将该到达事件加入等待队列；</li>
+</ul>
+</li>
+<li>离开事件：<ul>
+<li>若等待队列非空，则将等待队列队头事件出队（统计等待时间 currentTime - currentEvent.time）；生成服务事件，当前时间加上服务事件为离开时间，将离开事件加入任务队列；</li>
+<li>若等待队列为空，则剩余服务台 +1；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码"></a>伪代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 事件队列为优先级队列</span></span><br><span class="line"><span class="comment">// 等待队列为普通队列</span></span><br><span class="line">产生 customNum 个顾客的到达事件，依次存入事件队列;</span><br><span class="line">初始化;</span><br><span class="line"><span class="keyword">while</span>(事件队列非空)&#123;</span><br><span class="line">    队头元素出队;</span><br><span class="line">    设置当前时间为事件发生的事件;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(事件类型)&#123;</span><br><span class="line">        <span class="keyword">case</span> 到达:<span class="keyword">if</span>(柜台有空)&#123;</span><br><span class="line">            柜台数--;</span><br><span class="line">            生成所需的服务时间;</span><br><span class="line">            生成新的离开事件加入事件队列;</span><br><span class="line">        	&#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                将该事件存入等待队列;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> 离开:<span class="keyword">if</span>(等待队列非空)&#123;</span><br><span class="line">            队头元素出队;</span><br><span class="line">            统计该顾客的等待时间;<span class="comment">// currentTime - currentEvent.time</span></span><br><span class="line">            生成所需的服务时间;</span><br><span class="line">            生成新的离开事件加入事件队列;</span><br><span class="line">        	&#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                空闲柜台数 ++;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">计算平均等待时间;</span><br><span class="line">返回;</span><br></pre></td></tr></table></figure>
+<h3 id="其他排队系统"><a href="#其他排队系统" class="headerlink" title="其他排队系统"></a>其他排队系统</h3><h4 id="考虑离开队伍的情况"><a href="#考虑离开队伍的情况" class="headerlink" title="考虑离开队伍的情况"></a>考虑离开队伍的情况</h4><ul>
+<li>假设存在一种情况，若顾客发现等待人数过多，则有一定可能性离开</li>
+<li>步骤与上述多服务台相同，但是 到达事件，需要讨论 length(waitQueue) &gt; num 的情况，此时该顾客有一定可能性离开</li>
+</ul>
+<h4 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h4><p>为什么这种情况采用的是多服务台模型，即便使用的是单服务台？</p>
+<p>但服务台不需要考虑离开事件，因为下一顾客接受服务事件一定在离开事件之后；而多服务台模型由于需要错开到达和离开事件，使用了等待队列：对于无法立即处理的到达事件 加入等待队列（作为缓冲区），这样就可以做到即使还在服务饱和阶段，还能处理新到达的顾客。因此考虑离开队伍的情况，使用多服务台模型更好.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/11/05/CSS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -294,7 +409,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-16 20:54:55" itemprop="dateModified" datetime="2021-11-16T20:54:55+08:00">2021-11-16</time>
+                <time title="修改时间：2021-11-18 14:05:28" itemprop="dateModified" datetime="2021-11-18T14:05:28+08:00">2021-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -367,17 +482,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-31 11:07:19 / 修改时间：13:15:14" itemprop="dateCreated datePublished" datetime="2021-10-31T11:07:19+08:00">2021-10-31</time>
+              <time title="创建时间：2021-10-31 11:07:19" itemprop="dateCreated datePublished" datetime="2021-10-31T11:07:19+08:00">2021-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-16 21:00:27" itemprop="dateModified" datetime="2021-11-16T21:00:27+08:00">2021-11-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MA/" itemprop="url" rel="index"><span itemprop="name">MA</span></a>
+                  <a href="/categories/Mathmetic/" itemprop="url" rel="index"><span itemprop="name">Mathmetic</span></a>
                 </span>
             </span>
 
@@ -450,7 +571,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 15:14:21" itemprop="dateModified" datetime="2021-11-04T15:14:21+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-17 12:28:58" itemprop="dateModified" datetime="2021-11-17T12:28:58+08:00">2021-11-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1204,141 +1325,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://chengstones.github.io/2021/04/08/Brain_Computer_Interface/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Qiushi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Autumn-Storage">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/08/Brain_Computer_Interface/" class="post-title-link" itemprop="url">Brain_Computer_Interface</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-08T00:00:00+08:00">2021-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-30 19:24:16" itemprop="dateModified" datetime="2021-10-30T19:24:16+08:00">2021-10-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考书籍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/27004902/">脑机接口导论</a></p>
-<h2 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a>信号处理</h2><p>任务：从侵入式电极所记录的原始信号中提取锋电位，提取用于分类的特征</p>
-<h4 id="锋电位分类（侵入式方法）"><a href="#锋电位分类（侵入式方法）" class="headerlink" title="锋电位分类（侵入式方法）"></a>锋电位分类（侵入式方法）</h4><p>微电极阵列）</p>
-<p>分离和提取每个记录电极采集的由单个神经元发出的锋电位</p>
-<p>将单个神经元产生的锋点位从混合信号中提取出来</p>
-<h6 id="峰值幅度"><a href="#峰值幅度" class="headerlink" title="峰值幅度"></a>峰值幅度</h6><h6 id="波形"><a href="#波形" class="headerlink" title="波形"></a>波形</h6><ol>
-<li>小波</li>
-<li>主成分分析</li>
-</ol>
-<h4 id="频域分析（非侵入式方法）"><a href="#频域分析（非侵入式方法）" class="headerlink" title="频域分析（非侵入式方法）"></a>频域分析（非侵入式方法）</h4><p>比如EEG 反映数千个神经元活动的信号，记录的信号能捕捉到大量神经元相互关联的活动，比如振荡活动|这些振荡活动的存在使得对信号进行频域分析特别有用</p>
-<h6 id="傅里叶分析"><a href="#傅里叶分析" class="headerlink" title="傅里叶分析"></a>傅里叶分析</h6><p>将时变信号分解为一系列不同频率的正余弦波的加权和</p>
-<blockquote>
-<p>“陷波”滤波器能有效地去除特定频率的信号</p>
-</blockquote>
-<h6 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a>离散傅里叶变换</h6><p>BCI应用中，对信号的收集是在离散时间间隔对大脑信号进行采样的</p>
-<p>对于离散采样型号，输入时间序列使之只在特定时间点有采样值，并转换为相应的傅里叶系数</p>
-<h6 id="快速傅里叶变换（FFT）"><a href="#快速傅里叶变换（FFT）" class="headerlink" title="快速傅里叶变换（FFT）"></a>快速傅里叶变换（FFT）</h6><p>采用分治法，缩短运算时间</p>
-<h6 id="频谱特征"><a href="#频谱特征" class="headerlink" title="频谱特征"></a>频谱特征</h6><p>从功率谱中提取特征：利用FFT计算功率谱，将特定频带的能量作为进一步分析的频谱特征</p>
-<blockquote>
-<p>实际运动和运动想象均能引起mu频带能量的减小，因此可以将mu频带的能量作为BCI的特征，以实现让受试者通过运动想象来移动光标</p>
-<p>通过运动筛选找到受试者特有的频带</p>
-<p>用机器学习算法从一堆频谱特征中自动选取适合的特征，以增加测试数据的分类正确率</p>
-</blockquote>
-<h5 id="小波分析"><a href="#小波分析" class="headerlink" title="小波分析"></a>小波分析</h5><p>傅里叶变换的“基函数”集是不同频率的正余弦波，时域范围为无限长，因此傅里叶变换用于表示有限的非周期函数或是有尖峰和不连续点的函数的效果比较差</p>
-<p>同时傅里叶分析要求大脑信号是平稳信号（统计特性不随时间改变），其实不然，于是现实实验中采取的方法是短时窗内的傅里叶分析（短时傅里叶变换）但是其窗口宽度的选择是一个较大的问题：频率分辨率和时间分辨率的矛盾</p>
-<p>小波分析：基函数选择有限长的称为小波的函数</p>
-<blockquote>
-<p>小波：又一个有限长的母小波通过伸缩和平移得到的</p>
-</blockquote>
-<h4 id="时域分析"><a href="#时域分析" class="headerlink" title="时域分析"></a>时域分析</h4><h5 id="Hjorth参数"><a href="#Hjorth参数" class="headerlink" title="Hjorth参数"></a>Hjorth参数</h5><p>三个参数：平均功率，均方根频率和均方根频率展开</p>
-<blockquote>
-<p>活动性，移动性和复杂性</p>
-</blockquote>
-<h5 id="分形维数"><a href="#分形维数" class="headerlink" title="分形维数"></a>分形维数</h5><p>如果一个信号表现出自相似性，则认为他是分形的</p>
-<h5 id="自回归模型（AR）"><a href="#自回归模型（AR）" class="headerlink" title="自回归模型（AR）"></a>自回归模型（AR）</h5><p>假设：自然信号在时间上有相关联的趋势，能够利用之前的一些测量值来预测下一个测量值</p>
-<h5 id="贝叶斯滤波"><a href="#贝叶斯滤波" class="headerlink" title="贝叶斯滤波"></a>贝叶斯滤波</h5><p>前面的时域方法不能明确地保持对在时域计算的信号特性的不确定性估计</p>
-<blockquote>
-<p>贝叶斯滤波技术提供了一种对信号特性及其不确定性进行估计的统计上合理的方案</p>
-</blockquote>
-<h5 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h5><p>贝叶斯滤波中最知名的算法，假设动态概率和测量概率均为线性高斯模型</p>
-<h5 id="粒子滤波"><a href="#粒子滤波" class="headerlink" title="粒子滤波"></a>粒子滤波</h5><p>非线性非高斯过程</p>
-<h4 id="空间滤波"><a href="#空间滤波" class="headerlink" title="空间滤波"></a>空间滤波</h4><p>将不同位置（通道）记录的大脑信号通过几种方式进行信号转换</p>
-<ul>
-<li>增强局部活动</li>
-<li>减弱各通道的共有噪声</li>
-<li>降低数据维度</li>
-<li>识别隐含的源</li>
-<li>最大程度区分不同类型的投影</li>
-</ul>
-<h4 id="伪迹去除技术"><a href="#伪迹去除技术" class="headerlink" title="伪迹去除技术"></a>伪迹去除技术</h4><h5 id="阈值法"><a href="#阈值法" class="headerlink" title="阈值法"></a>阈值法</h5><p>幅度或者其他特征值超过了预先设定的阈值，就直接舍去</p>
-<h5 id="带阻和陷波滤波"><a href="#带阻和陷波滤波" class="headerlink" title="带阻和陷波滤波"></a>带阻和陷波滤波</h5><p>带阻滤波：使特定频带的分量衰减，而使其余分量通过</p>
-<p>陷波滤波：如上</p>
-<h5 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h5><p>假设伪迹对记录的大脑信号产生的影响是可叠加的</p>
-<h5 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h5><p>寻找记录的大脑数据方差最大的方向，将新数据投影到特征向量上</p>
-<blockquote>
-<p>PCA已被证明去除EEG信号中的EOG伪迹是有用的，但是假如伪迹与信号不相干，采用PCA信号并不合适</p>
-</blockquote>
-<h5 id="独立分量分析"><a href="#独立分量分析" class="headerlink" title="独立分量分析"></a>独立分量分析</h5><h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><p>将神经活动映射为一定的控制命令</p>
-<p>监督学习和无监督学习</p>
-<ul>
-<li>监督学习：</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1410,14 +1396,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

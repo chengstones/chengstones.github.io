@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2021-11-05T14:08:46.852Z</updated>
+  <updated>2021-11-18T13:42:52.234Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rank_Queue</title>
+    <link href="https://chengstones.github.io/2021/11/17/Rank-Queue/"/>
+    <id>https://chengstones.github.io/2021/11/17/Rank-Queue/</id>
+    <published>2021-11-17T12:57:48.000Z</published>
+    <updated>2021-11-18T13:42:52.234Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;排队系统模拟&quot;&gt;&lt;a href=&quot;#排队系统模拟&quot; class=&quot;headerlink&quot; title=&quot;排队系统模拟&quot;&gt;&lt;/a&gt;排队系统模拟&lt;/h1&gt;&lt;p&gt;排队系统主要有两类事件：顾客到达和服务完毕后顾客离开&lt;/p&gt;
+&lt;p&gt;因此这种系统又被称作&lt;strong&gt;离散</summary>
+      
+    
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
+    
+    
+    <category term="CS" scheme="https://chengstones.github.io/tags/CS/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS</title>
@@ -38,7 +61,7 @@
     <link href="https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/"/>
     <id>https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/</id>
     <published>2021-11-02T01:03:39.000Z</published>
-    <updated>2021-11-16T12:54:55.093Z</updated>
+    <updated>2021-11-18T06:05:28.616Z</updated>
     
     
     <summary type="html">&lt;p&gt;仿cpp伪代码(Pseudocode)复现基本数据结构(DataStruct)&lt;br&gt;</summary>
@@ -57,14 +80,14 @@
     <link href="https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
     <id>https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</id>
     <published>2021-10-31T03:07:19.000Z</published>
-    <updated>2021-10-31T05:15:14.831Z</updated>
+    <updated>2021-11-16T13:00:27.159Z</updated>
     
     
     <summary type="html">&lt;p&gt;​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、&lt;a href=&quot;https://baike.baidu.com/item/随机变量/828980&quot;&gt;随机变量&lt;/a&gt;及其&lt;a href=&quot;https://baike.baidu.com/item/概率分布/828907&quot;&gt;概率分布&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/数字特征/3402134&quot;&gt;数字特征&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/大数定律/410082&quot;&gt;大数定律&lt;/a&gt;与&lt;a href=&quot;https://baike.baidu.com/item/中心极限定理/829451&quot;&gt;中心极限定理&lt;/a&gt;、统计量及其概率分布、&lt;a href=&quot;https://baike.baidu.com/item/参数估计/2224132&quot;&gt;参数估计&lt;/a&gt;和假设检验、回归分析、&lt;a href=&quot;https://baike.baidu.com/item/方差分析/1502206&quot;&gt;方差分析&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/马尔科夫链/4688932&quot;&gt;马尔科夫链&lt;/a&gt;等内容。&lt;/p&gt;</summary>
     
     
     
-    <category term="MA" scheme="https://chengstones.github.io/categories/MA/"/>
+    <category term="Mathmetic" scheme="https://chengstones.github.io/categories/Mathmetic/"/>
     
     
     <category term="MA" scheme="https://chengstones.github.io/tags/MA/"/>
@@ -76,7 +99,7 @@
     <link href="https://chengstones.github.io/2021/10/30/HTML/"/>
     <id>https://chengstones.github.io/2021/10/30/HTML/</id>
     <published>2021-10-30T12:18:13.651Z</published>
-    <updated>2021-11-04T07:14:21.051Z</updated>
+    <updated>2021-11-17T04:28:58.828Z</updated>
     
     
     <summary type="html">&lt;p&gt;URL：&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/HTML&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/HTML&lt;/a&gt;&lt;/p&gt;
