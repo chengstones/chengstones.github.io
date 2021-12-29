@@ -408,6 +408,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Knapsack+</title>
+    <url>/2021/04/02/Knapsack+/</url>
+    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
+<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
+F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
+<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
+<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
+<p>这样可以将$N$种情况减少到$log N$种情况</p>
+<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
+<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
+</blockquote>
+<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
+<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
+<p>可使用伪代码表示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
+<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
+<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
+<p>因此分别调用相关的算法去解决就行</p>
+<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
+<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
+]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+      <tags>
+        <tag>Arithmetic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTML</title>
     <url>/2021/12/29/HTML/</url>
     <content><![CDATA[<p>URL：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">https://developer.mozilla.org/zh-CN/docs/Web/HTML</a></p>
@@ -747,36 +777,6 @@ F(N，V)= max\{F(N-1，V)，F(N-1，V-C[N])+W[N]\}</script><h5 id="C-代码实�
 <p>​         动态规划算法与分治法类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
 <p>​         若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>CS</category>
-      </categories>
-      <tags>
-        <tag>Arithmetic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Knapsack+</title>
-    <url>/2021/04/02/Knapsack+/</url>
-    <content><![CDATA[<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h3><h4 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述："><a href="#问题重述：" class="headerlink" title="问题重述："></a>问题重述：</h5><p>​        有N种物品和一个容量为$V$的背包。第i种物品最多有$M[i]$件可用，每件耗费的空间是$C[i]$，价值是$W[i]$。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
-<h5 id="问题思路："><a href="#问题思路：" class="headerlink" title="问题思路："></a>问题思路：</h5><p>解法同0-1背包问题，将$M[i]$件第$i$种物品拆开为$M[i]$件独立的一件，体积为$C[i]$，价值为$W[i]$</p>
-<h5 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h5><script type="math/tex; mode=display">
-F(N，V)= max\{ F(N-1，V)，F(N，V-C[N])+W[N] \}</script><h4 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h4><p>仍然考虑二进制思想，把第i种物品换成若干个物品</p>
-<p>其中使每件物品相关参数前都有一个系，这些系数分别为</p>
-<p>$1，2，4，8……2^k $（使得$2^{(k+1)}-1$的物品个数超过$M[I]$）</p>
-<p>这样可以将$N$种情况减少到$log N$种情况</p>
-<h3 id="混合三种背包问题"><a href="#混合三种背包问题" class="headerlink" title="混合三种背包问题"></a>混合三种背包问题</h3><h4 id="问题求解-1"><a href="#问题求解-1" class="headerlink" title="问题求解"></a>问题求解</h4><h5 id="问题重述：-1"><a href="#问题重述：-1" class="headerlink" title="问题重述："></a>问题重述：</h5><blockquote>
-<p>如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一次（0-1背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）。应该怎么求解呢？</p>
-</blockquote>
-<h5 id="问题思路：-1"><a href="#问题思路：-1" class="headerlink" title="问题思路："></a>问题思路：</h5><p>考虑到0-1背包问题相比完全背包问题的代码只有一处不同</p>
-<p>同时多重背包问题又可以通过二进制思想快速简化为0-1背包问题</p>
-<p>可使用伪代码表示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i = 1 to N</span><br><span class="line">	if 第i件物品属于01背包</span><br><span class="line">		ZeroOnePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于完全背包</span><br><span class="line">		CompletePack(F,C_i,W_i)</span><br><span class="line">	else if 第i件物品属于多重背包</span><br><span class="line">		MultiplePack(F,C_i,W_i,N_i)</span><br></pre></td></tr></table></figure>
-<h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>面对多重大问题可以分别分拆成小问题去解决：</p>
-<p>对于混合背包问题本质上是0-1，完全背包和多重背包的结合</p>
-<p>因此分别调用相关的算法去解决就行</p>
-<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><p>0-1问题描绘决策问题的是否</p>
-<p>当出现决策问题可以取遍整数的时候，可以采用二进制思路化成0-1决策问题</p>
 ]]></content>
       <categories>
         <category>CS</category>
@@ -1523,72 +1523,6 @@ x' = \frac{z+\overline{z}}{|z|^2+1} \qquad y' = \frac{z-\overline{z}}{i(|z|^2+1)
       </tags>
   </entry>
   <entry>
-    <title>拓扑学</title>
-    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
-<li>一笔画问题和七桥问题</li>
-<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
-</ul>
-<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
-<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
-<li>集合论</li>
-<li>映射</li>
-<li>笛卡尔积</li>
-<li>等价关系</li>
-</ul>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
-<li><p>函数连续性的三种描述方法</p>
-</li>
-<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
-<blockquote>
-<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
-</blockquote>
-</li>
-<li><p>离散拓扑和平凡拓扑</p>
-</li>
-<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
-</li>
-</ol>
-<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
-<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
-<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
-<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
-<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
-</ul>
-</li>
-<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
-<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
-<li>该子集族称为由度量 d 决定的度量拓扑</li>
-</ul>
-</li>
-</ol>
-<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
-<li>闭集 -&gt; 开集的余集<ul>
-<li>全集和空集</li>
-<li>任意交</li>
-<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
-</ul>
-</li>
-<li><p>邻域，内点，内部 </p>
-<ul>
-<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
-<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
-<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
-</ul>
-</li>
-<li><p>聚点，闭包</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathmetic</category>
-      </categories>
-      <tags>
-        <tag>MA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>概率论和数理统计</title>
     <url>/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
     <content><![CDATA[<p>​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、<a href="https://baike.baidu.com/item/随机变量/828980">随机变量</a>及其<a href="https://baike.baidu.com/item/概率分布/828907">概率分布</a>、<a href="https://baike.baidu.com/item/数字特征/3402134">数字特征</a>、<a href="https://baike.baidu.com/item/大数定律/410082">大数定律</a>与<a href="https://baike.baidu.com/item/中心极限定理/829451">中心极限定理</a>、统计量及其概率分布、<a href="https://baike.baidu.com/item/参数估计/2224132">参数估计</a>和假设检验、回归分析、<a href="https://baike.baidu.com/item/方差分析/1502206">方差分析</a>、<a href="https://baike.baidu.com/item/马尔科夫链/4688932">马尔科夫链</a>等内容。</p>
@@ -1718,6 +1652,72 @@ P(B_i|A) = \frac{P(AB_i)}{P(A)} =\frac{P(B_i)P(A|B_i)}{\sum^n_{j=1}P(B_j)P(A|B_j
 <li>指数分布 $X \sim E(\lambda)$</li>
 <li>正态分布 $X \sim N(\mu,\sigma)$</li>
 </ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathmetic</category>
+      </categories>
+      <tags>
+        <tag>MA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拓扑学</title>
+    <url>/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><span id="more"></span>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>一笔画问题和七桥问题</li>
+<li>地图着色问题  -&gt; 问题与度量无关（距离，面积），而与区域邻接关系有关</li>
+</ul>
+<h3 id="Euler-多面体定理"><a href="#Euler-多面体定理" class="headerlink" title="Euler 多面体定理"></a>Euler 多面体定理</h3><p>凸多面体的面数 $f$ 、棱数 $l$ 和顶点数 $v$ 满足 Euler 公式<br>拓展：$f - l + v$ 由曲面本身决定，这个数称为 Euler 数</p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ul>
+<li>集合论</li>
+<li>映射</li>
+<li>笛卡尔积</li>
+<li>等价关系</li>
+</ul>
+<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="拓扑空间"><a href="#拓扑空间" class="headerlink" title="拓扑空间"></a>拓扑空间</h3><ol>
+<li><p>函数连续性的三种描述方法</p>
+</li>
+<li><p>拓扑空间的定义 -&gt; 拓扑公理：子集族 -&gt; i.全集和空集 ii.任意并 iii.有限交</p>
+<blockquote>
+<p>紧空间保证开集开性：任意并，有限交；保证闭集闭性：任意交，有限并</p>
+</blockquote>
+</li>
+<li><p>离散拓扑和平凡拓扑</p>
+</li>
+<li><p>余有限拓扑、余可数拓扑和欧式拓扑</p>
+</li>
+</ol>
+<h3 id="度量拓扑"><a href="#度量拓扑" class="headerlink" title="度量拓扑"></a>度量拓扑</h3><ol>
+<li>度量空间 -&gt; 度量d -&gt; 正定性、对称性和三角不等式</li>
+<li>赋范空间 -&gt; 范数 -&gt; 正定性、齐次性和三角不等式 -&gt; 线性空间 （线性性）-&gt; 线性赋范空间 </li>
+<li>引理 -&gt; 任意两个球形领域的交集是若干球形邻域的并集<ul>
+<li>考虑该交集合内所有点都是内点，满足两个球的内点性质，取小距离作为半径，该球完全位于集合内，得证</li>
+</ul>
+</li>
+<li>命题：考虑子集族（若干球形邻域的并集）是 X 上的一个拓扑<ul>
+<li>证明：公理(1)(2)显然，考虑公理(3)，由引理(7) 显然，得证</li>
+<li>该子集族称为由度量 d 决定的度量拓扑</li>
+</ul>
+</li>
+</ol>
+<h3 id="拓扑空间基本概念"><a href="#拓扑空间基本概念" class="headerlink" title="拓扑空间基本概念"></a>拓扑空间基本概念</h3><ol>
+<li>闭集 -&gt; 开集的余集<ul>
+<li>全集和空集</li>
+<li>任意交</li>
+<li>有限并  -&gt; 由拓扑公理的 De morgan 定律推导</li>
+</ul>
+</li>
+<li><p>邻域，内点，内部 </p>
+<ul>
+<li>$x \in A$  -&gt; x 是 A 的内点， A 是 x 的邻域， A 的所有内点为 A 的内部</li>
+<li>A 是 B 子集 -&gt; A 的内部 是 B 的内部 的子集</li>
+<li>A 等于 A 的内部 &lt;-&gt; A 是开集 </li>
+</ul>
+</li>
+<li><p>聚点，闭包</p>
 </li>
 </ol>
 ]]></content>
