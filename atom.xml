@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2021-11-17T04:28:58.828Z</updated>
+  <updated>2022-05-09T11:12:10.998Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -17,39 +17,16 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>HTML</title>
-    <link href="https://chengstones.github.io/2021/12/29/HTML/"/>
-    <id>https://chengstones.github.io/2021/12/29/HTML/</id>
-    <published>2021-12-29T06:38:27.218Z</published>
-    <updated>2021-11-17T04:28:58.828Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;URL：&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/HTML&quot;&gt;https://developer.mozilla.org/zh-CN/docs/Web/HTML&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;摘要：&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/HTML&quot;&gt;HTML&lt;/a&gt; (HyperText Markup Language) 不是一门编程语言，而是一种用来告知浏览器如何组织页面的&lt;strong&gt;标记语言&lt;/strong&gt;。HTML 可复杂、可简单，一切取决于开发者。它由一系列的&lt;strong&gt;元素（&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/Element&quot;&gt;elements&lt;/a&gt;）&lt;/strong&gt;组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ &lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Glossary/Tag&quot;&gt;tags&lt;/a&gt;）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="前端" scheme="https://chengstones.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="编程语言" scheme="https://chengstones.github.io/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rank_Queue</title>
-    <link href="https://chengstones.github.io/2021/11/17/Rank-Queue/"/>
-    <id>https://chengstones.github.io/2021/11/17/Rank-Queue/</id>
-    <published>2021-11-17T12:57:48.000Z</published>
-    <updated>2021-11-18T13:42:52.234Z</updated>
+    <title>Introduction to Algorithms</title>
+    <link href="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/"/>
+    <id>https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/</id>
+    <published>2022-05-09T11:10:07.000Z</published>
+    <updated>2022-05-09T11:12:10.998Z</updated>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;排队系统模拟&quot;&gt;&lt;a href=&quot;#排队系统模拟&quot; class=&quot;headerlink&quot; title=&quot;排队系统模拟&quot;&gt;&lt;/a&gt;排队系统模拟&lt;/h1&gt;&lt;p&gt;排队系统主要有两类事件：顾客到达和服务完毕后顾客离开&lt;/p&gt;
-&lt;p&gt;因此这种系统又被称作&lt;strong&gt;离散</summary>
+    <summary type="html">&lt;h2 id=&quot;Chapter-26-最大流&quot;&gt;&lt;a href=&quot;#Chapter-26-最大流&quot; class=&quot;headerlink&quot; title=&quot;Chapter 26 最大流&quot;&gt;&lt;/a&gt;Chapter 26 最大流&lt;/h2&gt;</summary>
       
     
     
@@ -57,232 +34,7 @@
     <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
     
     
-    <category term="CS" scheme="https://chengstones.github.io/tags/CS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS</title>
-    <link href="https://chengstones.github.io/2021/11/05/CSS/"/>
-    <id>https://chengstones.github.io/2021/11/05/CSS/</id>
-    <published>2021-11-05T13:59:39.000Z</published>
-    <updated>2021-11-05T14:08:46.852Z</updated>
-    
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="前端" scheme="https://chengstones.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DataStruct-Pseudocode</title>
-    <link href="https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/"/>
-    <id>https://chengstones.github.io/2021/11/02/DataStruct-Pseudocode/</id>
-    <published>2021-11-02T01:03:39.000Z</published>
-    <updated>2021-11-30T12:16:19.903Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;仿cpp伪代码(Pseudocode)复现基本数据结构(DataStruct)&lt;br&gt;</summary>
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/tags/CS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>概率论和数理统计</title>
-    <link href="https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-    <id>https://chengstones.github.io/2021/10/31/%E6%A6%82%E7%8E%87%E8%AE%BA%E5%92%8C%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</id>
-    <published>2021-10-31T03:07:19.000Z</published>
-    <updated>2021-11-16T13:00:27.159Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;​    《概率论和数理统计》是高等院校理工类、经管类的重要课程之一。在考研数学中的比重大约占22%左右。主要内容包括：概率论的基本概念、&lt;a href=&quot;https://baike.baidu.com/item/随机变量/828980&quot;&gt;随机变量&lt;/a&gt;及其&lt;a href=&quot;https://baike.baidu.com/item/概率分布/828907&quot;&gt;概率分布&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/数字特征/3402134&quot;&gt;数字特征&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/大数定律/410082&quot;&gt;大数定律&lt;/a&gt;与&lt;a href=&quot;https://baike.baidu.com/item/中心极限定理/829451&quot;&gt;中心极限定理&lt;/a&gt;、统计量及其概率分布、&lt;a href=&quot;https://baike.baidu.com/item/参数估计/2224132&quot;&gt;参数估计&lt;/a&gt;和假设检验、回归分析、&lt;a href=&quot;https://baike.baidu.com/item/方差分析/1502206&quot;&gt;方差分析&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/马尔科夫链/4688932&quot;&gt;马尔科夫链&lt;/a&gt;等内容。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Mathmetic" scheme="https://chengstones.github.io/categories/Mathmetic/"/>
-    
-    
-    <category term="MA" scheme="https://chengstones.github.io/tags/MA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>拓扑学</title>
-    <link href="https://chengstones.github.io/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/"/>
-    <id>https://chengstones.github.io/2021/10/30/%E6%8B%93%E6%89%91%E5%AD%A6/</id>
-    <published>2021-10-30T10:26:19.000Z</published>
-    <updated>2021-10-30T11:41:51.584Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="Mathmetic" scheme="https://chengstones.github.io/categories/Mathmetic/"/>
-    
-    
-    <category term="MA" scheme="https://chengstones.github.io/tags/MA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>复变函数</title>
-    <link href="https://chengstones.github.io/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/"/>
-    <id>https://chengstones.github.io/2021/10/30/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</id>
-    <published>2021-10-30T10:24:19.000Z</published>
-    <updated>2021-10-30T11:40:43.571Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Chapter-1-复数和复平面&quot;&gt;&lt;a href=&quot;#Chapter-1-复数和复平面&quot; class=&quot;headerlink&quot; title=&quot;Chapter 1 复数和复平面&quot;&gt;&lt;/a&gt;Chapter 1 复数和复平面&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="Mathmetic" scheme="https://chengstones.github.io/categories/Mathmetic/"/>
-    
-    
-    <category term="MA" scheme="https://chengstones.github.io/tags/MA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>信息检索导论</title>
-    <link href="https://chengstones.github.io/2021/10/28/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%AF%BC%E8%AE%BA/"/>
-    <id>https://chengstones.github.io/2021/10/28/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%AF%BC%E8%AE%BA/</id>
-    <published>2021-10-27T16:00:00.000Z</published>
-    <updated>2021-10-31T14:26:16.484Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;摘要：本书是一本讲授信息检索的经典教材。全书共 21 章，前八章详述了信息检索的基础知识，包括倒排索引、布尔检索及词项权重计算和评分算法等，后十三章介绍了一些高级话题，如基于语言建模的信息检索模型、基于机器学习的排序方法和 Web 搜索技术等。另外，本书还着重讨论了文本聚类技术这一信息检索中不可或缺的组成部分。全书语言流畅，由浅入深，一气呵成。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="NLP" scheme="https://chengstones.github.io/categories/NLP/"/>
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/tags/CS/"/>
-    
-    <category term="NLP" scheme="https://chengstones.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pandas</title>
-    <link href="https://chengstones.github.io/2021/08/02/Pandas/"/>
-    <id>https://chengstones.github.io/2021/08/02/Pandas/</id>
-    <published>2021-08-01T16:00:00.000Z</published>
-    <updated>2021-10-30T11:42:24.600Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;理解Pandas&quot;&gt;&lt;a href=&quot;#理解Pandas&quot; class=&quot;headerlink&quot; title=&quot;理解Pandas&quot;&gt;&lt;/a&gt;理解Pandas&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.runoob.com/wp-content/up</summary>
-      
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="Python" scheme="https://chengstones.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Numpy_base</title>
-    <link href="https://chengstones.github.io/2021/08/01/Numpy_base/"/>
-    <id>https://chengstones.github.io/2021/08/01/Numpy_base/</id>
-    <published>2021-07-31T16:00:00.000Z</published>
-    <updated>2021-10-30T11:22:44.983Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;理解Numpy&quot;&gt;&lt;a href=&quot;#理解Numpy&quot; class=&quot;headerlink&quot; title=&quot;理解Numpy&quot;&gt;&lt;/a&gt;理解Numpy&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.runoob.com/wp-content/upload</summary>
-      
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="Python" scheme="https://chengstones.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Brain_Computer_Interface</title>
-    <link href="https://chengstones.github.io/2021/04/08/Brain_Computer_Interface/"/>
-    <id>https://chengstones.github.io/2021/04/08/Brain_Computer_Interface/</id>
-    <published>2021-04-07T16:00:00.000Z</published>
-    <updated>2021-10-30T11:24:16.242Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;参考书籍：&lt;a href=&quot;https://book.douban.com/subject/27004902/&quot;&gt;脑机接口导论&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;信号处理&quot;&gt;&lt;a href=&quot;#信号处理&quot; class=&quot;headerlink&quot; title=&quot;信号处理&quot;&gt;&lt;/a</summary>
-      
-    
-    
-    
-    <category term="AI" scheme="https://chengstones.github.io/categories/AI/"/>
-    
-    
-    <category term="Bioinformatic" scheme="https://chengstones.github.io/tags/Bioinformatic/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Knapsack+</title>
-    <link href="https://chengstones.github.io/2021/04/02/Knapsack+/"/>
-    <id>https://chengstones.github.io/2021/04/02/Knapsack+/</id>
-    <published>2021-04-01T16:00:00.000Z</published>
-    <updated>2021-10-30T11:42:17.496Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;背包问题&quot;&gt;&lt;a href=&quot;#背包问题&quot; class=&quot;headerlink&quot; title=&quot;背包问题&quot;&gt;&lt;/a&gt;背包问题&lt;/h2&gt;&lt;h3 id=&quot;多重背包问题&quot;&gt;&lt;a href=&quot;#多重背包问题&quot; class=&quot;headerlink&quot; title=&quot;多重背包问</summary>
-      
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="Arithmetic" scheme="https://chengstones.github.io/tags/Arithmetic/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Knapsack</title>
-    <link href="https://chengstones.github.io/2021/04/01/Knapsack/"/>
-    <id>https://chengstones.github.io/2021/04/01/Knapsack/</id>
-    <published>2021-03-31T16:00:00.000Z</published>
-    <updated>2021-10-30T11:42:13.911Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;背包问题&quot;&gt;&lt;a href=&quot;#背包问题&quot; class=&quot;headerlink&quot; title=&quot;背包问题&quot;&gt;&lt;/a&gt;背包问题&lt;/h1&gt;&lt;h2 id=&quot;0-1-背包问题&quot;&gt;&lt;a href=&quot;#0-1-背包问题&quot; class=&quot;headerlink&quot; title=&quot;0</summary>
-      
-    
-    
-    
-    <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
-    
-    
-    <category term="Arithmetic" scheme="https://chengstones.github.io/tags/Arithmetic/"/>
+    <category term="Algorithms" scheme="https://chengstones.github.io/tags/Algorithms/"/>
     
   </entry>
   
