@@ -6,7 +6,7 @@
   <link href="https://chengstones.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengstones.github.io/"/>
-  <updated>2022-05-09T11:12:10.998Z</updated>
+  <updated>2022-05-09T14:18:27.044Z</updated>
   <id>https://chengstones.github.io/</id>
   
   <author>
@@ -21,12 +21,12 @@
     <link href="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/"/>
     <id>https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/</id>
     <published>2022-05-09T11:10:07.000Z</published>
-    <updated>2022-05-09T11:12:10.998Z</updated>
+    <updated>2022-05-09T14:18:27.044Z</updated>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;Chapter-26-最大流&quot;&gt;&lt;a href=&quot;#Chapter-26-最大流&quot; class=&quot;headerlink&quot; title=&quot;Chapter 26 最大流&quot;&gt;&lt;/a&gt;Chapter 26 最大流&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;Part-6-图算法&quot;&gt;&lt;a href=&quot;#Part-6-图算法&quot; class=&quot;headerlink&quot; title=&quot;Part 6 图算法&quot;&gt;&lt;/a&gt;Part 6 图算法&lt;/h1&gt;&lt;h2 id=&quot;Chapter-26-最大流&quot;&gt;&lt;a href=&quot;#Chapter</summary>
       
     
     
@@ -34,7 +34,7 @@
     <category term="CS" scheme="https://chengstones.github.io/categories/CS/"/>
     
     
-    <category term="Algorithms" scheme="https://chengstones.github.io/tags/Algorithms/"/>
+    <category term="Algorithm" scheme="https://chengstones.github.io/tags/Algorithm/"/>
     
   </entry>
   

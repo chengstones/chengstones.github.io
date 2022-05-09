@@ -3,12 +3,13 @@
   <entry>
     <title>Introduction to Algorithms</title>
     <url>/2022/05/09/Introduction_to_Algorithms/</url>
-    <content><![CDATA[<h2 id="Chapter-26-最大流"><a href="#Chapter-26-最大流" class="headerlink" title="Chapter 26 最大流"></a>Chapter 26 最大流</h2>]]></content>
+    <content><![CDATA[<h1 id="Part-6-图算法"><a href="#Part-6-图算法" class="headerlink" title="Part 6 图算法"></a>Part 6 图算法</h1><h2 id="Chapter-26-最大流"><a href="#Chapter-26-最大流" class="headerlink" title="Chapter 26 最大流"></a>Chapter 26 最大流</h2><h3 id="Section-1-流网络"><a href="#Section-1-流网络" class="headerlink" title="Section 1 流网络"></a>Section 1 流网络</h3><p>定义：流网络 $G = (V,E)$ </p>
+]]></content>
       <categories>
         <category>CS</category>
       </categories>
       <tags>
-        <tag>Algorithms</tag>
+        <tag>Algorithm</tag>
       </tags>
   </entry>
 </search>
