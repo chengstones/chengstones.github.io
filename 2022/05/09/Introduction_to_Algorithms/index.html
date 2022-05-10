@@ -20,18 +20,21 @@
     var CONFIG = {"hostname":"chengstones.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Part 6 图算法Chapter 26 最大流Section 1 流网络定义：流网络 $G &#x3D; (V,E)$">
+  <meta name="description" content="Part 6 图算法[TOC] Chapter 26 最大流Section 1 流网络定义：流网络 $G &#x3D; (V,E)$ 为有向图，每条边 $(u,v)\in E$ 有非负容量值 $c(u,v)&gt; 0$  特殊节点：源 $s$ 和汇 $t$ 限制：不存在反平行边，否则可以增加节点来回避反平行边。  流：设 $G &#x3D;(V，E)$ 为一个流网络，其容量函数为 $c$ 。设 $s$ 为网络的源结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Algorithms">
 <meta property="og:url" content="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/index.html">
 <meta property="og:site_name" content="Autumn-Storage">
-<meta property="og:description" content="Part 6 图算法Chapter 26 最大流Section 1 流网络定义：流网络 $G &#x3D; (V,E)$">
+<meta property="og:description" content="Part 6 图算法[TOC] Chapter 26 最大流Section 1 流网络定义：流网络 $G &#x3D; (V,E)$ 为有向图，每条边 $(u,v)\in E$ 有非负容量值 $c(u,v)&gt; 0$  特殊节点：源 $s$ 和汇 $t$ 限制：不存在反平行边，否则可以增加节点来回避反平行边。  流：设 $G &#x3D;(V，E)$ 为一个流网络，其容量函数为 $c$ 。设 $s$ 为网络的源结">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/Introduction_to_Algorithms/FIG26_1.png">
 <meta property="article:published_time" content="2022-05-09T11:10:07.000Z">
-<meta property="article:modified_time" content="2022-05-09T14:18:27.044Z">
+<meta property="article:modified_time" content="2022-05-10T08:02:20.667Z">
 <meta property="article:author" content="Qiushi">
+<meta property="article:tag" content="CS">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/Introduction_to_Algorithms/FIG26_1.png">
 
 <link rel="canonical" href="https://chengstones.github.io/2022/05/09/Introduction_to_Algorithms/">
 
@@ -223,17 +226,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-09 19:10:07 / 修改时间：22:18:27" itemprop="dateCreated datePublished" datetime="2022-05-09T19:10:07+08:00">2022-05-09</time>
+              <time title="创建时间：2022-05-09 19:10:07" itemprop="dateCreated datePublished" datetime="2022-05-09T19:10:07+08:00">2022-05-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-10 16:02:20" itemprop="dateModified" datetime="2022-05-10T16:02:20+08:00">2022-05-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                  <a href="/categories/Book/" itemprop="url" rel="index"><span itemprop="name">Book</span></a>
                 </span>
             </span>
 
@@ -248,7 +257,171 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Part-6-图算法"><a href="#Part-6-图算法" class="headerlink" title="Part 6 图算法"></a>Part 6 图算法</h1><h2 id="Chapter-26-最大流"><a href="#Chapter-26-最大流" class="headerlink" title="Chapter 26 最大流"></a>Chapter 26 最大流</h2><h3 id="Section-1-流网络"><a href="#Section-1-流网络" class="headerlink" title="Section 1 流网络"></a>Section 1 流网络</h3><p>定义：流网络 $G = (V,E)$ </p>
+        <h1 id="Part-6-图算法"><a href="#Part-6-图算法" class="headerlink" title="Part 6 图算法"></a>Part 6 图算法</h1><p>[TOC]</p>
+<h2 id="Chapter-26-最大流"><a href="#Chapter-26-最大流" class="headerlink" title="Chapter 26 最大流"></a>Chapter 26 最大流</h2><h3 id="Section-1-流网络"><a href="#Section-1-流网络" class="headerlink" title="Section 1 流网络"></a>Section 1 流网络</h3><p>定义：流网络 $G = (V,E)$ 为有向图，每条边 $(u,v)\in E$ 有非负容量值 $c(u,v)&gt; 0$</p>
+<ul>
+<li>特殊节点：源 $s$ 和汇 $t$</li>
+<li>限制：不存在反平行边，否则可以增加节点来回避反平行边。</li>
+</ul>
+<p>流：设 $G =(V，E)$ 为一个流网络，其容量函数为 $c$ 。设 $s$ 为网络的源结点，t为汇点。G中的流是一个实值函数 $f:V\times V→R$</p>
+<ul>
+<li><p>限制条件</p>
+<ul>
+<li><p>容量限制：对于所有的结点 $u, v \in V$, 要求 $0 \leqslant f(u, v) \leqslant c(u, v)$ 。</p>
+<blockquote>
+<p> 即流不超过边的容量大小</p>
+</blockquote>
+</li>
+<li><p>流量守恒：对于所有的结点 $u \in V-\{s, t\}$, 要求</p>
+<script type="math/tex; mode=display">
+\sum_{v \in V} f(v, u)=\sum_{v \in V} f(u, v)</script><blockquote>
+<p>即除源和汇外，其余节点的流入和流出相等</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>多源和多汇</p>
+<ul>
+<li><p>利用 super source $s$ 和 super sink $t$ 进行等价</p>
+</li>
+<li><p>常见问题：匹配，分配等问题</p>
+<blockquote>
+<p>配对问题</p>
+</blockquote>
+<p><img src=".\Introduction_to_Algorithms\FIG26_1.png" alt="FIG26_1" style="zoom: 60%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Section-1-流网络-课后习题"><a href="#Section-1-流网络-课后习题" class="headerlink" title="Section 1 流网络 课后习题"></a>Section 1 流网络 课后习题</h4><blockquote>
+<p>26.1-1 证明：含反向平行边时添加枢纽节点后问题等价</p>
+<p>26.1-2 证明：super source 和 super sink 加入后问题等价</p>
+<p>26.1-3 设 $u$ 为这样一个结点：不存在路径 $s→u→t$ 。证明：$G$ 中必然存在一个最大流 $f$，使得对于所有结点 $v\in V$，$f(u，v)=f(v，u)=0$</p>
+<p>26.1-4 证明：网络中的流形成一个凸集。也即证明：如果 $f_1$ 和 $f_2$ 为两个流，则$af_1+（1-a）f_2$ 也是一个流，这里 $0&lt;a≤1$</p>
+<p><strong>Solution：</strong> 验证满足容量限制和流量守恒限制条件</p>
+<p>26.1-5 将最大流问题表述为一个线性规划问题。</p>
+<p><strong>Solution：</strong> 线性约束：容量限制和流量守恒；最优化：最大流</p>
+<p>26.1-6 Adam教授有两个儿子，每个人都拒绝走另一个人当天所走过的街区，而不在意是否街角交叉处相遇。假设教授的房子和学校都位于街角上。教授有一份小镇的地图，试说明如何将这个问题转换为一个最大流问题，以便决定是否可以将孩子送到同一所学校。</p>
+<p><strong>Solution：</strong> 边容量为 1，双源单汇，super source 压缩。</p>
+<p>26.1-7 假定除边的容量外，流网络还有 <strong>结点容量</strong>。即对于每个结点 $v$，有一个极限值$l(v)$，这是可以流经结点 $v$ 的最大流量。请说明如何将一个带有结点容量的流网络 $G=(V，E)$ 转换为一个等价的但没有结点容量的流网络 $G’=(V’，E)$，使得 $G’$ 中的最大流与 $G$ 中的最大流的取值一样。图 $G’$ 里有多少个结点和多少条边？</p>
+<p><strong>Solution：</strong> 将每个节点分裂，分别负责流入和流出，这两个点直接相连，边容量值为结点容量。</p>
+</blockquote>
+<h3 id="Section-2-Ford-Fulkerson-方法"><a href="#Section-2-Ford-Fulkerson-方法" class="headerlink" title="Section 2 Ford-Fulkerson 方法"></a>Section 2 Ford-Fulkerson 方法</h3><h1 id="Part-7-算法问题选编"><a href="#Part-7-算法问题选编" class="headerlink" title="Part 7 算法问题选编"></a>Part 7 算法问题选编</h1><h2 id="Chapter-30-多项式和快速傅里叶变换"><a href="#Chapter-30-多项式和快速傅里叶变换" class="headerlink" title="Chapter 30 多项式和快速傅里叶变换"></a>Chapter 30 多项式和快速傅里叶变换</h2><h3 id="Section-0-概述"><a href="#Section-0-概述" class="headerlink" title="Section 0 概述"></a>Section 0 概述</h3><p>多项式有两种表示方法：系数表达和点值表达。执行乘法操作的时间复杂度：</p>
+<ul>
+<li>系数表达：$\theta(n^2)$</li>
+<li>点值表达：$\theta(n)$</li>
+</ul>
+<p>优化思路：由系数表达转换为点值表达，执行乘法运算，逆变换为系数表达</p>
+<h3 id="Section-1-多项式的表示"><a href="#Section-1-多项式的表示" class="headerlink" title="Section 1 多项式的表示"></a>Section 1 多项式的表示</h3><ul>
+<li><p>霍纳法则：可以在 $\theta(n)$ 时间复杂度内完成求值运算</p>
+<script type="math/tex; mode=display">
+A\left(x_{0}\right)=a_{0}+x_{0}\left(a_{1}+x_{0}\left(a_{2}+\cdots+x_{0}\left(a_{n-2}+x_{0}\left(a_{n-1}\right)\right) \cdots\right)\right)</script></li>
+<li><p>插值多项式唯一性：n 个不同的点值对可以唯一确定一个 n 次多项式</p>
+<p><strong>Solution:</strong> 范德蒙矩阵方程有唯一解</p>
+<script type="math/tex; mode=display">
+\left[\begin{array}{ccccc}
+1 & x_{0} & x_{0}^{2} & \cdots & x_{0}^{n-1} \\
+1 & x_{1} & x_{1}^{2} & \cdots & x_{1}^{n-1} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_{n-1} & x_{n-1}^{2} & \cdots & x_{n-1}^{n-1}
+\end{array}\right]\left[\begin{array}{c}
+a_{0} \\
+a_{1} \\
+\vdots \\
+a_{n-1}
+\end{array}\right]=\left[\begin{array}{c}
+y_{0} \\
+y_{1} \\
+\vdots \\
+y_{n-1}
+\end{array}\right]</script><p>左乘范德蒙矩阵的逆矩阵，得到基于求解线性方程组的插值算法。基于 LU 分解算法，可以在 $O(n^3)$ 时间复杂度内求解。</p>
+<ul>
+<li>拉格朗日插值公式，在 $O(n^2)$ 时间复杂度内求解。<script type="math/tex; mode=display">
+A(x)=\sum_{k=0}^{n-1} y_{k} \frac{\prod_{j \neq k}\left(x-x_{j}\right)}{\prod_{j \neq k}\left(x_{k}-x_{j}\right)}</script></li>
+</ul>
+</li>
+<li><p>多项式快速乘法</p>
+<ul>
+<li>加倍次数界，将 n 次多项式 扩增为 2n 次多项式</li>
+<li>求值，利用 2n 阶 FFT 计算点值表达式</li>
+<li>逐点乘积</li>
+<li>插值，对乘积结果计算逆 DFT</li>
+</ul>
+</li>
+</ul>
+<h4 id="Section-1-多项式的表示-课后习题"><a href="#Section-1-多项式的表示-课后习题" class="headerlink" title="Section 1 多项式的表示 课后习题"></a>Section 1 多项式的表示 课后习题</h4><h3 id="Section-2-DFT-和-FFT"><a href="#Section-2-DFT-和-FFT" class="headerlink" title="Section 2 DFT 和 FFT"></a>Section 2 DFT 和 FFT</h3><ul>
+<li><p>单位复数根：n 个 n 次单位复数根在乘法意义下构成群</p>
+</li>
+<li><p><strong>（消去引理）</strong>对任何整数 $n \geqslant 0, k \geqslant 0$, 以及 $d&gt;0$,</p>
+<script type="math/tex; mode=display">
+\omega_{d n}^{d k}=\omega_{n}^{k}</script></li>
+<li><p><strong>（折半引理）</strong>如果 $n&gt;0$ 为偶数，那么 $n$ 个 $n$ 次单位复数根的平方的集合就是 $n/2 $ 个 $n/2$ 次单位复数根的集合。</p>
+</li>
+<li><p><strong>DFT</strong></p>
+<ul>
+<li>考虑 $n$ 次多项式在 $n$ 个 $n$ 次单位复数根的值，值向量称为系数向量的 DFT<script type="math/tex; mode=display">
+y_{k}=A\left(\omega_{n}^{k}\right)=\sum_{j=0}^{n-1} a_{j} \omega_{n}^{k j}</script></li>
+</ul>
+</li>
+<li><p><strong>FFT</strong></p>
+<ul>
+<li><p>在 $\theta(n\lg n)$ 时间内计算出 DFT$_n(a)$</p>
+</li>
+<li><p>利用分治策略</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&A^{[0]}(x)=a_{0}+a_{2} x+a_{4} x^{2}+\cdots+a_{n-2} x^{n / 2-1} \\
+&A^{[1]}(x)=a_{1}+a_{3} x+a_{5} x^{2}+\cdots+a_{n-1} x^{n / 2-1}
+\end{aligned}</script><script type="math/tex; mode=display">
+A(x)=A^{[0]}\left(x^{2}\right)+x A^{[1]}\left(x^{2}\right)</script></li>
+<li></li>
+<li><p>由<strong>折半定理</strong>，将规模为 n 的 DFT 问题分解为两个规模为 n/2 的 DFT 问题</p>
+</li>
+</ul>
+</li>
+<li><p>单位复数根插值</p>
+<ul>
+<li><p>范德蒙矩阵</p>
+<script type="math/tex; mode=display">
+\left[\begin{array}{c}
+y_{0} \\
+y_{1} \\
+y_{2} \\
+y_{3} \\
+\vdots \\
+y_{n-1}
+\end{array}\right]=\left[\begin{array}{cccccc}
+1 & 1 & 1 & 1 & \cdots & 1 \\
+1 & \omega_{n} & \omega_{n}^{2} & \omega_{n}^{3} & \cdots & \omega_{n}^{n-1} \\
+1 & \omega_{n}^{2} & \omega_{n}^{4} & \omega_{n}^{6} & \cdots & \omega_{n}^{2(n-1)} \\
+1 & \omega_{n}^{3} & \omega_{n}^{6} & \omega_{n}^{9} & \cdots & \omega_{n}^{3(n-1)} \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \omega_{n}^{n-1} & \omega_{n}^{2(n-1)} & \omega_{n}^{3(n-1)} & \cdots & \omega_{n}^{(n-1)(n-1)}
+\end{array}\right]\left[\begin{array}{c}
+a_{0} \\
+a_{1} \\
+a_{2} \\
+a_{3} \\
+\vdots \\
+a_{n-1}
+\end{array}\right]</script></li>
+<li><p><strong>（求和引理）</strong>对任意整数 $n \geq 1$ 和不能被 $n$ 整除的非负整数 $k$ ， 有</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^{n-1}(w_n^k)^j = 0</script><p><strong>Solution：</strong>自同构映射 </p>
+</li>
+<li><p><strong>（逆插值引理）</strong> 对 $j, k=0,1, \cdots, n-1, V_{n}^{-1}$ 的 $(j, k)$ 处元素为 $\omega_{n}^{-k j} / n_{\circ}$<br><strong>Solution：</strong>  已知 $V_{n}^{-1} V_{n}=I_{n}$</p>
+<script type="math/tex; mode=display">
+\left[V_{n}^{-1} V_{n}\right]_{j j^{\prime}}=\sum_{k=0}^{n-1}\left(\omega_{n}^{-k j} / n\right)\left(\omega_{n}^{k j^{\prime}}\right)=\sum_{k=0}^{n-1} \omega_{n}^{k\left(j^{\prime}-j\right)} / n</script><p>如果 $j^{\prime}=j$,  和为 1 ; 否则, 根据求和引理，和为 0 。注意, 只有 $-(n-1) \leqslant$ $j^{\prime}-j \leqslant n-1$, 使得 $j^{\prime}-j$ 不能被 $n$ 整除, 才能应用求和引理。<br>给定逆矩阵 $V_{n}^{-1}$, 可以推导出 $\mathrm{DFT}_{n}^{-1}(y)$ :</p>
+<script type="math/tex; mode=display">
+a_{j}=\frac{1}{n} \sum_{k=0}^{n-1} y_{k} \omega_{n}^{-k j}</script></li>
+<li><p>用 $w_n^{-1}$ 替换 $w_n$ ，将计算结果除以 $n$ ，则计算出逆 DFT</p>
+</li>
+<li><p><strong>（卷积定理）</strong> 对任意两个长度为 $n$ 的向量 $a$ 和 $b$，其中 $n = 2^k$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+a \otimes b=\mathrm{DFT}_{2 n}^{-1}\left(\mathrm{DFT}_{2 n}(a) \cdot \mathrm{DFT}_{2 n}(b)\right)</script><h4 id="Section-2-DFT-与-FFT-课后习题"><a href="#Section-2-DFT-与-FFT-课后习题" class="headerlink" title="Section 2 DFT 与 FFT 课后习题"></a>Section 2 DFT 与 FFT 课后习题</h4></li>
+</ul>
 
     </div>
 
@@ -258,6 +431,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/CS/" rel="tag"># CS</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
           </div>
 
@@ -265,6 +439,13 @@
 
 
         
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/10/Computer-Networking-A-Top-Down-Approach/" rel="next" title="Computer_Networking_A_Top_Down_Approach">
+      Computer_Networking_A_Top_Down_Approach <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -322,7 +503,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-6-%E5%9B%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Part 6 图算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-26-%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter 26 最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-1-%E6%B5%81%E7%BD%91%E7%BB%9C"><span class="nav-number">1.1.1.</span> <span class="nav-text">Section 1 流网络</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-6-%E5%9B%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Part 6 图算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-26-%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter 26 最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-1-%E6%B5%81%E7%BD%91%E7%BB%9C"><span class="nav-number">1.1.1.</span> <span class="nav-text">Section 1 流网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Section-1-%E6%B5%81%E7%BD%91%E7%BB%9C-%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Section 1 流网络 课后习题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-2-Ford-Fulkerson-%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">Section 2 Ford-Fulkerson 方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-7-%E7%AE%97%E6%B3%95%E9%97%AE%E9%A2%98%E9%80%89%E7%BC%96"><span class="nav-number">2.</span> <span class="nav-text">Part 7 算法问题选编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-30-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">2.1.</span> <span class="nav-text">Chapter 30 多项式和快速傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-0-%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.1.</span> <span class="nav-text">Section 0 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-1-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">Section 1 多项式的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Section-1-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA-%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Section 1 多项式的表示 课后习题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-2-DFT-%E5%92%8C-FFT"><span class="nav-number">2.1.3.</span> <span class="nav-text">Section 2 DFT 和 FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Section-2-DFT-%E4%B8%8E-FFT-%E8%AF%BE%E5%90%8E%E4%B9%A0%E9%A2%98"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">Section 2 DFT 与 FFT 课后习题</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -338,7 +519,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -351,7 +532,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
